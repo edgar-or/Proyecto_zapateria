@@ -1,48 +1,52 @@
+  <!-- Pagina Principal/Raiz Vercion del Sitio V0.0.001 -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <title>Inicio</title>
+      <!-- Icono de la pagina aqui -->
 
+    <title>Inicio</title>
+  <!-- Header de la pagina (cabezera) -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img src="adidas.jpeg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+              <!-- Nombre en el baner -->
             Zapateria ###
           </a>
         </div>
       </nav>
 </head>
-
 <body>
+    <!-- Lista del menu de opcciones  -->
     <ul class="nav nav-pills w-100">
         <li class="nav-item">
           <a class="nav-link active" style="color:black ; background-color:aquamarine" aria-current="page" href="#">Inicio</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" style="color:black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Catalogo</a>
+          <!-- Opcciones dentro de la lista del menu -->
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="catalogo/dama.html">Dama</a></li>
-            <li><a class="dropdown-item" href="#">Niño</a></li>
-            <li><a class="dropdown-item" href="#">Niña</a></li>
-            <li><a class="dropdown-item" href="#">joven</a></li>
+            <li><a class="dropdown-item" href="catalogo/niño.html">Niño</a></li>
+            <li><a class="dropdown-item" href="catalogo/niña.html">Niña</a></li>
+            <li><a class="dropdown-item" href="catalogo/joven.html">joven</a></li>
             <li><hr class="dropdown-divider">Marcas</li>
             <li><a class="dropdown-item" href="#"></a></li>
           </ul>
         </li>
+          <!-- Lista de Menus de Interaccion -->
         <li class="nav-item">
           <a class="nav-link" style="color:black" href="#">Mis compras</a>
         </li>
       </ul>
-
       <center>
+          <!-- Imagen en la pantalla principal -->
       <img src="imagenes/fondo.jpg" width="900" height="900" class="img-fluid" >
     </center>
-
+      <!-- Scrip de animacion de las opccines en el menu -->
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
