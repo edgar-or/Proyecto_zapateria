@@ -8,9 +8,10 @@
       <!-- Icono de la pagina aqui -->
 
     <title>Inicio</title>
-      <!-- Lista del menu de opcciones  -->
-     
+      <!-- Lista del menu de opcciones  -->   
   <!-- Header de la pagina (cabezera) -->
+</head>
+<body>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
@@ -21,7 +22,7 @@
         </div>
       </nav>
 
-      <ul class="nav nav-pills w-100" style="font-size: x-large; font-family: sans-serif; font-style:italic; background-color: gray;">
+      <ul class="nav nav-pills w-100" style="font-size: x-large; font-family: sans-serif; font-style:italic;">
         <li class="nav-item">
           <a class="nav-link active" style="color:black ; background-color:aquamarine" aria-current="page" href="#">Inicio</a>
         </li>
@@ -42,18 +43,15 @@
           <a class="nav-link" style="color:black" href="#">Mis compras</a>
         </li>
       </ul>
-      
-</head>
-<body>
-
+    
   <style>
     body {
-        background-image: url('imagenes/fondo3.jpg');
+        background-image: url('imagenes/fondo5.jpg');
         background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
         background-repeat: no-repeat; /* Evita que la imagen se repita */
         background-position: center; /* Centra la imagen */
     }
-</style>
+  </style>
   
       <center>
         <!-- Carrusel de imagenes (Adaptar tamaño a dispositivos moviles)-->
@@ -88,29 +86,31 @@
       <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            
             <img src="imagenes/carrusel/1.jpg" height="500px" width="700px" class="d-block  rounded" alt="...">
           </div>
+
           <div class="carousel-item">
             <img src="imagenes/carrusel/2.jpg" height="500px" width="700px" class="d-block rounded" alt="...">
           </div>
+
           <div class="carousel-item">
             <img src="..." class="d-block w-100" alt="...">
           </div>
         </div>
+
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
           <span style="background-color:black;" class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
+
         <button  class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
           <span style="background-color:black;" class="carousel-control-next-icon" aria-hidden="true"></span>
           <span  class="visually-hidden">Next</span>
         </button>
       </div>
+      
     </center>
->>>>>>> 82d6cb9072ce59d0995c3ec7f9d9be1dd562190a
       <!-- Scrip de animacion de las opccines en el menu -->
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
