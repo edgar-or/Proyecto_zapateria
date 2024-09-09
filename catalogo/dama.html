@@ -7,42 +7,46 @@
     <!-- Icono de la pagina aqui -->
     <title>Document</title>
 
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="../adidas.jpeg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            <!-- Nombre en el baner -->
-            Zapateria ###
-          </a>
-        </div>
-      </nav>
 </head>
     <!-- Lista del menu de opcciones  -->
-<ul class="nav nav-pills w-100">
-    <li class="nav-item">
-      <a class="nav-link active" style="color:black ; background-color:aquamarine" aria-current="page" href="../index.html">Inicio</a>
-    </li>
-          <!-- Opcciones dentro de la lista del menu -->
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" style="color:black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Catalogo</a>
-                <!-- Opcciones dentro de la lista del menu -->
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" style="color:aqua" href="#">Dama</a></li>
-        <li><a class="dropdown-item" href="niño.html">Niño</a></li>
-        <li><a class="dropdown-item" href="niña.html">Niña</a></li>
-        <li><a class="dropdown-item" href="joven.html">joven</a></li>
-        <li><hr class="dropdown-divider">Marcas</li>
-        <li><a class="dropdown-item" href="#"></a></li>
-      </ul>
-    </li>
-              <!-- Lista de Menus de Interaccion -->
-    <li class="nav-item">
-      <a class="nav-link" style="color:black" href="#">Mis compras</a>
-    </li>
-  </ul>
+    <nav class="navbar bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="font-size: x-large;">Zapatos para Dama</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Opciones</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Catalogo
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="catalogo/dama.html">Dama</a></li>
+                  <li><a class="dropdown-item" href="catalogo/niño.html">Niño</a></li>
+                  <li><a class="dropdown-item" href="catalogo/niña.html">Niña</a></li>
+                  <li><a class="dropdown-item" href="../catalogo/joven.html">joven</a></li>
+                </ul>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Mi compra</a>
+                </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
 <body>
-    <br>
-    <div class="d-flex">
+
+    <div class="d-flex" style="margin-top: 6rem;">
               <!-- Targetas de Menu -->
     <div class="card" style="width: 18rem; margin-left: 1rem;">
         <img src="../imagenes/adidasGirl.jpg" class="card-img-top" alt="...">
