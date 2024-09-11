@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!--Required meta tags-->
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+
+	<!--Estilos propios-->
+
+
+	<title>Login</title>
+</head>
+
+<body>
+	<header>
+		<div class="container-fluid" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+			<a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white;">
+				<img src="../imagenes/Index/Logo.png" alt="Logo" width="90" height="90"
+					class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+				THE WALKERS
+			</a>
+		</div>
+	</header>
+	<center>
+
+		<section
+			style="width: 20rem; border: 5px; color: white; background-color: black; border-radius: 20px; padding: 20px; margin-top: 6rem;">
+			<p style="font-family: monospace; font-size: x-large;">LOGIN</p>
+			<!--LOGIN-->
+			<form action="usuarios_admin.php" method="POST" class="formulario__login" style="width: 10rem;">
+				<div class="mb-4">
+					<label class="form-label fw-bold" for="usuario">Escriba su usuario:</label>
+					<input class="form-control" placeholder="Ingrese su usuario" type="text" name="usuario" id="usuario"
+						required />
+				</div>
+				<div class="mb-4">
+					<label class="form-label fw-bold" for="contraseña">Escriba su contraseña:</label>
+					<input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10"
+						name="contraseña" id="contraseña" required />
+				</div>
+				<div class="d-grid">
+					<button type="submit" class="btn" style="background-color: #CC9E61;">
+						Iniciar Sesión
+					</button>
+				</div>
+				<div class="my-3 w-100">
+					<span><a target="_blank" href="Recuperar contraseña.html">¿No tienes una cuenta?</a></span>
+					<br />
+				</div>
+			</form>
+			</div>
+			</div>
+			</div>
+		</section>
+		<div class="d-grid" style="width: 20rem; margin-top: 1rem; border-radius: 20px;">
+			<button type="submit" class="btn" style="background-color: black; ">
+				<a href="index.html" style="color: white;">
+					Volver al inicio
+				</a>
+			</button>
+		</div>
+	</center>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="../js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
