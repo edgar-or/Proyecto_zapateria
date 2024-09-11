@@ -8,23 +8,29 @@
     <style>
         /* Fijar el tamaño máximo del contenido */
         .fixed-width-container {
-            max-width: 1700px; /* Ajusta este valor según tu preferencia */
-            margin: 0 auto; /* Centrar el contenedor */
+            max-width: 1700px;
+            /* Ajusta este valor según tu preferencia */
+            margin: 0 auto;
+            /* Centrar el contenedor */
         }
+
         .gallery-img {
             width: 100%;
-            height: 200px; /* Ajusta esta altura según tus preferencias */
-            object-fit: cover; /* Mantiene la proporción de la imagen y la recorta si es necesario */
+            height: 200px;
+            object-fit: cover;
         }
     </style>
     <title>Inicio</title>
 </head>
+
 <body>
     <!-- Banner de la pagina -->
     <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+        <div class="container-fluid fixed-width-container"
+            style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
             <a class="navbar-brand" href="#" style="background-color: #020304; color: white;">
-                <img src="imagenes/Index/Logo.png" alt="Logo" width="90" height="90" class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+                <img src="imagenes/Index/Logo.png" alt="Logo" width="90" height="90"
+                    class="d-inline-block align-text-center" style="background-color: #CC9E61;">
                 THE WALKERS
             </a>
             <ul class="nav nav-tabs" style="margin-top: 5rem; font-size: 20px;">
@@ -32,7 +38,8 @@
                     <a class="nav-link active" aria-current="page" href="index.html">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Catálogo</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Catálogo</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="catalogo/dama.html">Dama</a></li>
                         <li><a class="dropdown-item" href="catalogo/joven.html">Caballero</a></li>
@@ -52,52 +59,62 @@
 
     <!-- Contenedor fijo -->
     <div class="fixed-width-container">
-        <p class="fs-5 text-center" style="color: white ;background-color: #020304; font-family: 'Franklin Gothic Medium', 'cursive';">Bienvenido a The Walkers</p>
+        <p class="fs-5 text-center"
+            style="color: white ;background-color: #020304; font-family: 'Franklin Gothic Medium', 'cursive';">
+            Bienvenido a The Walkers</p>
 
         <!-- Sección de Imagen y Carrusel con Descripción -->
         <div class="container mt-4">
             <div class="row">
                 <!-- Columna de la imagen -->
                 <div class="col-md-6">
-                    <img src="imagenes/Index/fondo-01.jpg" class="img-fluid" alt="Imagen a la izquierda">
+                    <img src="imagenes/Index/Logo.png" class="img-fluid" alt="Imagen a la izquierda">
                 </div>
 
                 <!-- Columna del carrusel -->
                 <div class="col-md-6">
                     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="imagenes/carrusel/zapas-05.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5 style="color: white; background-color: #020304;">Only in The Walkers</h5>
-                                    <p style="color: #020304; background-color: white;">Lleva estilo en Todo Momento.</p>
+                                    <p style="color: #020304; background-color: white;">Lleva estilo en Todo Momento.
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="imagenes/carrusel/zapas-04.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5 style="color: white; background-color: #020304;">Only in The Walkers</h5>
-                                    <p style="color: #020304; background-color: white;">Estilos Elegantes y Atrevidos.</p>
+                                    <p style="color: #020304; background-color: white;">Estilos Elegantes y Atrevidos.
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="imagenes/carrusel/zapas-03.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5 style="color: white; background-color: #020304;">Only in The Walkers</h5>
-                                    <p style="color: #020304; background-color: white;">Variedades de color, tamaño y marcas.</p>
+                                    <p style="color: #020304; background-color: white;">Variedades de color, tamaño y
+                                        marcas.</p>
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Anterior</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Siguiente</span>
                         </button>
@@ -111,102 +128,184 @@
                 <div class="col-md-12" style="color: #020304;">
                     <p style="font-family: 'Franklin Gothic Medium', Arial, sans-serif;">
                         <hr>
-                        <center><h1>Variedad de Calzados</h1></center>
-                        En nuestra tienda, creemos que el calzado es una extensión de tu personalidad. Por eso, ofrecemos una amplia y diversa colección de calzados que se adapta a todos los estilos de vida y preferencias. Desde la comodidad de unas zapatillas deportivas hasta la elegancia de unos zapatos de vestir, cada par está diseñado para brindarte la mejor experiencia.
+                        <center>
+                            <h1>Variedad de Calzados</h1>
+                        </center>
+                        En The Walkers, entendemos que cada paso cuenta, y por eso ofrecemos una extensa variedad de
+                        calzados para acompañarte en cada momento de tu vida.
+                        Nuestro objetivo es proporcionarte no solo estilo, sino también la comodidad que necesitas para
+                        recorrer tu día a día con confianza.
+                        <br><br>
+                        Desde calzado deportivo hasta zapatos formales, en The Walkers encontrarás lo que buscas. Nos
+                        enorgullece ofrecer una amplia gama de diseños, colores y tamaños para hombres,
+                        mujeres y niños, siempre con la calidad que mereces. Nuestra selección de productos ha sido
+                        cuidadosamente diseñada para satisfacer tanto tus necesidades diarias como esas ocasiones
+                        especiales en las que quieres destacar.
                         <!-- Descripción truncada -->
                     </p>
                 </div>
             </div>
 
-<!-- Galería de imágenes -->
-<div class="container mt-5">
-    <div class="row">
-        <!-- Primera fila de 4 imágenes -->
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-01.jpg" class="card-img-top gallery-img" alt="Imagen 1">
-                <div class="card-body">
-                    <h5 class="card-title">Confort</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
+            <!-- Galería de imágenes -->
+            <div class="container mt-5">
+                <div class="row">
+                    <!-- Primera fila de 4 imágenes -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-01.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Tenis</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-02.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Tacones</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-03.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Converse</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-04.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 4">
+                            <div class="card-body">
+                                <h5 class="card-title">Tacones Estilizados</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segunda fila de 4 imágenes -->
+                <div class="row mt-4">
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-05.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 5">
+                            <div class="card-body">
+                                <h5 class="card-title">Botas de Cuero</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-06.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 6">
+                            <div class="card-body">
+                                <h5 class="card-title">Tennis</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-07.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 7">
+                            <div class="card-body">
+                                <h5 class="card-title">Converse Estilizados</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="imagenes/Index/Galeria/galeria-9.jpg" class="card-img-top gallery-img"
+                                alt="Imagen 8">
+                            <div class="card-body">
+                                <h5 class="card-title">Tennis Estilizados</h5>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="background-color: #020304;">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-02.jpg" class="card-img-top gallery-img" alt="Imagen 2">
-                <div class="card-body">
-                    <h5 class="card-title">Confort 2</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
+            <!-- Descripción al lado del carrusel -->
+            <br>
+            <div class="row mt-3">
+                <div class="col-md-12" style="color: #020304;">
+                    <p style="font-family: 'Franklin Gothic Medium', Arial, sans-serif;">
+                        <hr>
+                        <center>
+                            <h1>Descubre mas Estilos</h1>
+                        </center>
+                        En The Walkers, entendemos que cada paso cuenta, y por eso ofrecemos una extensa variedad de
+                        calzados para acompañarte en cada momento de tu vida.
+                        Nuestro objetivo es proporcionarte no solo estilo, sino también la comodidad que necesitas para
+                        recorrer tu día a día con confianza.
+                        <br><br>
+                        Desde calzado deportivo hasta zapatos formales, en The Walkers encontrarás lo que buscas. Nos
+                        enorgullece ofrecer una amplia gama de diseños, colores y tamaños para hombres,
+                        mujeres y niños, siempre con la calidad que mereces. Nuestra selección de productos ha sido
+                        cuidadosamente diseñada para satisfacer tanto tus necesidades diarias como esas ocasiones
+                        especiales en las que quieres destacar.
+                        <!-- Descripción truncada -->
+                    </p>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-03.jpg" class="card-img-top gallery-img" alt="Imagen 3">
-                <div class="card-body">
-                    <h5 class="card-title">Confort 3</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
+            <br>
+            <!-- Carrusel en movimiento -->
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"
+                style="max-width: 800px; margin: 0 auto;">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="imagenes/Index/Logo.png" class="d-block w-100" alt="..."
+                            style="height: 400px; object-fit: cover;">
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imagenes/Index/Galeria/galeria-07.jpg" class="d-block w-100" alt="..."
+                            style="height: 400px; object-fit: cover;">
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imagenes/Index/fondo-01.jpg" class="d-block w-100" alt="..."
+                            style="height: 400px; object-fit: cover;">
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-04.jpg" class="card-img-top gallery-img" alt="Imagen 4">
-                <div class="card-body">
-                    <h5 class="card-title">Confort 4</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Segunda fila de 4 imágenes -->
-    <div class="row mt-4">
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-05.jpg" class="card-img-top gallery-img" alt="Imagen 5">
-                <div class="card-body">
-                    <h5 class="card-title">Confort 5</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-06.jpg" class="card-img-top gallery-img" alt="Imagen 6">
-                <div class="card-body">
-                    <h5 class="card-title">Confort 6</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-07.jpg" class="card-img-top gallery-img" alt="Imagen 7">
-                <div class="card-body">
-                    <h5 class="card-title">Confort 7</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="imagenes/Index/Galeria/galeria-9.jpg" class="card-img-top gallery-img" alt="Imagen 8">
-                <div class="card-body">
-                    <h5 class="card-title">Confort 8</h5>
-                    <a href="#" class="btn btn-primary btn-sm" style="background-color: #020304;">Comprar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
             <!-- Footer -->
             <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
                 <p>© 2024 The Walkers. Todos los derechos reservados.</p>
