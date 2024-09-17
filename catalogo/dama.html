@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
   <link rel="icon" href="../imagenes/Index/logo-icono.ico" type="image/x-icon">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     /* Fijar el tamaño máximo del contenido */
     .fixed-width-container {
@@ -20,7 +22,45 @@
     }
 
     .text-content {
-      padding: 0 15px; /* Ajusta este valor según tus necesidades */
+      padding: 0 15px;
+      /* Ajusta este valor según tus necesidades */
+    }
+
+    /* Contenedor de botones flotantes */
+    .btn-flotante-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      /* Espacio entre botones */
+    }
+
+    /* Estilos para los botones flotantes */
+    .btn-flotante,
+    .scroll-to-top {
+      background-color: #ffc107;
+      /* Color amarillo */
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+
+    /* Estilo individual para el botón de volver arriba */
+    .scroll-to-top {
+      background-color: #020304;
+    }
+
+    .scroll-to-top svg {
+      fill: white;
     }
   </style>
   <title>Inicio</title>
@@ -32,8 +72,8 @@
     <div class="container-fluid fixed-width-container"
       style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
       <a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white; font-size: 50px;">
-        <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90" class="d-inline-block align-text-center"
-          style="background-color: #CC9E61;">
+        <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
+          class="d-inline-block align-text-center" style="background-color: #CC9E61;">
         THE WALKERS
       </a>
       <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
@@ -44,7 +84,7 @@
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
             style="color: white;">Catálogo</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" style="background-color: #FFC300;">Dama</a></li>
+            <li><a class="dropdown-item" href="#">Dama</a></li>
             <li><a class="dropdown-item" href="joven.html">Caballero</a></li>
             <li><a class="dropdown-item" href="niño.html">Niño</a></li>
             <li><a class="dropdown-item" href="niña.html">Niña</a></li>
@@ -62,63 +102,60 @@
 
   <!-- Contenedor fijo -->
   <div class="fixed-width-container">
-    <p class="fs-5 text-center text-content"
-      style="color: black; background: linear-gradient(to right, #fff033, #fff033)">
+    <p class="fs-5 text-center text-content" style="color: white; background-color: #ffed4b;">
       Sección de Damas
     </p>
 
-    <br>
-    <div class="row mt-3">
-      <div class="col-md-12" style="color: #020304;">
-        <p class="text-content" style="font-family: 'Franklin Gothic Medium', Arial, sans-serif;">
-          <h1 class="text-center">Variedad de Calzados</h1>
-          En The Walkers, entendemos que cada paso cuenta, y por eso ofrecemos una extensa variedad de
-          calzados para acompañarte en cada momento de tu vida.
-          Nuestro objetivo es proporcionarte no solo estilo, sino también la comodidad que necesitas para
-          recorrer tu día a día con confianza.
-          <br><br>
-          Desde calzado deportivo hasta zapatos formales, en The Walkers encontrarás lo que buscas. Nos
-          enorgullece ofrecer una amplia gama de diseños, colores y tamaños para hombres,
-          mujeres y niños, siempre con la calidad que mereces. Nuestra selección de productos ha sido
-          cuidadosamente diseñada para satisfacer tanto tus necesidades diarias como esas ocasiones
-          especiales en las que quieres destacar.
-          <!-- Descripción truncada -->
-        </p>
-      </div>
-    </div>
+
     <br>
     <div class="container">
       <div class="row justify-content-center">
         <!-- Primera fila con 3 tarjetas -->
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/002-Mujeres/adidas-damas-01.png" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Adidas Blancos para Mujer</h5>
+              <p class="card-text">Estos zapatos Adidas blancos para mujer destacan 
+                por su estilo limpio y versátil. Con un diseño clásico, presentan el 
+                icónico logo de la marca en los laterales, añadiendo un toque distintivo. 
+                La parte superior de material duradero 
+                garantiza comodidad y transpirabilidad, mientras que su suela acolchada ofrece un soporte óptimo en cada paso. Perfectos para el día a día o para complementar looks deportivos y 
+                casuales, su color blanco los convierte en una pieza esencial para cualquier armario. 
+                Son una opción elegante y cómoda para quienes buscan combinar estilo y funcionalidad.</p>
+            <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $26.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/002-Mujeres/adidas-damas-02.png" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatillas Blancas con Rosa</h5>
+              <p class="card-text">Estas zapatillas blancas con detalles en rosa son 
+                ideales para mujeres que buscan estilo y comodidad. 
+                Su diseño moderno combina una base blanca impecable con 
+                acentos en tonos rosados, aportando un toque femenino y fresco. Fabricadas con materiales de alta calidad, ofrecen una suela acolchada para mayor confort durante todo el día. Perfectas para combinar con looks casuales o deportivos, son versátiles y ligeras, ideales para cualquier ocasión.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $45.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/002-Mujeres/adidasGirl.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatos Deportivos para Mujer</h5>
+              <p class="card-text">Estos zapatos deportivos negros de Adidas para mujer combinan elegancia y funcionalidad.
+                 Con un diseño minimalista y moderno, presentan el icónico logo 
+                 de la marca en los laterales. La parte superior de malla ofrece transpirabilidad, mientras que 
+                 la suela acolchada proporciona soporte y comodidad durante todo el día. Ideales para entrenamientos o actividades diarias, su ajuste preciso y ligereza garantizan un rendimiento óptimo. Su estilo versátil los convierte en una opción perfecta para cualquier 
+                 outfit deportivo, aportando un look sofisticado y dinámico a la vez.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $54.00</a>
             </div>
           </div>
         </div>
@@ -128,47 +165,187 @@
         <!-- Segunda fila con 3 tarjetas -->
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/003-Caballero/Clazado de cuero-2.png" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatos de Cuero lizo</h5>
+              <p class="card-text">Estos zapatos de cuero para caballeros son la esencia de la elegancia. Con un diseño
+                sofisticado, están confeccionados en cuero de alta calidad que garantiza durabilidad y comodidad. La
+                puntera clásica y las costuras finas añaden un toque de distinción. Perfectos para ocasiones formales o
+                reuniones de trabajo, son un básico imprescindible en cualquier armario masculino.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $35.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/003-Caballero/Calzado-caballero-04.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatos Deportivos</h5>
+              <p class="card-text">Estos zapatos deportivos de color negro y verde combinan estilo y rendimiento.
+                Diseñados para ofrecer comodidad, cuentan con una parte superior de malla transpirable y refuerzos
+                sintéticos que brindan soporte. La suela de goma proporciona una excelente tracción, ideal para
+                actividades deportivas y entrenamientos. Su diseño moderno los hace perfectos para un look casual y
+                activo.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $40.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/003-Caballero/Calzado-caballero-05.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Converse</h5>
+              <p class="card-text">Estos Converse de color gris presentan un divertido estampado de personajes de DC,
+                perfectos para los amantes de los superhéroes. Con una estructura clásica de lona y suela de goma,
+                ofrecen comodidad y estilo. Su diseño ligero los hace ideales para uso diario, mientras que el estampado
+                añade un toque único y especial. Perfectos para complementar cualquier outfit casual.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $60.99</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <!-- Tercera fila con 3 tarjetas -->
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/003-Caballero/calzado-casual-07.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Zapatos Casuales</h5>
+                <p class="card-text">Estos zapatos casuales reforzados son ideales para quienes buscan comodidad y
+                  durabilidad. Fabricados con materiales resistentes, cuentan con refuerzos en las áreas clave para
+                  mayor soporte. Su diseño moderno y ligero los hace perfectos para el uso diario, mientras que la suela
+                  antideslizante proporciona tracción en diversas superficies. Un complemento versátil para cualquier
+                  guardarropa.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $25.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/003-Caballero/calzado-deportivo-06.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Zapatos Deportivos Doble Calzado</h5>
+                <p class="card-text">Estos zapatos deportivos de color verde y blanco son perfectos para un look
+                  dinámico y fresco. Con una parte superior de malla transpirable y detalles sintéticos, ofrecen
+                  comodidad y soporte. La suela de goma proporciona excelente tracción, ideal para entrenamientos y
+                  actividades al aire libre. Su diseño moderno los convierte en una opción versátil para el uso diario y
+                  el deporte.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $30.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/003-Caballero/calzado-deportivo-08.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Zapatos Deportivos Color Azul</h5>
+                <p class="card-text">Estos zapatos deportivos de color azul son perfectos para quienes buscan estilo y
+                  rendimiento. Con una parte superior de malla transpirable, ofrecen comodidad y ligereza. La suela de
+                  goma brinda excelente tracción, ideal para entrenamientos y actividades al aire libre. Su diseño
+                  moderno los hace versátiles, perfectos para el uso diario y para complementar cualquier atuendo
+                  activo.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $70.99</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <!-- Cuarta fila con 3 tarjetas -->
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/003-Caballero/Botas premium.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Botas Premium</h5>
+                <p class="card-text">Estas botas premium son la máxima expresión de elegancia y durabilidad. Fabricadas
+                  con cuero de alta calidad, ofrecen un acabado refinado y detalles artesanales. El diseño robusto
+                  proporciona soporte y confort, mientras que la suela de goma asegura tracción en diferentes
+                  superficies. Ideales para ocasiones formales o para un look sofisticado en el día a día, son un
+                  must-have en cualquier armario.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $250.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/003-Caballero/Calzado de cuero 3.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Calzado Elegante de Cuero</h5>
+                <p class="card-text">Este calzado elegante de cuero es ideal para ocasiones formales. Con un diseño
+                  clásico y acabado pulido, está hecho de cuero de alta calidad que garantiza durabilidad y confort. La
+                  suela delgada aporta sofisticación, mientras que el interior acolchado asegura un ajuste cómodo.
+                  Perfecto para eventos y reuniones, es un esencial en cualquier guardarropa masculino.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $150.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/003-Caballero/calzado de cuero 4.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Calzado de Plata</h5>
+                <p class="card-text">Este calzado elegante de cuero en color plata oscuro es perfecto para ocasiones
+                  especiales. Su diseño clásico y acabado brillante destacan con sofisticación. Fabricado en cuero de
+                  alta calidad, ofrece durabilidad y confort. La suela delgada añade un toque refinado, mientras que el
+                  interior acolchado garantiza un ajuste cómodo Hace juego con su anteriro variante.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $170.99</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
-      <p>© 2024 The Walkers. Todos los derechos reservados.</p>
-    </footer>
   </div>
+  </div>
+
+
+
+  <!-- Footer -->
+  <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
+    <p>© 2024 The Walkers. Todos los derechos reservados.</p>
+  </footer>
+
+  </div>
+  <!-- Contenedor de botones flotantes -->
+  <div class="btn-flotante-container">
+    <!-- Botón flotante con icono de carrito -->
+    <a href="../mis_compras.html" class="btn-flotante">
+      <i class="bi bi-cart-fill"></i>
+    </a>
+    <!-- Botón de Volver Arriba -->
+    <button class="scroll-to-top" onclick="scrollToTop()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"
+        viewBox="0 0 16 16">
+        <path d="M8 0l3 3H5l3-3zM8 16l-3-3h6l-3 3z" />
+      </svg>
+    </button>
+  </div>
+
+  <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
   <!-- Script de Bootstrap -->
   <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
