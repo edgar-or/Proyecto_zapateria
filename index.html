@@ -33,13 +33,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
             cursor: pointer;
         }
 
         .scroll-to-top svg {
             fill: white;
         }
+        .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
     </style>
     <title>Inicio</title>
 </head>
@@ -340,11 +362,57 @@
                     </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
-                <p>© 2024 The Walkers. Todos los derechos reservados.</p>
-            </footer>
-
+        </div>
+    </div>
+                <!-- Footer -->
+                <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
+                    <p>© 2024 The Walkers. Todos los derechos reservados.</p>
+    
+                    <div class="container my-5">
+                        <div class="row justify-content-center">
+                          <div class="col-auto text-center">
+                            <a href="https://example.com/page1" target="_blank">
+                              <div class="circle">
+                                <img src="imagenes/001-Index/redes/Logo_de_Facebook.png" alt="Image 1">
+                              </div>
+                            </a>
+                            <div class="title">@FB-TheWalkers</div>
+                          </div>
+                          <div class="col-auto text-center">
+                            <a href="https://example.com/page2" target="_blank">
+                              <div class="circle">
+                                <img src="imagenes/001-Index/redes/ig.jpg" alt="Image 2">
+                              </div>
+                            </a>
+                            <div class="title">@IG-TheWalkers</div>
+                          </div>
+                          <div class="col-auto text-center">
+                            <a href="https://example.com/page3" target="_blank">
+                              <div class="circle">
+                                <img src="imagenes/001-Index/redes/X_logo.jpg" alt="Image 3">
+                              </div>
+                            </a>
+                            <div class="title">@TW-TheWalkers</div>
+                          </div>
+                          <div class="col-auto text-center">
+                            <a href="https://example.com/page4" target="_blank">
+                              <div class="circle">
+                                <img src="imagenes/001-Index/redes/wasa-logo.jpg" alt="Image 4">
+                              </div>
+                            </a>
+                            <div class="title">7771-0088</div>
+                          </div>
+                          <div class="col-auto text-center">
+                            <a href="https://example.com/page5" target="_blank">
+                              <div class="circle">
+                                <img src="imagenes/001-Index/redes/phone-icon-telephone-icon-symbol-for-app-and-messenger-free-vector.jpg" alt="Image 5">
+                              </div>
+                            </a>
+                            <div class="title">7771-0088</div>
+                          </div>
+                        </div>
+                      </div>
+                </footer>
             <!-- Botón de Volver Arriba -->
             <button class="scroll-to-top" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -359,7 +427,7 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             </script>
-
+        
 </body>
 
 </html>

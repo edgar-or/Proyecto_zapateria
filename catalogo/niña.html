@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
   <link rel="icon" href="../imagenes/Index/logo-icono.ico" type="image/x-icon">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     /* Fijar el tamaño máximo del contenido */
     .fixed-width-container {
@@ -20,8 +22,47 @@
     }
 
     .text-content {
-      padding: 0 15px; /* Ajusta este valor según tus necesidades */
+      padding: 0 15px;
+      /* Ajusta este valor según tus necesidades */
     }
+
+    /* Contenedor de botones flotantes */
+    .btn-flotante-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      /* Espacio entre botones */
+    }
+
+    /* Estilos para los botones flotantes */
+    .btn-flotante,
+    .scroll-to-top {
+      background-color: #ffc107;
+      /* Color amarillo */
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+
+    /* Estilo individual para el botón de volver arriba */
+    .scroll-to-top {
+      background-color: #020304;
+    }
+
+    .scroll-to-top svg {
+      fill: white;
+    }
+    
   </style>
   <title>Inicio</title>
 </head>
@@ -32,8 +73,8 @@
     <div class="container-fluid fixed-width-container"
       style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
       <a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white; font-size: 50px;">
-        <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90" class="d-inline-block align-text-center"
-          style="background-color: #CC9E61;">
+        <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
+          class="d-inline-block align-text-center" style="background-color: #CC9E61;">
         THE WALKERS
       </a>
       <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
@@ -47,7 +88,7 @@
             <li><a class="dropdown-item" href="dama.html">Dama</a></li>
             <li><a class="dropdown-item" href="joven.html">Caballero</a></li>
             <li><a class="dropdown-item" href="niño.html">Niño</a></li>
-            <li><a class="dropdown-item" href="#" style="background-color: #E097FD;">Niña</a></li>
+            <li><a class="dropdown-item" href="#">Niña</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -62,62 +103,53 @@
 
   <!-- Contenedor fijo -->
   <div class="fixed-width-container">
-    <p class="fs-5 text-center text-content"
-      style="color: white; background-color: #E097FD;">
+    <p class="fs-5 text-center text-content" style="color: white; background-color: #c32f88; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
       Sección de Niñas
     </p>
 
-    <div class="row mt-3">
-      <div class="col-md-12" style="color: #020304;">
-        <p class="text-content" style="font-family: 'Franklin Gothic Medium', Arial, sans-serif;">
-          <h1 class="text-center">Variedad de Calzados</h1>
-          En The Walkers, entendemos que cada paso cuenta, y por eso ofrecemos una extensa variedad de
-          calzados para acompañarte en cada momento de tu vida.
-          Nuestro objetivo es proporcionarte no solo estilo, sino también la comodidad que necesitas para
-          recorrer tu día a día con confianza.
-          <br><br>
-          Desde calzado deportivo hasta zapatos formales, en The Walkers encontrarás lo que buscas. Nos
-          enorgullece ofrecer una amplia gama de diseños, colores y tamaños para hombres,
-          mujeres y niños, siempre con la calidad que mereces. Nuestra selección de productos ha sido
-          cuidadosamente diseñada para satisfacer tanto tus necesidades diarias como esas ocasiones
-          especiales en las que quieres destacar.
-          <!-- Descripción truncada -->
-        </p>
-      </div>
-    </div>
+
     <br>
     <div class="container">
       <div class="row justify-content-center">
         <!-- Primera fila con 3 tarjetas -->
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/005-Niñas/zapa-niña-01.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatos con Tematica de Spider-Man</h5>
+              <p class="card-text"> zapatos temática deSpider-Man son ideales para los pequeños
+                fans del superhéroe. Con un diseño colorido y divertido, presentan imágenes vibrantes del personaje en
+                la parte superior. La parte de malla transpirable asegura comodidad.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $50.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/005-Niñas/zapa-niña-02.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatillas de Cuero</h5>
+              <p class="card-text">zapatos de cuero para niños combinan estilo y durabilidad. Con un diseño clásico y
+                elegante, están fabricados en cuero de alta calidad que proporciona comodidad y resistencia. La suela
+                flexible permite un buen agarre, ideal para el juego diario.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $33.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/005-Niñas/zapa-niña-03.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatos de Mikey Mouse</h5>
+              <p class="card-text">Estos zapatos con temática de Mickey Mouse son perfectos para los pequeños fans del
+                icónico personaje. Con un diseño colorido y divertido, presentan imágenes y detalles de Mickey en la
+                parte superior.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $20.99</a>
             </div>
           </div>
         </div>
@@ -127,47 +159,189 @@
         <!-- Segunda fila con 3 tarjetas -->
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/005-Niñas/zapa-niña-04.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatos con tematica de Bluey</h5>
+              <p class="card-text">Estos zapatos de color blanco con temática de Bluey son perfectos para los fans del
+                adorável personaje. Con un diseño alegre y colorido, presentan imágenes de Bluey en la parte superior.
+                La parte de malla transpirable garantiza comodidad, mientras que la suela de goma proporciona tracción y
+                durabilidad. Ideales para el uso diario, añaden un toque divertido a cualquier atuendo infantil.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $75.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/005-Niñas/zapa-niña-05.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Zapatos Deportivos Cars</h5>
+              <p class="card-text">Estos zapatos de color rojo tematizados de Cars son ideales para los pequeños
+                aficionados a las carreras. Con un diseño vibrante que presenta imágenes de los personajes de la
+                película, son llamativos y divertidos. La parte de malla transpirable asegura comodidad, mientras que la
+                suela de goma ofrece tracción y durabilidad. Perfectos para el uso diario, añaden un toque emocionante a
+                cualquier atuendo infantil.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $80.99</a>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-4 mb-4">
           <div class="card">
-            <img src="../imagenes/Mujeres/adidasGirl.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+            <img src="../imagenes/005-Niñas/zapa-niña-06.jpg" class="card-img-top"
+              style="height: 200px; object-fit: cover;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title.</p>
-              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+              <h5 class="card-title">Nike para Niños</h5>
+              <p class="card-text">Estos Nike color naranja para niños son perfectos para los pequeños deportistas. Con
+                un diseño moderno y vibrante, ofrecen una parte superior de malla transpirable que garantiza comodidad
+                durante todo el día. La suela de goma proporciona excelente tracción y durabilidad, ideal para
+                actividades al aire libre. Perfectos para el uso diario, añaden estilo y energía a cualquier atuendo
+                infantil.</p>
+              <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $60.99</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <!-- Segunda fila con 3 tarjetas -->
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/005-Niñas/zapa-niña-07.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Zapatos Casuales de Color Marron</h5>
+                <p class="card-text">Estos zapatos casuales de color marrón para niños son ideales para el uso diario.
+                  Con un diseño sin agujetas, permiten un calzado rápido y fácil. Fabricados en materiales suaves y
+                  duraderos, ofrecen comodidad y soporte. La suela de goma proporciona tracción y estabilidad, perfectos
+                  para actividades y juegos. Un complemento práctico y estiloso para cualquier atuendo infantil.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $25.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/005-Niñas/zapa-niña-08.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Zapatos Deportivos de color naranja</h5>
+                <p class="card-text">Estos zapatos deportivos de color naranja son perfectos para quienes buscan estilo
+                  y rendimiento. Con una parte superior de malla transpirable, aseguran comodidad y ligereza en cada
+                  paso. La suela de goma ofrece excelente tracción, ideal para entrenamientos y actividades al aire
+                  libre. Su diseño moderno y vibrante los convierte en una opción atractiva para el uso diario y el
+                  deporte.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $40.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/005-Niñas/zapa-niña-09.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Zapatos Deportivos Color Azul y Blanco</h5>
+                <p class="card-text">Estos zapatos deportivos de color azul son perfectos para quienes buscan estilo y
+                  rendimiento. Con una parte superior de malla transpirable, ofrecen comodidad y ligereza. La suela de
+                  goma brinda excelente tracción, ideal para entrenamientos y actividades al aire libre. Su diseño
+                  moderno los hace versátiles, perfectos para el uso diario y para complementar cualquier atuendo
+                  activo.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $23.99</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <!-- Segunda fila con 3 tarjetas -->
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/005-Niñas/zapa-niña-10.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">sneakers</h5>
+                <p class="card-text">Estos sneakers de color rojo y blanco para niños son ideales para un look divertido
+                  y activo. Con un diseño moderno, presentan una parte superior de malla que asegura comodidad y
+                  transpirabilidad. La suela de goma proporciona buena tracción y durabilidad, perfecta para el juego
+                  diario. Su combinación de colores vibrantes los convierte en un complemento atractivo para cualquier
+                  atuendo infantil.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $250.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/005-Niñas/zapa-niña-11.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Calzado Elegante</h5>
+                <p class="card-text">Estos zapatos negros elegantes para niños son perfectos para ocasiones especiales.
+                  Con un diseño clásico y sofisticado, están hechos de materiales de alta calidad que aseguran
+                  durabilidad y confort. La suela delgada añade un toque refinado, mientras que el interior acolchado
+                  garantiza un ajuste cómodo. Ideales para eventos formales, graduaciones o cenas, son un esencial en el
+                  armario infantil.</p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $20.99</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card">
+              <img src="../imagenes/005-Niñas/zapa-niña-12.jpg" class="card-img-top"
+                style="height: 200px; object-fit: cover;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Calzado Negro</h5>
+                <p class="card-text">Estos zapatos negros con suela doble para niños combinan estilo y comodidad. Su
+                  diseño moderno ofrece un soporte adicional, ideal para el juego y actividades diarias. Fabricados en
+                  materiales duraderos, cuentan con una parte superior suave y flexible. La suela de goma proporciona
+                  tracción y estabilidad, perfectos para cualquier aventura. Un complemento versátil para el armario
+                  infantil. la elegancia en colores estilos </p>
+                <a href="#" class="btn btn-dark btn-sm">Comprar Ahora $20.99</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
-      <p>© 2024 The Walkers. Todos los derechos reservados.</p>
-    </footer>
   </div>
+  </div>
+
+
+
+  <!-- Footer -->
+  <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
+    <p>© 2024 The Walkers. Todos los derechos reservados.</p>
+  </footer>
+
+  </div>
+  <!-- Contenedor de botones flotantes -->
+  <div class="btn-flotante-container">
+    <!-- Botón flotante con icono de carrito -->
+    <a href="../mis_compras.html" class="btn-flotante">
+      <i class="bi bi-cart-fill"></i>
+    </a>
+    <!-- Botón de Volver Arriba -->
+    <button class="scroll-to-top" onclick="scrollToTop()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"
+        viewBox="0 0 16 16">
+        <path d="M8 0l3 3H5l3-3zM8 16l-3-3h6l-3 3z" />
+      </svg>
+    </button>
+  </div>
+
+  <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
   <!-- Script de Bootstrap -->
   <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
