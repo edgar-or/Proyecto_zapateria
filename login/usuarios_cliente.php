@@ -31,12 +31,10 @@ if (mysqli_num_rows($result) > 0) {
         // Contraseña incorrecta
         echo "<script>alert('datos ingresados incorrectos'); window.location.href = 'login.html';</script>";
         exit();
-        exit();
     }
 } else {
     // El usuario no existe
     echo "<script>alert('Usuario no existe'); window.location.href = 'login.html';</script>";
-    exit();
     exit();
 }
 
