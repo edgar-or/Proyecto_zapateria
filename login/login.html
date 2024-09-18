@@ -1,75 +1,110 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-	<!--Required meta tags-->
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+	<link rel="icon" href="../imagenes/Index/logo-icono.ico" type="image/x-icon">
+	<!-- Bootstrap Icons -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+	<link rel="stylesheet" href="../estilos/estilos-more.css">
+	<title>Inicio</title>
+	<style>
+		/* Degradado para el fondo de la página */
+		body {
+			background: linear-gradient(135deg, rgb(193, 181, 187), #75787b);
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+		}
 
-	<!--Bootstrap CSS-->
-	<link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+		/* Estilo para el formulario de login */
+		.login-section {
+			background: linear-gradient(135deg, #333333, #242424);
+			color: white;
+			padding: 20px;
+			width: 20rem;
+			position: relative;
+			border: none; /* Sin bordes redondeados */
+		}
 
-	<!--Estilos propios-->
+		.login-section button {
+			background-color: #CC9E61;
+		}
 
+		.login-section a {
+			color: #350699;
+		}
 
-	<title>Login</title>
+		.login-section a:hover {
+			color: #330c88;
+		}
+
+		/* Imagen en una esquina */
+		.login-section img {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			width: 50px;
+			height: 50px;
+		}
+
+		.back-button {
+			background-color: #333333;
+			width: 20rem;
+			margin-top: 1rem;
+			border: none;
+		}
+
+		.back-button a {
+			color: white;
+			text-decoration: none;
+		}
+	</style>
 </head>
 
 <body>
-	<header>
-		<div class="container-fluid" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
-			<a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white;">
-				<img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
-					class="d-inline-block align-text-center" style="background-color: #CC9E61;">
-				THE WALKERS
-			</a>
-		</div>
-	</header>
 	<center>
+		<section class="login-section">
+			<!-- Imagen en la esquina -->
+			<img src="../imagenes/001-Index/Logos/Logo.png" alt="logo" style="background-color:#CC9E61 ;">
 
-		<section
-			style="width: 20rem; border: 5px; color: white; background-color: black; border-radius: 20px; padding: 20px; margin-top: 6rem;">
 			<p style="font-family: monospace; font-size: x-large;">LOGIN</p>
 			<!--LOGIN-->
 			<form action="usuarios_cliente.php" method="POST" class="formulario__login" style="width: 10rem;">
 				<div class="mb-4">
 					<label class="form-label fw-bold" for="usuario">Escriba su usuario:</label>
-					<input class="form-control" placeholder="Ingrese su usuario" type="text" name="usuario" id="usuario"
-						required />
+					<input class="form-control" placeholder="Ingrese su usuario" type="text" name="usuario" id="usuario" required />
 				</div>
 				<div class="mb-4">
 					<label class="form-label fw-bold" for="contraseña">Escriba su contraseña:</label>
-					<input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10"
-						name="contraseña" id="contraseña" required />
+					<input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
 				</div>
 				<div class="d-grid">
-					<button type="submit" class="btn" style="background-color: #CC9E61;">
+					<button type="submit" class="btn">
 						Iniciar Sesión
 					</button>
 				</div>
 				<div class="my-3 w-100">
 					<span><a target="_blank" href="../registrar_cliente/registrar_cliente.html">¿No tienes una cuenta?</a></span>
-					<br />
 				</div>
 			</form>
-			</div>
-			</div>
-			</div>
 		</section>
-		<div class="d-grid" style="width: 20rem; margin-top: 1rem; border-radius: 20px;">
-			<button type="submit" class="btn" style="background-color: black; ">
-				<a href="../index.html" style="color: white;">
+
+		<div class="back-button d-grid">
+			<button type="submit" class="btn">
+				<a href="../index.html">
 					Volver al inicio
 				</a>
 			</button>
 		</div>
 	</center>
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/bootstrap.bundle.min.js"></script>
-
+	<!-- Script de Bootstrap -->
+	<script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
