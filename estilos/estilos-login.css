@@ -1,6 +1,6 @@
 		/* Degradado para el fondo de la página */
 		body {
-			background: linear-gradient(135deg, rgb(193, 181, 187), #75787b);
+			background: linear-gradient(135deg, #6d7379, #252b31);
 			min-height: 100vh;
 			display: flex;
 			align-items: center;
@@ -10,13 +10,13 @@
 
 		/* Estilo para el formulario de login */
 		.login-section {
-			background: linear-gradient(135deg, #333333, #242424);
+			background: linear-gradient(135deg, #020304, #020304);
 			color: white;
 			padding: 20px;
 			width: 20rem;
 			position: relative;
 			border: none;
-			/* Sin bordes redondeados */
+			
 		}
 
 		.login-section button {
@@ -41,7 +41,7 @@
 		}
 
 		.back-button {
-			background-color: #333333;
+			background-color: #020304;
 			width: 20rem;
 			margin-top: 1rem;
 			border: none;

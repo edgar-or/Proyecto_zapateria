@@ -1,6 +1,6 @@
 				/* Degradado para el fondo de la página */
 				body {
-				    background: linear-gradient(135deg, #f06, #4a90e2);
+                    background: linear-gradient(135deg, #6d7379, #252b31);
 				    min-height: 100vh;
 				    display: flex;
 				    align-items: center;
@@ -10,7 +10,7 @@
 
 				/* Estilo para el formulario de registro */
 				.register-section {
-				    background: linear-gradient(135deg, #333333, #242424);
+				    background: linear-gradient(135deg, #020304, #020304);
 				    color: white;
 				    padding: 20px;
 				    width: 30rem;
@@ -41,7 +41,7 @@
 				}
 
 				.back-button {
-				    background-color: #333333;
+				    background-color: #020304;
 				    width: 30rem;
 				    margin-top: 1rem;
 				    border: none;
