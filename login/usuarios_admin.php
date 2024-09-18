@@ -15,16 +15,16 @@ if (empty($usuario) || empty($contraseña)) {
 $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Error al conectar: " . mysqli_connect_error());
 
 // Consulta SQL sin protección contra inyección SQL
-$query = "SELECT * FROM usuarios_admin WHERE nick_name = '$usuario'";
+$query = "SELECT * FROM cliente WHERE nick_name_cliente = '$usuario'";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
     // El usuario existe, ahora verificamos la contraseña
     $row = mysqli_fetch_assoc($result);
     
-    if ($contraseña == $row['contraseña']) {
+    if ($contraseña == $row['contraseña_cliente']) {
         // Contraseña correcta, redirigir al usuario
-        echo "<script>alert('Bienvenido SUPER USUARIO'); window.location.href = '../index.html';</script>";
+        echo "<script>alert('Bienvenido cliente, ".$usuario."'); window.location.href = '../index.html';</script>";
     exit();
         exit();
     } else {
