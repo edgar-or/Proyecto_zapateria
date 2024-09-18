@@ -7,33 +7,39 @@ $contraseña = $_POST['contraseña'];
 
 // Verificar si los campos están vacíos
 if (empty($usuario) || empty($contraseña)) {
-    header("location: ../index.html");
+    echo "<script>alert('Usuario o contraseña no pueden estar vacíos'); window.location.href = 'login.html';</script>";
     exit();
 }
 
 // Crear la conexión con la base de datos
-$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Error al Conectar: " . mysqli_connect_error());
+$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Error al conectar: " . mysqli_connect_error());
 
+// Consulta SQL sin protección contra inyección SQL
+$query = "SELECT * FROM usuarios_admin WHERE nick_name = '$usuario'";
+$result = mysqli_query($conn, $query);
 
-if ($result->num_rows > 0) {
+if (mysqli_num_rows($result) > 0) {
     // El usuario existe, ahora verificamos la contraseña
-    $row = $result->fetch_assoc();
+    $row = mysqli_fetch_assoc($result);
     
-    if (password_verify($contraseña, $row['password'])) {
+    if ($contraseña == $row['contraseña']) {
         // Contraseña correcta, redirigir al usuario
-        header("location: ../catalogo/dama.html");
+        echo "<script>alert('Bienvenido SUPER USUARIO'); window.location.href = '../index.html';</script>";
+    exit();
         exit();
     } else {
         // Contraseña incorrecta
-        header("location: ../index.html?error=incorrect_password");
+        echo "<script>alert('datos ingresados incorrectos'); window.location.href = 'login.html';</script>";
+        exit();
         exit();
     }
 } else {
     // El usuario no existe
-    header("location: ../index.html?error=user_not_found");
+    echo "<script>alert('Usuario no existe'); window.location.href = 'login.html';</script>";
+    exit();
     exit();
 }
 
 // Cerrar la conexión
-$conn->close();
+mysqli_close($conn);
 ?>
