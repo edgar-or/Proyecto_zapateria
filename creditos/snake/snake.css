@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #30363d;
+    text-align: center;
+}
+
+canvas {
+    border: 1px solid #000;
+}
+
+.score-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+}
+
+.score {
+    margin-right: 20px;
+    color: white;
+}
+
+
+.styled-button {
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.styled-button:hover {
+    background-color: #45a049;
+}
+
+.up.left.right.down{
+    color: #45a049;
+}
