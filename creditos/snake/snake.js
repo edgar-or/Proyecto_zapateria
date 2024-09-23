@@ -90,7 +90,7 @@ function update() {
     ) {
         clearInterval(game);
         backgroundMusic.pause();
-        alert("Game Over! Your score: " + score);
+        alert("Game Over! Buen puntaje :D " + score);
         return;
     }
 
