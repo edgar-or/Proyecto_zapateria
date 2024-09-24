@@ -1,41 +1,46 @@
     /* Fijar el tamaño máximo del contenido */
     .fixed-width-container {
-        max-width: 1500px;
-        margin: 0 auto;
-      }
-  
-  
-      /* Contenedor de botones flotantes */
-      .btn-flotante-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
 
-      }
-  
-      /* Estilos para los botones flotantes */
-      .btn-flotante,
-      .scroll-to-top {
-        background-color: #ffc107;
-        color: white;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 24px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-      }
-  
-      /* Estilo individual para el botón de volver arriba */
-      .scroll-to-top {
-        background-color: #020304;
-      }
-  
-      .scroll-to-top svg {
-        fill: white;
-      }
+
+    /* Contenedor de botones flotantes */
+    .btn-flotante-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+    }
+
+    /* Estilos para los botones flotantes */
+    .btn-flotante,
+    .scroll-to-top {
+      background-color: #ffc107;
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Estilo individual para el botón de volver arriba */
+    .scroll-to-top {
+      background-color: #020304;
+    }
+
+    .scroll-to-top svg {
+      fill: white;
+    }
+   
+    .form-control::placeholder {
+      color: #ffffff; 
+      opacity: 1; 
+  }

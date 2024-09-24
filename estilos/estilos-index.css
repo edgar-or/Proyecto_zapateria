@@ -1,8 +1,6 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-
 .scroll-to-top {
     position: fixed;
     bottom: 20px;
@@ -58,4 +56,7 @@ body {
     /* Centrar el texto */
 }
 
-
+.fixed-width-container {
+    max-width: 1500px;
+    margin: 0 auto;
+  }

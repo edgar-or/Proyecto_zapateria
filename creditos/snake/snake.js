@@ -107,11 +107,11 @@ function update() {
 }
 
 function draw() {
-    ctx.fillStyle = "black"; // Fondo negro
+    ctx.fillStyle = "black"; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     snake.forEach((segment) => {
-        ctx.fillStyle = "lime";
+        ctx.fillStyle = "blue";
         ctx.fillRect(segment.x, segment.y, boxSize, boxSize);
     });
 
