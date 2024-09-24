@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="../snake/snake.css">
+</head>
+<body>
+    <div class="rainbow-background"></div>
+    <h1 style="color: #ffffff;">El serpientes</h1>
+    <canvas id="gameCanvas"></canvas>
+    
+    <div class="score-controls">
+        <div class="score">
+            <p>Puntaje: <span id="scoreDisplay" class="rainbow-text">0</span></p>
+        </div>
+        <div class="controls">
+            <div class="arrow-buttons">
+                <div class="arrow">
+                    <div class="up" onclick="changeDirection('up')"></div>
+                </div>
+                <div class="arrow">
+                    <div class="left" onclick="changeDirection('left')"></div>
+                    <div class="right" onclick="changeDirection('right')"></div>
+                </div>
+                <div class="arrow">
+                    <div class="down" onclick="changeDirection('down')"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="resetBtn" class="styled-button">Reiniciar Juego</button>
+    <a href="../creditos.html" id="backBtn"><button class="styled-button">Regresar</button></a>
+
+    <audio id="backgroundMusic" src="../snake/pixel-perfect-112527.mp3" loop></audio>
+    <audio id="eatSound" src="../snake/3-up-2-89189.mp3"></audio>
+    <script src="../snake/snake.js"></script>
+</body>
+</html>
