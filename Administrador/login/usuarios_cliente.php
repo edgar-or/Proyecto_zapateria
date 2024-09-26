@@ -5,10 +5,6 @@ include '../conexionBD.php';
 $usuario = $_POST['usuario'];
 $contraseña = $_POST['contraseña'];
 
-// Definir las credenciales de administrador
-$admin_usuario = 'Admin';
-$admin_contraseña = 'admin_password'; // Reemplazar 'admin_password' por la contraseña real del administrador
-
 // Verificar si los campos están vacíos
 if (empty($usuario) || empty($contraseña)) {
     echo "<script>alert('Usuario o contraseña no pueden estar vacíos'); window.location.href = 'login.html';</script>";
@@ -25,22 +21,15 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) > 0) {
     // El usuario existe, ahora verificamos la contraseña
     $row = mysqli_fetch_assoc($result);
-
-    // Verificar si el usuario es 'Admin' y la contraseña coincide
-    if ($usuario == 'Admin' && $contraseña == 'Admin123') {
-        // Si las credenciales son de administrador, redirigir a la página de admin
-        echo "<script>alert('Bienvenido admin, ".$usuario."'); window.location.href = '../Administrador/index.html';</script>";
-        exit();
-    }
     
-    // Si no es el usuario admin, verificar la contraseña normal
     if ($contraseña == $row['contraseña_cliente']) {
-        // Contraseña correcta, redirigir al usuario normal
+        // Contraseña correcta, redirigir al usuario
         echo "<script>alert('Bienvenido cliente, ".$usuario."'); window.location.href = '../index.html';</script>";
+    exit();
         exit();
     } else {
         // Contraseña incorrecta
-        echo "<script>alert('Datos ingresados incorrectos'); window.location.href = 'login.html';</script>";
+        echo "<script>alert('datos ingresados incorrectos'); window.location.href = 'login.html';</script>";
         exit();
     }
 } else {

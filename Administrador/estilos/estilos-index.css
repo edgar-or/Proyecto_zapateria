@@ -1,0 +1,62 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #020304;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+.scroll-to-top svg {
+    fill: white;
+}
+
+/* Estilo para las tarjetas */
+.card {
+    border: none;
+    /* Quitar el borde de la tarjeta */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    overflow: hidden;
+    /* Ocultar el desbordamiento */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
+}
+
+/* Estilo para las imágenes dentro de las tarjetas */
+.card-img-top {
+    width: 100%;
+    /* Asegurarse de que la imagen ocupe todo el ancho */
+    height: auto;
+    /* Mantener la relación de aspecto */
+    transition: transform 0.5s ease;
+    /* Animación suave */
+}
+
+/* Efecto de deslizamiento para las imágenes al pasar el cursor */
+.card-img-top:hover {
+    transform: scale(1.05);
+    /* Escalar ligeramente la imagen */
+}
+
+/* Ajustes adicionales para el cuerpo de la tarjeta */
+.card-body {
+    text-align: center;
+    /* Centrar el texto */
+}
+
+.fixed-width-container {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
