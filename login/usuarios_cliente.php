@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include '../conexionBD.php';
 
 $usuario = $_POST['usuario'];
