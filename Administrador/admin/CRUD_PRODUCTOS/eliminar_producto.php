@@ -53,6 +53,19 @@
       </div>
   </nav>
 
+  <form action ="eliminar_producto.php" method="post">
+
+
+<div class="mb-3 text-center">
+    <div class="input-group" style="width: 50%; margin: 0 auto;">
+      <input type="text" class="form-control" placeholder="Busca aqui ..." aria-label="Buscar" name="eliminar_producto"
+        style="border-radius: 20px 0 0 20px; background-color: #020304; color: white; border: none;">
+      <button class="btn btn-dark" type="submit" style="border-radius: 0 20px 20px 0; color: white;">Buscar</button>
+    </div>
+  </div>
+</form>
+
+
  
 
 
@@ -72,10 +85,37 @@
 
 <?php
 
+error_reporting(E_ERROR | E_PARSE); // Mostrar solo errores fatales y parse errors
+
+
 
 include '../../conexionBD.php';
 
+$id_producto = $_POST['eliminar_producto'];
 
+// Asegurarse de que el valor sea numérico si `cod_producto` es un número
+$id_producto = intval($id_producto);
 
+// Verificar si el producto existe
+$verificar = "SELECT * FROM producto WHERE cod_producto = '$id_producto'";
+$result = $conn->query($verificar);
+
+if ($result->num_rows > 0) {
+    // Eliminar el producto de la base de datos
+    $eliminar = "DELETE FROM producto WHERE cod_producto = '$id_producto'";
+    echo "Consulta: " . $eliminar . "<br>";  // Verificar la consulta generada
+
+    if ($conn->query($eliminar) === TRUE) {
+        echo "Producto eliminado correctamente.";
+    } else {
+        echo "Error al eliminar el producto: " . $conn->error;
+    }
+} else {
+    echo "El producto con el código $id_producto no existe.";
+}
+
+// Cerrar la conexión
+$conn->close();
 
 ?>
+
