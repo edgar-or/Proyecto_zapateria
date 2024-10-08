@@ -89,14 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
+              <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Créditos</a>
           </li>
           </ul>
       </div>
   </nav>
   <p class="fs-5 text-center"
-            style="margin-top: 0px; color: white ;background-color: #020304; font-family: 'Franklin Gothic Medium', 'cursive';">
-            Modificaion de credenciales de usuarios</p>
+            style="margin-top: 0px; color: white ;background-color: #16aef0; font-family: 'Franklin Gothic Medium', 'cursive';">
+            Modificaión de credenciales de usuarios</p>
 
     <div class="container mt-5">
         <div class="row">
