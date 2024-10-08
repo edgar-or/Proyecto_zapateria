@@ -3,10 +3,10 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "zapateriabd";
+$database_zapateria = "db_za_2.0.";
 
 // Crear conexión
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $database_zapateria);
 
 // Verificar conexión
 if (!$conn) {
