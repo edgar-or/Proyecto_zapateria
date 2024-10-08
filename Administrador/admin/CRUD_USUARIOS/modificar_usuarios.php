@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </a>
           <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../index.html">INICIO</a>
+                  <a class="nav-link active" aria-current="page" href="../../index.html">INICIO</a>
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -183,10 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
-        <!-- Footer -->
-        <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
-        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">© 2024 The Walkers. Todos los derechos reservados.</p>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
