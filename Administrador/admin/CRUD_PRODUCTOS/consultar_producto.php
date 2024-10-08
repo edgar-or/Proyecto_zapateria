@@ -53,6 +53,18 @@
       </div>
   </nav>
 
+  <form action ="consultar_producto.php" method="post">
+
+
+  <div class="mb-3 text-center">
+      <div class="input-group" style="width: 50%; margin: 0 auto;">
+        <input type="text" class="form-control" placeholder="ingrese id de producto" aria-label="Buscar" name="busqueda_producto"
+          style="border-radius: 20px 0 0 20px; background-color: #020304; color: white; border: none;">
+          <button class="btn btn-dark" type="submit" style="border-radius: 0 20px 20px 0; color: white;">Consultar</button>
+      </div>
+    </div>
+</form>
+
  
 
 
@@ -74,6 +86,29 @@
 
 
 include '../../conexionBD.php';
+
+error_reporting(E_ERROR | E_PARSE); 
+
+$id_producto =  $_POST['busqueda_producto'];
+
+
+
+$consulta = "SELECT * FROM producto WHERE cod_producto = '$id_producto'";
+$result = $conn->query($consulta);
+
+// Verificar si hay resultados
+if ($result->num_rows > 0) {
+    // Imprimir los datos de cada fila
+    while($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["cod_producto"] . " - Nombre: " . $row["nombre_producto"] . " - Talla: " . $row["talla"] . " - Color: " . $row["color"] . "<br>";
+    }
+} else {
+    echo "el producto no existe";
+}
+
+// Cerrar la conexión
+$conn->close();
+
 
 
 
