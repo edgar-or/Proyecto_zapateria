@@ -1,14 +1,10 @@
 <?php
 // Conexión a la base de datos
-$conexion = new mysqli('localhost', 'root', '', 'db_za_2.0');
-
-if ($conexion->connect_error) {
-    die('Conexión fallida: ' . $conexion->connect_error);
-}
+include '../../conexionBD.php';
 
 // Obtener todos los usuarios
 $query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido FROM usuario";
-$result_usuarios = $conexion->query($query_usuarios);
+$result_usuarios = $conn->query($query_usuarios);
 
 // Obtener datos del usuario seleccionado
 $usuario = null;
