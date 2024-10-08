@@ -1,154 +1,180 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-	<!--Required meta tags-->
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="../estilos/estilos-registro-usuario.css">
-	<link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css" />
-	<title>Registrate</title>
-
-    <!-- Bootstrap Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" >
-
-</head>
-
-<body>
-     <!-- Banner de la pagina -->
-     <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid fixed-width-container"
-          style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
-          <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
-              <img src="imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
-                  class="d-inline-block align-text-center" style="background-color: #CC9E61;">
-              THE WALKERS
-          </a>
-          <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../index.html">INICIO</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false" style="color: white;">Productos</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_producto.php">Registrar Producto</a></li>
-                      <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/consultar_producto.php">Consultar Producto</a></li>
-                      <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/modificar_producto.php">Modificar Producto</a></li>
-                      <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/eliminar_producto.php">Eliminar Producto</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false" style="color: white;">Usuarios</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="registrar_usuarios.php">Registrar Usuario</a></li>
-                    <li><a class="dropdown-item" href="consultar_usuarios.php">Consultar Usuario</a></li>
-                    <li><a class="dropdown-item" href="modificar_usuarios.php">Modificar Usuario</a></li>
-                    <li><a class="dropdown-item" href="eliminar_usuarios.php">Eliminar Usuario</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
-          </li>
-          </ul>
-      </div>
-  </nav>
-	<center>
-
-		<section class="register-section">
-			
-
-			<h1><p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow',
-                     Arial, sans-serif; width: 300px;">Registrar Usuario</p></h1><br>
-			<!--REGISTRO-->
-			<form action="registrar_usuarios.php" method="POST" class="formulario__login" style="width: 25rem; height: 28rem;">
-
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="nombre" style="width: 49%;">Escriba el nombre del usuario</label>
-					<input class="form-control" style="width: 48%;" placeholder="Ingrese el nombre" type="text" name="nombre" id="nombre" required />
-				</div>
-
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="apellido" style="width: 49%;">Escriba el apellido del usuario</label>
-					<input class="form-control" style="width: 48%;" placeholder="Ingrese el apellido" type="text" name="apellido" id="apellido" required />
-				</div>
-
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="tipo" style="width: 49%;">Tipo de Usuario</label>
-                    <select id="tipo" name="tipo" class="form-control" style="width: 48%;">
-                        <option value="1">Administrador</option>
-                        <option value="2">Cliente</option>
-                    </select>
-				</div>
-                <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="telefono" style="width: 49%;">Escriba el Telefono del Usuario</label>
-					<input class="form-control" style="width: 48%;" placeholder="Ingrese el telefono" type="number" name="telefono" id="telefono" required />
-				</div>
-
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="correo" style="width: 49%;">Escriba su correo electronico</label>
-					<input class="form-control" style="width: 48%;" placeholder="Ingrese el correo electronico" type="email" name="correo" id="correo" required />
-				</div>
-
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="nick" style="width: 49%;">Escriba el Apodo del Usuario</label>
-					<input class="form-control" style="width: 48%;" placeholder="Ingrese el Apodo" type="text" name="nick" id="nick" required />
-				</div>
-
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="contraseña" style="width: 49%;">Escriba la contraseña del Usuario</label>
-					<input class="form-control" style="width: 48%;" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
-</div> <br>
-		<div class="btn">
-					<button type="submit" class="btn" style="background-color: black; 
-                    color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; width: 300px;">
-						Registrar
-					</button>
-				</div>
-			</form>
-            <br><br><br><br><br>
-            <li class="btn">
-                    <a class="btn" href="../../index.html" style="background-color: black; 
-                    color: white; width: 150px; font-family: 'Franklin Gothic Medium', 'Arial Narrow',
-                     Arial, sans-serif; width: 300px;">Volver al Inicio</a>
-            </li>
-        </section>
-	</center>
-
-	 <!-- Script de Bootstrap -->
-     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
-
 <?php
+// Conexión a la base de datos
+$conexion = new mysqli('localhost', 'root', '', 'the_walkers_db');
 
-
-error_reporting(E_ERROR | E_PARSE);
-
-include '../../conexionBD.php';
-
-$nombre= $_POST['nombre'];
-$apellido= $_POST['apellido'];
-$tipo= $_POST['tipo'];
-$telefono= $_POST['telefono'];
-$correo= $_POST['correo'];
-$nickname= $_POST['nick'];
-$contraseña= $_POST['contraseña'];
-
-$sql = "INSERT INTO usuario (primer_nombre, primer_apellido, tipo_usuario, telefono_usuario, correo_usuario, nick_name, contraseña) VALUES ('$nombre','$apellido','$tipo',' $telefono','$correo', '$nickname','$contraseña')";
-
-// Ejecutar la consulta
-if (mysqli_query($conn, $sql)) {
-    echo "";
-} else {
-    echo "Error: " . mysqli_error($conn);
+if ($conexion->connect_error) {
+    die('Conexión fallida: ' . $conexion->connect_error);
 }
 
+// Procesar el formulario de registro
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Sanitizar y validar entradas según sea necesario
+    $primer_nombre = trim($_POST['primer_nombre']);
+    $primer_apellido = trim($_POST['primer_apellido']);
+    $tipo_usuario = trim($_POST['tipo_usuario']);
+    $telefono_usuario = trim($_POST['telefono_usuario']);
+    $correo_usuario = trim($_POST['correo_usuario']);
+    $nick_name = trim($_POST['nick_name']);
+    $contraseña = $_POST['contraseña'];
+
+    // Validar campos obligatorios
+    if ($primer_nombre && $primer_apellido && $tipo_usuario && $telefono_usuario && $correo_usuario && $nick_name && $contraseña) {
+        // Encriptar la contraseña
+        $hashed_password = password_hash($contraseña, PASSWORD_BCRYPT);
+
+        // Preparar la consulta de inserción
+        $insert_query = "INSERT INTO usuario (primer_nombre, primer_apellido, tipo_usuario, telefono_usuario, correo_usuario, nick_name, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt_insert = $conexion->prepare($insert_query);
+        if ($stmt_insert) {
+            $stmt_insert->bind_param('sssssss', $primer_nombre, $primer_apellido, $tipo_usuario, $telefono_usuario, $correo_usuario, $nick_name, $hashed_password);
+            if ($stmt_insert->execute()) {
+                echo "<script>alert('Usuario registrado correctamente'); window.location.href='registrar_usuarios.php';</script>";
+            } else {
+                echo "<script>alert('Error al registrar el usuario. Intenta nuevamente.'); window.location.href='registrar_usuarios.php';</script>";
+            }
+            $stmt_insert->close();
+        } else {
+            echo "<script>alert('Error en la preparación de la consulta.'); window.location.href='registrar_usuarios.php';</script>";
+        }
+    } else {
+        echo "<script>alert('Por favor, completa todos los campos.'); window.location.href='registrar_usuarios.php';</script>";
+    }
+}
+
+// Obtener el total de usuarios
+$count_query = "SELECT COUNT(*) AS total FROM usuario";
+$result_count = $conexion->query($count_query);
+$total_usuarios = 0;
+if ($result_count) {
+    $row_count = $result_count->fetch_assoc();
+    $total_usuarios = $row_count['total'];
+}
+
+// Obtener los primeros 20 usuarios para mostrar en la tabla
+$query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido FROM usuario ORDER BY cod_usuario DESC LIMIT 20";
+$result_usuarios = $conexion->query($query_usuarios);
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Banner de la página -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+            <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
+                <img src="../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90" class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+                THE WALKERS
+            </a>
+            <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../index.html">INICIO</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_producto.php">Registrar Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/consultar_producto.php">Consultar Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/modificar_producto.php">Modificar Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/eliminar_producto.php">Eliminar Producto</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Usuarios</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="registrar_usuarios.php">Registrar Usuario</a></li>
+                        <li><a class="dropdown-item" href="consultar_usuarios.php">Consultar Usuario</a></li>
+                        <li><a class="dropdown-item" href="modificar_usuarios.php">Modificar Usuario</a></li>
+                        <li><a class="dropdown-item" href="eliminar_usuarios.php">Eliminar Usuario</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="../creditos/creditos.html" style="color: white;">Créditos</a></li>
+            </ul>
+        </div>
+    </nav>
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #16aef0; font-family: 'Franklin Gothic Medium', 'cursive';">
+        Registro de Nuevos Usuarios
+    </p>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Formulario de registro a la izquierda -->
+            <div class="col-md-6">
+                <h4>Registrar Nuevo Usuario</h4>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="primer_nombre" class="form-label">Primer Nombre</label>
+                        <input type="text" class="form-control" id="primer_nombre" name="primer_nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="primer_apellido" class="form-label">Primer Apellido</label>
+                        <input type="text" class="form-control" id="primer_apellido" name="primer_apellido" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
+                        <select class="form-select" id="tipo_usuario" name="tipo_usuario" required>
+                            <option value="">Seleccione el tipo</option>
+                            <option value="admin">Administrador</option>
+                            <option value="cliente">Cliente</option>
+                            <!-- Agrega más tipos según sea necesario -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono_usuario" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono_usuario" name="telefono_usuario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="correo_usuario" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="correo_usuario" name="correo_usuario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nick_name" class="form-label">Nickname</label>
+                        <input type="text" class="form-control" id="nick_name" name="nick_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contraseña" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success me-2">Registrar Usuario</button>
+                        <button type="reset" class="btn btn-secondary me-2">Limpiar</button>
+                        <a href="../Administrador/index.html" class="btn btn-danger">Salir</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tabla de usuarios registrados a la derecha -->
+            <div class="col-md-6">
+                <h4>Usuarios Registrados</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result_usuarios->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['cod_usuario']); ?></td>
+                            <td><?php echo htmlspecialchars($row['primer_nombre']); ?></td>
+                            <td><?php echo htmlspecialchars($row['primer_apellido']); ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <?php if ($total_usuarios > 20) { ?>
+                    <div class="d-flex justify-content-end">
+                        <a href="ver_todos_usuarios.php" class="btn btn-primary">Ver Todos los Usuarios</a>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
