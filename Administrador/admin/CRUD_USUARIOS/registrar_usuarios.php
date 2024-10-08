@@ -138,8 +138,8 @@ $result_usuarios = $conexion->query($query_usuarios);
                         <input type="password" class="form-control" id="contraseña" name="contraseña" required>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success me-2">Registrar Usuario</button>
-                        <button type="reset" class="btn btn-secondary me-2">Limpiar</button>
+                        <button type="submit" class="btn btn-primary me-2">Registrar Usuario</button>
+                        <button type="reset" class="btn btn-primary me-2">Limpiar</button>
                         <a href="../Administrador/index.html" class="btn btn-danger">Salir</a>
                     </div>
                 </form>
@@ -168,7 +168,7 @@ $result_usuarios = $conexion->query($query_usuarios);
                 </table>
                 <?php if ($total_usuarios > 20) { ?>
                     <div class="d-flex justify-content-end">
-                        <a href="ver_todos_usuarios.php" class="btn btn-primary">Ver Todos los Usuarios</a>
+                        <a href="usuarios_disponibles.php" class="btn btn-primary">Ver Todos los Usuarios</a>
                     </div>
                 <?php } ?>
             </div>

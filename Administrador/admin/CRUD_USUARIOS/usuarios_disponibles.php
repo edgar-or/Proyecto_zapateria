@@ -143,7 +143,7 @@ $result_usuarios = $stmt_usuarios->get_result();
 
                 <!-- Botón para regresar a la página de registro -->
                 <div class="d-flex justify-content-end mt-3">
-                    <a href="registrar_usuarios.php" class="btn btn-secondary">Volver al Registro</a>
+                    <a href="registrar_usuarios.php" class="btn btn-primary">Volver al Registro</a>
                 </div>
             </div>
         </div>
