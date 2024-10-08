@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!--Required meta tags-->
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../estilos/estilos-registro-usuario.css">
+	<link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+	<title>Registrate</title>
+
+</head>
+
+<body>
+	<center>
+
+		<section class="register-section">
+			<!-- Imagen en la esquina -->
+			<img src="../imagenes/001-Index/Logos/Logo.png" alt="logo" style="background-color: #CC9E61;">
+
+			<p style="font-family: monospace; font-size: x-large;">REGISTRATE</p><br>
+			<!--REGISTRO-->
+			<form action="registrar_usuarios.php" method="POST" class="formulario__login" style="width: 25rem; height: 28rem;">
+
+				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+					<label class="fw-bold" for="nombre" style="width: 49%;">Escriba el nombre del usuario</label>
+					<input class="form-control" style="width: 48%;" placeholder="primer nombre" type="text" name="nombre" id="nombre" required />
+				</div>
+
+				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+					<label class="fw-bold" for="apellido" style="width: 49%;">Escriba el apellido del usuario</label>
+					<input class="form-control" style="width: 48%;" placeholder="primer apellido" type="text" name="apellido" id="apellido" required />
+				</div>
+
+				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+					<label class="fw-bold" for="tipo" style="width: 49%;">Tipo de Usuario</label>
+                    <select class="form-select mx-2" style="width: 100px;">
+                        <option selected>Tipo</option>
+                        <option value="36">Administrador</option>
+                        <option value="37">Cliente</option>
+                    </select>
+				</div>
+                <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+					<label class="fw-bold" for="telefono" style="width: 49%;">Escriba el Telefono del Usuario</label>
+					<input class="form-control" style="width: 48%;" placeholder="celular" type="number" name="telefono" id="telefono" required />
+				</div>
+
+				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+					<label class="fw-bold" for="correo" style="width: 49%;">Escriba su correo electronico</label>
+					<input class="form-control" style="width: 48%;" placeholder="correo electronico" type="email" name="correo" id="correo" required />
+				</div>
+
+				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+					<label class="fw-bold" for="nickname" style="width: 49%;">Escriba el Apodo del Usuario</label>
+					<input class="form-control" style="width: 48%;" placeholder="Ingrese su usuario" type="text" name="nickname" id="nickname" required />
+				</div>
+
+				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+					<label class="fw-bold" for="contraseña" style="width: 49%;">Escriba la contraseña del Usuario</label>
+					<input class="form-control" style="width: 48%;" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
+				</div>
+
+				<div class="d-grid">
+					<button type="submit" class="btn">
+						Registrar
+					</button>
+				</div>
+			</form>
+		</section>
+
+		<div class="back-button d-grid">
+			<button type="submit" class="btn">
+				<a href="Administrador/admin/admin.html">
+					Volver al inicio
+				</a>
+			</button>
+		</div>
+	</center>
+
+	<!-- Optional JavaScript -->
+	<script src="../js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
