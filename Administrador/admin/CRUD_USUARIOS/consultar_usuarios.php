@@ -73,7 +73,7 @@ if (isset($_GET['cod_usuario'])) {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Código</th>
+                            <th>Nickname</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Tipo de Usuario</th>

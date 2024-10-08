@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_usuario'])) 
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Código</th>
+                            <th>Nickname</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                         </tr>
