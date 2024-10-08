@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-$conexion = new mysqli('localhost', 'root', '', 'db_za_2.0');
+$conexion = new mysqli('localhost', 'root', '', 'the_walkers_db');
 
 if ($conexion->connect_error) {
     die('Conexión fallida: ' . $conexion->connect_error);
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Nickname</th>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                         </tr>
