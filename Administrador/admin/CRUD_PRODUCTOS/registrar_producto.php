@@ -76,7 +76,7 @@ mysqli_close($conn);
                 </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="creditos.html" style="color: white;">Creditos</a>
+              <a class="nav-link" href="../../../Administrador/creditos/creditos.html" style="color: white;">Creditos</a>
           </li>
           </ul>
       </div>

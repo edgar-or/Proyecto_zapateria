@@ -1,14 +1,12 @@
 <?php
 // Conexión a la base de datos
-<<<<<<< HEAD
 include '../../conexionBD.php';
-=======
 $conexion = new mysqli('localhost', 'root', '', 'the_walkers_db');
 
 if ($conexion->connect_error) {
     die('Conexión fallida: ' . $conexion->connect_error);
 }
->>>>>>> 93e096a507f01312adc8523b857fec7325cb4bcb
+
 
 // Obtener todos los usuarios
 $query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido FROM usuario";
@@ -72,10 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Productos</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_producto.php">Registrar Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/consultar_producto.php">Consultar Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/modificar_producto.php">Modificar Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/eliminar_producto.php">Eliminar Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_producto.php">Registrar Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/consultar_producto.php">Consultar Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/modificar_producto.php">Modificar Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/eliminar_producto.php">Eliminar Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_inventario.php">Registrar Inventario</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -87,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <li><a class="dropdown-item" href="eliminar_usuarios.php">Eliminar Usuario</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="../creditos/creditos.html" style="color: white;">Créditos</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../Administrador/creditos/creditos.html" style="color: white;">Créditos</a></li>
             </ul>
         </div>
     </nav>
