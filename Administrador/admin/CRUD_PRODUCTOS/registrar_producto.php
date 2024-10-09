@@ -20,7 +20,6 @@ if (mysqli_num_rows($resultado) > 0) {
 
 
 
-
 mysqli_close($conn);
 ?>
 

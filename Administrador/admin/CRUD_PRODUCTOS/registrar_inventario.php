@@ -137,7 +137,7 @@ if (mysqli_num_rows($resultado_tallas) > 0) {
                 <label for="cantidad">Digite la cantidad</label>
                 <input type="number" name="cantidad" required />
             </div>
-            <larbel>Cod_producto: </larbel>
+            <label>Cod_producto: </label>
             <input type="text" name="cod_producto" value="<?php echo ($cod_producto)?>" />
             <div>
                 <button type="submit">Registrar Inventario</button>

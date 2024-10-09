@@ -1,21 +1,16 @@
 <?php
-// Conexión a la base de datos
-$conexion = new mysqli('localhost', 'root', '', 'the_walkers_db');
-
-if ($conexion->connect_error) {
-    die('Conexión fallida: ' . $conexion->connect_error);
-}
+include '../../conexionBD.php';
 
 // Obtener todos los usuarios
 $query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido, tipo_usuario FROM usuario LIMIT 20"; // Limit to 20 users
-$result_usuarios = $conexion->query($query_usuarios);
+$result_usuarios = $conn->query($query_usuarios);
 
 // Obtener datos del usuario seleccionado
 $usuario = null;
 if (isset($_GET['cod_usuario'])) {
     $cod_usuario = $_GET['cod_usuario'];
     $query = "SELECT primer_nombre, primer_apellido, tipo_usuario, telefono_usuario, correo_usuario, nick_name, contraseña FROM usuario WHERE cod_usuario = ?";
-    $stmt = $conexion->prepare($query);
+    $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $cod_usuario);
     $stmt->execute();
     $result = $stmt->get_result();

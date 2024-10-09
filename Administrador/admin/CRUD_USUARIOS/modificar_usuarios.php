@@ -1,14 +1,6 @@
 <?php
 // Conexión a la base de datos
-<<<<<<< HEAD
 include '../../conexionBD.php';
-=======
-$conexion = new mysqli('localhost', 'root', '', 'the_walkers_db');
-
-if ($conexion->connect_error) {
-    die('Conexión fallida: ' . $conexion->connect_error);
-}
->>>>>>> 93e096a507f01312adc8523b857fec7325cb4bcb
 
 // Obtener todos los usuarios
 $query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido FROM usuario";
@@ -21,7 +13,7 @@ $cod_usuario = null; // Initialize the variable
 if (isset($_GET['cod_usuario'])) {
     $cod_usuario = $_GET['cod_usuario'];
     $query = "SELECT primer_nombre, primer_apellido, tipo_usuario, telefono_usuario, correo_usuario, nick_name, contraseña FROM usuario WHERE cod_usuario = ?";
-    $stmt = $conexion->prepare($query);
+    $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $cod_usuario);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -40,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contraseña = $_POST['contraseña'];
 
     $update_query = "UPDATE usuario SET primer_nombre = ?, primer_apellido = ?, tipo_usuario = ?, telefono_usuario = ?, correo_usuario = ?, nick_name = ?, contraseña = ? WHERE cod_usuario = ?";
-    $stmt_update = $conexion->prepare($update_query);
+    $stmt_update = $conn->prepare($update_query);
     $stmt_update->bind_param('sssssssi', $primer_nombre, $primer_apellido, $tipo_usuario, $telefono_usuario, $correo_usuario, $nick_name, $contraseña, $cod_usuario);
 
     if ($stmt_update->execute()) {
