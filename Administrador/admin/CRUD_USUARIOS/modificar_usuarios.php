@@ -1,15 +1,6 @@
 <?php
 // Conexión a la base de datos
 include '../../conexionBD.php';
-<<<<<<< HEAD
-=======
-$conexion = new mysqli('localhost', 'root', '', 'the_walkers_db');
-
-if ($conexion->connect_error) {
-    die('Conexión fallida: ' . $conexion->connect_error);
-}
-
->>>>>>> 4e06fa9f67fc47a827eb8301265e4f22019e86bc
 
 // Obtener todos los usuarios
 $query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido FROM usuario";

@@ -178,6 +178,8 @@ mysqli_close($conn);
 
 
 <?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Incluir la conexión a la base de datos
 include '../../conexionBD.php';
 
@@ -209,6 +211,7 @@ include '../../conexionBD.php';
 
     // Cerrar la conexión
     mysqli_close($conn);
+}
 ?>
 
 
