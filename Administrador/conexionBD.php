@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database_zapateria = "db_za_2.0";
+$database_zapateria = "the_walkers_db";
 
 // Crear conexión
 $conn = mysqli_connect($servername, $username, $password, $database_zapateria);

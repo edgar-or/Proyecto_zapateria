@@ -34,6 +34,7 @@
                       <li><a class="dropdown-item" href="consultar_producto.php">Consultar Producto</a></li>
                       <li><a class="dropdown-item" href="modificar_producto.php">Modificar Producto</a></li>
                       <li><a class="dropdown-item" href="#">Eliminar Producto</a></li>
+                      <li><a class="dropdown-item" href="registrar_inventario.php">Registrar Inventario</a></li>
                   </ul>
               </li>
               <li class="nav-item dropdown">
@@ -44,6 +45,7 @@
                     <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar Usuario</a></li>
                     <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar Usuario</a></li>
                     <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar Usuario</a></li>
+                    
                 </ul>
             </li>
             <li class="nav-item">

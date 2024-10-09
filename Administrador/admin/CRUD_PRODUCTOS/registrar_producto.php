@@ -16,6 +16,11 @@ if (mysqli_num_rows($resultado) > 0) {
     $categorias = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
 
+
+
+
+
+
 mysqli_close($conn);
 ?>
 
@@ -57,6 +62,7 @@ mysqli_close($conn);
                       <li><a class="dropdown-item" href="consultar_producto.php">Consultar Producto</a></li>
                       <li><a class="dropdown-item" href="modificar_producto.php">Modificar Producto</a></li>
                       <li><a class="dropdown-item" href="eliminar_producto.php">Eliminar Producto</a></li>
+                      <li><a class="dropdown-item" href="registrar_inventario.php">Registrar Inventario</a></li>
                   </ul>
               </li>
               <li class="nav-item dropdown">
@@ -96,15 +102,7 @@ mysqli_close($conn);
 					<input class="form-control" style="width: 48%;" placeholder="Nombre del zapato" type="text" name="nombre" id="nombre" required />
 				</div>
 
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="apellido" style="width: 49%;">Digite la talla</label>
-					<input class="form-control" style="width: 48%;" placeholder="Talla" type="number" name="talla" id="talla" required />
-				</div>
-
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="celular" style="width: 49%;">Escriba el color</label>
-					<input class="form-control" style="width: 48%;" placeholder="Color del zapato" type="text" name="color" id="color" required />
-				</div>
+                
 
 				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
 					<label class="fw-bold" for="email" style="width: 49%;">Escriba una breve descripcion</label>
@@ -123,7 +121,7 @@ mysqli_close($conn);
 
                 <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
                 <label class="fw-bold" for="categoria" style="width: 49%;">Seleccione la categoría</label>
-        <!-- Aquí irán las opciones generadas dinámicamente desde PHP -->
+    
                 <select class="form-control" style="width: 48%;" name="categoria" id="categoria" required>
                 <?php foreach ($categorias as $categoria): ?>
                 <option value="<?php echo $categoria['cod_categoria']; ?>">
@@ -132,6 +130,10 @@ mysqli_close($conn);
             <?php endforeach; ?>
             </select>
                 </div>
+
+            
+
+
                 <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
 					<label class="fw-bold" for="contraseña" style="width: 49%;">Pegue el link de la imagen</label>
 					<input class="form-control" style="width: 48%;" placeholder="Link de imagen" type="text" maxlength="255" name="link_imagen" id="link_imagen" required />
@@ -188,16 +190,19 @@ include '../../conexionBD.php';
     $precio = $_POST['precio']; 
     $marca =$_POST['marca']; 
     $categoria = $_POST['categoria'];
+    $cantidad =  $_POST['cantidad'];
     $imagen_url =$_POST['link_imagen'];
 
     // Preparar la consulta SQL para insertar el producto
-    $insertar = "INSERT INTO producto (nombre_producto, talla, color, descripcion, imagen, precio, marca, cod_categoriaf)
-            VALUES ('$nombre', '$talla', '$color', '$descripcion', '$imagen_url', '$precio', '$marca', '$categoria')";
+    $insertar = "INSERT INTO producto (nombre_producto, descripcion, imagen, precio, marca, cod_categoriaf)
+            VALUES ('$nombre', '$descripcion', '$imagen_url', '$precio', '$marca', '$categoria')";
 
     // Ejecutar la consulta
     if (mysqli_query($conn, $insertar)) {
+           // Obtener el ID del producto recién insertado
+    $cod_producto = mysqli_insert_id($conn);
 
-        echo "<script>alert('Producto registrado exitosamente'); window.location.href = 'registrar_producto.php';</script>";
+        echo "<script>alert('Producto registrado exitosamente, inserte a inventario'); window.location.href = 'registrar_inventario.php';</script>";
         
     } else {
         echo "<script>alert('error al registrar el producto'); window.location.href = 'registrar_producto.php';</script>";

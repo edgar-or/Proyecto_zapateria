@@ -1,3 +1,26 @@
+<?php
+
+
+include '../../conexionBD.php';
+
+error_reporting(E_ERROR | E_PARSE); // Mostrar solo errores fatales y parse errors
+
+
+
+// Consulta para obtener todas las categorías
+$sql = "SELECT cod_categoria, nombre_categoria FROM categoria";
+$resultado = mysqli_query($conn, $sql);
+
+// Verificar si hay resultados
+if (mysqli_num_rows($resultado) > 0) {
+    $categorias = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+}
+
+mysqli_close($conn);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +57,7 @@
                       <li><a class="dropdown-item" href="consultar_producto.php">Consultar Producto</a></li>
                       <li><a class="dropdown-item" href="#">Modificar Producto</a></li>
                       <li><a class="dropdown-item" href="eliminar_producto.php">Eliminar Producto</a></li>
+                      <li><a class="dropdown-item" href="registrar_inventario.php">Registrar Inventario</a></li>
                   </ul>
               </li>
               <li class="nav-item dropdown">
@@ -44,6 +68,7 @@
                     <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar Usuario</a></li>
                     <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar Usuario</a></li>
                     <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar Usuario</a></li>
+                   
                 </ul>
             </li>
             <li class="nav-item">
@@ -52,6 +77,82 @@
           </ul>
       </div>
   </nav>
+  <center>
+
+  <form  action ="modificar_producto.php" method="post">
+
+
+  <div class="mb-3 text-center">
+      <div class="input-group" style="width: 50%; margin: 0 auto;">
+        <input type="text" class="form-control" placeholder="ingrese id de producto" aria-label="Buscar" name="cod_producto"
+          style="border-radius: 20px 0 0 20px; background-color: #020304; color: white; border: none;">
+      </div>
+    </div>
+
+
+
+
+<section class="register-section">
+    <!--REGISTRO-->
+
+
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <label class="fw-bold" for="nombre" style="width: 49%;">Digite el nombre de Zapato</label>
+            <input class="form-control" style="width: 48%;" placeholder="Nombre del zapato" type="text" name="nombre" id="nombre" required />
+        </div>
+
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <label class="fw-bold" for="apellido" style="width: 49%;">Digite la talla</label>
+            <input class="form-control" style="width: 48%;" placeholder="Talla" type="number" name="talla" id="talla" required />
+        </div>
+
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <label class="fw-bold" for="celular" style="width: 49%;">Escriba el color</label>
+            <input class="form-control" style="width: 48%;" placeholder="Color del zapato" type="text" name="color" id="color" required />
+        </div>
+
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <label class="fw-bold" for="email" style="width: 49%;">Escriba una breve descripcion</label>
+            <input class="form-control" style="width: 48%;" placeholder="descripcion" type="text" name="descripcion" id="descripcion" required />
+        </div>
+
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <label class="fw-bold" for="usuario" style="width: 49%;">Digite el precio</label>
+            <input class="form-control" style="width: 48%;" placeholder="Precio" type="number" name="precio" id="precio" required />
+        </div>
+
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <label class="fw-bold" for="contraseña" style="width: 49%;">Escriba la marca</label>
+            <input class="form-control" style="width: 48%;" placeholder="Marca" type="text" maxlength="10" name="marca" id="marca" required />
+        </div>
+
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+        <label class="fw-bold" for="categoria" style="width: 49%;">Seleccione la categoría</label>
+<!-- Aquí irán las opciones generadas dinámicamente desde PHP -->
+        <select class="form-control" style="width: 48%;" name="categoria" id="categoria" required>
+        <?php foreach ($categorias as $categoria): ?>
+        <option value="<?php echo $categoria['cod_categoria']; ?>">
+    <?php echo htmlspecialchars(trim($categoria['nombre_categoria'])); ?>
+        </option>
+    <?php endforeach; ?>
+    </select>
+        </div>
+        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <label class="fw-bold" for="contraseña" style="width: 49%;">Pegue el link de la imagen</label>
+            <input class="form-control" style="width: 48%;" placeholder="Link de imagen" type="text" maxlength="255" name="link_imagen" id="link_imagen" required />
+        </div>
+        <center>
+        <div class="d-grid">
+            <button type="submit" class="btn" style= "background-color: black; width: 10rem;">
+                Modificar
+            </button>
+        </div>
+        </center>
+    </form>
+</section>
+
+
+</center>
 
  
 
@@ -72,8 +173,39 @@
 
 <?php
 
+echo "Código del producto: " . $cod_producto . "<br>";
+
+
 
 include '../../conexionBD.php';
+
+
+$cod_producto = $_POST['cod_producto'];
+    $nombre_producto = $_POST['nombre'];
+    $talla = $_POST['talla'];
+    $color = $_POST['color'];
+    $descripcion=  $_POST['descripcion'];
+    $link_imagen=   $_POST['link_imagen'];
+    $precio=  $_POST['precio'];
+    $marca =  $_POST['marca'];
+    $categoria=   $_POST['categoria'];
+
+
+    // Preparar la consulta para actualizar el producto
+    $actualizar = "UPDATE producto SET nombre_producto = '$nombre_producto', talla = '$talla', color = '$color', descripcion = '$descripcion', imagen = '$link_imagen', precio = '$precio', marca = '$marca', cod_categoriaf = '$categoria' WHERE cod_producto = '$cod_producto'";
+
+    // Ejecutar la consulta
+    if ($conn->query($actualizar) === TRUE) {
+        echo "Producto modificado correctamente.";
+    } else {
+        echo "Error al modificar el producto: " . $conn->error;
+    }
+
+// Cerrar la conexión
+$conn->close();
+
+echo "Código del producto: " . $cod_producto . "<br>";
+
 
 
 
