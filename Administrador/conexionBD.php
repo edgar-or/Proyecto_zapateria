@@ -14,6 +14,6 @@ if (!$conn) {
  failed: " . mysqli_connect_error());
 }
 else
-    print("conexion exitosa")
+
 
 ?>

@@ -1,13 +1,13 @@
 <?php
 // Conexión a la base de datos
-$conexion = new mysqli('localhost', 'root', '', 'db_za_2.0');
+$conexion = new mysqli('localhost', 'root', '', 'the_walkers_db');
 
 if ($conexion->connect_error) {
     die('Conexión fallida: ' . $conexion->connect_error);
 }
 
 // Obtener todos los usuarios
-$query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido, tipo_usuario FROM usuario";
+$query_usuarios = "SELECT cod_usuario, primer_nombre, primer_apellido, tipo_usuario FROM usuario LIMIT 20"; // Limit to 20 users
 $result_usuarios = $conexion->query($query_usuarios);
 
 // Obtener datos del usuario seleccionado
@@ -30,6 +30,16 @@ if (isset($_GET['cod_usuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles to prevent tables from merging */
+        .user-table {
+            max-height: 400px; /* Set a max height for the user table */
+            overflow-y: auto; /* Add scroll when content exceeds max height */
+        }
+        .table-container {
+            margin-bottom: 20px; /* Space below the user table */
+        }
+    </style>
 </head>
 <body>
     <!-- Banner de la página -->
@@ -63,33 +73,33 @@ if (isset($_GET['cod_usuario'])) {
             </ul>
         </div>
     </nav>
-    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #e1e553 ; font-family: 'Franklin Gothic Medium', 'cursive';">Consulta de Usuarios</p>
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #e1e553; font-family: 'Franklin Gothic Medium', 'cursive';">Consulta de Usuarios</p>
 
     <div class="container mt-5">
         <div class="row">
             <!-- Tabla de usuarios a la izquierda -->
-            <div class="col-md-4">
+            <div class="col-md-3 table-container">
                 <h4>Usuarios</h4>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Tipo de Usuario</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($row = $result_usuarios->fetch_assoc()) { ?>
-                        <tr>
-                            <td><a href="?cod_usuario=<?php echo $row['cod_usuario']; ?>"><?php echo $row['cod_usuario']; ?></a></td>
-                            <td><?php echo $row['primer_nombre']; ?></td>
-                            <td><?php echo $row['primer_apellido']; ?></td>
-                            <td><?php echo $row['tipo_usuario']; ?></td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                <div class="user-table">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $result_usuarios->fetch_assoc()) { ?>
+                            <tr>
+                                <td><a href="?cod_usuario=<?php echo $row['cod_usuario']; ?>"><?php echo $row['cod_usuario']; ?></a></td>
+                                <td><?php echo $row['primer_nombre']; ?></td>
+                                <td><?php echo $row['primer_apellido']; ?></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Formulario de detalles a la derecha -->

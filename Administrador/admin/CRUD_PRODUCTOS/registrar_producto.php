@@ -69,14 +69,14 @@ mysqli_close($conn);
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                     aria-expanded="false" style="color: white;">Usuarios</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/registrar_usuarios.php">Registrar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar Usuario</a></li>
+                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/registrar_usuarios.php">Registrar Usuario</a></li>
+                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/consultar_usuarios.php">Consultar Usuario</a></li>
+                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/modificar_usuarios.php">Modificar Usuario</a></li>
+                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/eliminar_usuarios.php">Eliminar Usuario</a></li>
                 </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
+              <a class="nav-link" href="creditos.html" style="color: white;">Creditos</a>
           </li>
           </ul>
       </div>
