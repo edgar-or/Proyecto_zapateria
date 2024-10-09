@@ -141,7 +141,7 @@ $result_usuarios = $conexion->query($query_usuarios);
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary me-2">Registrar Usuario</button>
                         <button type="reset" class="btn btn-primary me-2">Limpiar</button>
-                        <a href="../Administrador/index.html" class="btn btn-danger">Salir</a>
+                        <a href="../../admin/admin.html" class="btn btn-danger">Salir</a>
                     </div>
                 </form>
             </div>
