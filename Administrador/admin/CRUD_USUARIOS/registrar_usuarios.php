@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validar campos obligatorios
     if ($primer_nombre && $primer_apellido && $tipo_usuario && $telefono_usuario && $correo_usuario && $nick_name && $contraseña) {
-        // Encriptar la contraseña
-        $hashed_password = password_hash($contraseña, PASSWORD_BCRYPT);
+        // Almacenar la contraseña sin encriptar (no recomendado)
+        $hashed_password = $contraseña; // Almacena la contraseña en texto plano
 
         // Preparar la consulta de inserción
         $insert_query = "INSERT INTO usuario (primer_nombre, primer_apellido, tipo_usuario, telefono_usuario, correo_usuario, nick_name, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?)";
