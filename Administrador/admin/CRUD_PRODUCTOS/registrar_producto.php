@@ -108,10 +108,7 @@ mysqli_close($conn);
 					<input class="form-control" style="width: 48%;" placeholder="descripcion" type="text" name="descripcion" id="descripcion" required />
 				</div>
 
-				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-					<label class="fw-bold" for="usuario" style="width: 49%;">Digite el precio</label>
-					<input class="form-control" style="width: 48%;" placeholder="Precio" type="number" name="precio" id="precio" required />
-				</div>
+				
 
 				<div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
 					<label class="fw-bold" for="contraseña" style="width: 49%;">Escriba la marca</label>
@@ -188,15 +185,14 @@ include '../../conexionBD.php';
     $talla = $_POST['talla']; 
     $color = $_POST['color']; 
     $descripcion = $_POST['descripcion']; 
-    $precio = $_POST['precio']; 
     $marca =$_POST['marca']; 
     $categoria = $_POST['categoria'];
     $cantidad =  $_POST['cantidad'];
     $imagen_url =$_POST['link_imagen'];
 
     // Preparar la consulta SQL para insertar el producto
-    $insertar = "INSERT INTO producto (nombre_producto, descripcion, imagen, precio, marca, cod_categoriaf)
-            VALUES ('$nombre', '$descripcion', '$imagen_url', '$precio', '$marca', '$categoria')";
+    $insertar = "INSERT INTO producto (nombre_producto, descripcion, imagen, marca, cod_categoriaf)
+            VALUES ('$nombre', '$descripcion', '$imagen_url', '$marca', '$categoria')";
 
     // Ejecutar la consulta
     if (mysqli_query($conn, $insertar)) {

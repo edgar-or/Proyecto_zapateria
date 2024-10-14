@@ -1,213 +1,159 @@
 <?php
-
-
+// Conexión a la base de datos
 include '../../conexionBD.php';
 
-error_reporting(E_ERROR | E_PARSE); // Mostrar solo errores fatales y parse errors
+// Obtener todos los usuarios
+$query_productos = "SELECT cod_producto, nombre_producto, marca FROM producto";
+$result_productos = $conn->query($query_productos);
 
+// Obtener datos del usuario seleccionado
+$producto = null;
+$cod_producto = null; 
 
-
-// Consulta para obtener todas las categorías
-$sql = "SELECT cod_categoria, nombre_categoria FROM categoria";
-$resultado = mysqli_query($conn, $sql);
-
-// Verificar si hay resultados
-if (mysqli_num_rows($resultado) > 0) {
-    $categorias = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+if (isset($_GET['cod_producto'])) {
+    $cod_producto = $_GET['cod_producto'];
+    $query = "SELECT nombre_producto, descripcion, imagen, marca, cod_categoriaf FROM producto WHERE cod_producto = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $cod_producto);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $producto = $result->fetch_assoc();
 }
 
-mysqli_close($conn);
+// Procesar actualización del usuario seleccionado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cod_producto = $_POST['cod_producto'];
+    $nombre_producto = $_POST['nombre_producto'];
+    $descripcion = $_POST['descripcion'];
+    $imagen = $_POST['imagen'];
+    $marca = $_POST['marca'];
+    $cod_categoria = $_POST['categoria'];
+
+    $update_query = "UPDATE producto SET nombre_producto = ?, descripcion = ?, imagen = ?, marca = ?, cod_categoriaf = ? WHERE cod_producto= ?";
+    $stmt_update = $conn->prepare($update_query);
+    $stmt_update->bind_param('ssssii', $nombre_producto, $descripcion, $imagen, $marca, $cod_categoria, $cod_producto);
+
+    if ($stmt_update->execute()) {
+        echo "<script>alert('Se modificó correctamente');window.location.href='modificar_producto.php';</script>";
+    } else {
+        echo "<script>alert('Ocurrió un error, intenta nuevamente');window.location.href='modificar_producto.php';</script>";
+    }
+}
 ?>
-
-
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
-  <link rel="icon" href="../../imagenes/Index/logo-icono.ico" type="image/x-icon">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" >
-  <title>Administracion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Credenciales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
+    <!-- Banner de la pagina -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+            <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
+                <img src="../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90" class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+                THE WALKERS
+            </a>
+            <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../index.html">INICIO</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="registrar_producto.php">Registrar Producto</a></li>
+                        <li><a class="dropdown-item" href="consultar_producto.php">Consultar Producto</a></li>
+                        <li><a class="dropdown-item" href="#">Modificar Producto</a></li>
+                        <li><a class="dropdown-item" href="eliminar_producto.php">Eliminar Producto</a></li>
+                        <li><a class="dropdown-item" href="registrar_inventario.php">Registrar Inventario</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Usuarios</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/registrar_usuarios.php">Registrar Usuario</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/consultar_usuarios.php">Consultar Usuario</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/modificar_usuarios.php">Modificar Usuario</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/eliminar_usuarios.php">Eliminar Usuario</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="../../../Administrador/creditos/creditos.html" style="color: white;">Créditos</a></li>
+            </ul>
+        </div>
+    </nav>
 
-     <!-- Banner de la pagina -->
-     <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid fixed-width-container"
-          style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
-          <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
-              <img src="../../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
-                  class="d-inline-block align-text-center" style="background-color: #CC9E61;">
-              THE WALKERS
-          </a>
-          <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../../index.html">INICIO</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false" style="color: white;">Productos</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="registrar_producto.php">Registrar Producto</a></li>
-                      <li><a class="dropdown-item" href="consultar_producto.php">Consultar Producto</a></li>
-                      <li><a class="dropdown-item" href="#">Modificar Producto</a></li>
-                      <li><a class="dropdown-item" href="eliminar_producto.php">Eliminar Producto</a></li>
-                      <li><a class="dropdown-item" href="registrar_inventario.php">Registrar Inventario</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false" style="color: white;">Usuarios</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/registrar_usuarios.php">Registrar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/consultar_usuarios.php">Consultar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/modificar_usuarios.php">Modificar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../CRUD_USUARIOS/eliminar_usuarios.php">Eliminar Usuario</a></li>
-                   
-                </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../../../Administrador/creditos/creditos.html" style="color: white;">Creditos</a>
-          </li>
-          </ul>
-      </div>
-  </nav>
-  <center>
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #55e553; font-family: 'Franklin Gothic Medium', 'cursive';">Modificación de credenciales de usuarios</p>
 
-  <form  action ="modificar_producto.php" method="post">
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Tabla de usuarios a la izquierda -->
+            <div class="col-md-4 mb-4">
+                <h4>Productos</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Cod</th>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result_productos->fetch_assoc()) { ?>
+                        <tr>
+                            <td><a href="?cod_producto=<?php echo $row['cod_producto']; ?>"><?php echo $row['cod_producto']; ?></a></td>
+                            <td><?php echo $row['nombre_producto']; ?></td>
+                            <td><?php echo $row['marca']; ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
 
-
-  <div class="mb-3 text-center">
-      <div class="input-group" style="width: 50%; margin: 0 auto;">
-        <input type="text" class="form-control" placeholder="ingrese id de producto" aria-label="Buscar" name="cod_producto"
-          style="border-radius: 20px 0 0 20px; background-color: #020304; color: white; border: none;">
-      </div>
+            <!-- Formulario de edición a la derecha -->
+            <div class="col-md-8 mb-4">
+                <?php if ($producto) { ?>
+                <form method="POST">
+                    <input type="hidden" name="cod_producto" value="<?php echo $cod_producto; ?>">
+                    <div class="row mb-3">
+                        <label for="primer_nombre" class="col-sm-4 col-form-label">Nombre</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="primer_nombre" name="nombre_producto" value="<?php echo $producto['nombre_producto']; ?>" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="primer_apellido" class="col-sm-4 col-form-label">Descripción</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="primer_apellido" name="descripcion" value="<?php echo $producto['descripcion']; ?>" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="tipo_usuario" class="col-sm-4 col-form-label">Imagen</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="tipo_usuario" name="imagen" value="<?php echo $producto['imagen']; ?>" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="telefono_usuario" class="col-sm-4 col-form-label">Marca</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="telefono_usuario" name="marca" value="<?php echo $producto['marca']; ?>" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="correo_usuario" class="col-sm-4 col-form-label">Categoría</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="correo_usuario" name="categoria" value="<?php echo $producto['cod_categoriaf']; ?>" required>
+                        </div>
+                    
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </form>
+                <?php } else { ?>
+                <p class="text-danger">Por favor selecciona un producto para modificar.</p>
+                <?php } ?>
+            </div>
+        </div>
     </div>
 
-
-
-
-<section class="register-section">
-    <!--REGISTRO-->
-
-
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="fw-bold" for="nombre" style="width: 49%;">Digite el nombre de Zapato</label>
-            <input class="form-control" style="width: 48%;" placeholder="Nombre del zapato" type="text" name="nombre" id="nombre" required />
-        </div>
-
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="fw-bold" for="apellido" style="width: 49%;">Digite la talla</label>
-            <input class="form-control" style="width: 48%;" placeholder="Talla" type="number" name="talla" id="talla" required />
-        </div>
-
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="fw-bold" for="celular" style="width: 49%;">Escriba el color</label>
-            <input class="form-control" style="width: 48%;" placeholder="Color del zapato" type="text" name="color" id="color" required />
-        </div>
-
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="fw-bold" for="email" style="width: 49%;">Escriba una breve descripcion</label>
-            <input class="form-control" style="width: 48%;" placeholder="descripcion" type="text" name="descripcion" id="descripcion" required />
-        </div>
-
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="fw-bold" for="usuario" style="width: 49%;">Digite el precio</label>
-            <input class="form-control" style="width: 48%;" placeholder="Precio" type="number" name="precio" id="precio" required />
-        </div>
-
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="fw-bold" for="contraseña" style="width: 49%;">Escriba la marca</label>
-            <input class="form-control" style="width: 48%;" placeholder="Marca" type="text" maxlength="10" name="marca" id="marca" required />
-        </div>
-
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-        <label class="fw-bold" for="categoria" style="width: 49%;">Seleccione la categoría</label>
-<!-- Aquí irán las opciones generadas dinámicamente desde PHP -->
-        <select class="form-control" style="width: 48%;" name="categoria" id="categoria" required>
-        <?php foreach ($categorias as $categoria): ?>
-        <option value="<?php echo $categoria['cod_categoria']; ?>">
-    <?php echo htmlspecialchars(trim($categoria['nombre_categoria'])); ?>
-        </option>
-    <?php endforeach; ?>
-    </select>
-        </div>
-        <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="fw-bold" for="contraseña" style="width: 49%;">Pegue el link de la imagen</label>
-            <input class="form-control" style="width: 48%;" placeholder="Link de imagen" type="text" maxlength="255" name="link_imagen" id="link_imagen" required />
-        </div>
-        <center>
-        <div class="d-grid">
-            <button type="submit" class="btn" style= "background-color: black; width: 10rem;">
-                Modificar
-            </button>
-        </div>
-        </center>
-    </form>
-</section>
-
-
-</center>
-
- 
-
-
- 
-    
-  
-
-  <!-- Script de Bootstrap -->
-  <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
-
-
-<?php
-
-echo "Código del producto: " . $cod_producto . "<br>";
-
-
-
-include '../../conexionBD.php';
-
-
-$cod_producto = $_POST['cod_producto'];
-    $nombre_producto = $_POST['nombre'];
-    $talla = $_POST['talla'];
-    $color = $_POST['color'];
-    $descripcion=  $_POST['descripcion'];
-    $link_imagen=   $_POST['link_imagen'];
-    $precio=  $_POST['precio'];
-    $marca =  $_POST['marca'];
-    $categoria=   $_POST['categoria'];
-
-
-    // Preparar la consulta para actualizar el producto
-    $actualizar = "UPDATE producto SET nombre_producto = '$nombre_producto', talla = '$talla', color = '$color', descripcion = '$descripcion', imagen = '$link_imagen', precio = '$precio', marca = '$marca', cod_categoriaf = '$categoria' WHERE cod_producto = '$cod_producto'";
-
-    // Ejecutar la consulta
-    if ($conn->query($actualizar) === TRUE) {
-        echo "Producto modificado correctamente.";
-    } else {
-        echo "Error al modificar el producto: " . $conn->error;
-    }
-
-// Cerrar la conexión
-$conn->close();
-
-echo "Código del producto: " . $cod_producto . "<br>";
-
-
-
-
-
-?>

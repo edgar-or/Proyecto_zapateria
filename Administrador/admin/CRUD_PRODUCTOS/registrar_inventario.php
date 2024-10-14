@@ -116,7 +116,8 @@ if (mysqli_num_rows($resultado_tallas) > 0) {
 
   <form action="registrar_inventario.php" method="POST">
         <center>
-        <?php if ($query_productos) { ?>
+        <?php if ($cod_producto) { ?>
+            <div>
             <div>
                 <label for="talla">Seleccione la talla</label>
                 <select name="talla" required>
@@ -137,10 +138,15 @@ if (mysqli_num_rows($resultado_tallas) > 0) {
                 <label for="cantidad">Digite la cantidad</label>
                 <input type="number" name="cantidad" required />
             </div>
+            <div>
+                <label for="cantidad">Digite el precio unitario</label>
+                <input type="number" name="precio" required />
+            </div>
             <label>Cod_producto: </label>
             <input type="text" name="cod_producto" value="<?php echo ($cod_producto)?>" />
             <div>
                 <button type="submit">Registrar Inventario</button>
+            </div>
             </div>
             <?php } else { ?>
                     <p>Selecciona un usuario para modificar sus credenciales.</p>
@@ -178,6 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cod_producto = $_POST['cod_producto'];
     $color = $_POST['color']; 
     $talla = $_POST['talla']; 
+    $precio = $_POST['precio'];
 
     // Verificar si ya existe el registro con la misma combinación de cod_producto, cod_colorf y cod_tallaf
     $checkInventario = "SELECT cantidad FROM inventario WHERE cod_productof = '$cod_producto' AND cod_colorf = '$color' AND cod_tallaf = '$talla'";
@@ -198,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Si no existe, realizar el inserto
 
-        $insertInventario = "INSERT INTO inventario (cantidad, cod_productof, cod_colorf, cod_tallaf) VALUES ('$cantidad', '$cod_producto', '$color', '$talla')";
+        $insertInventario = "INSERT INTO inventario (cantidad, precio_unitario, cod_productof, cod_colorf, cod_tallaf) VALUES ('$cantidad', '$precio', '$cod_producto', '$color', '$talla')";
 
         if (mysqli_query($conn, $insertInventario)) {
             echo "<script>alert('cantidad en inventario agregada exitosamente'); window.location.href = 'registrar_inventario.php';</script>";
