@@ -1,3 +1,7 @@
+    body {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      background-color: white;
+     }
     /* Fijar el tamaño máximo del contenido */
     .fixed-width-container {
       max-width: 1500px;
@@ -33,13 +37,13 @@
 
     /* Estilo individual para el botón de volver arriba */
     .scroll-to-top {
-      background-color: #020304;
+      background-color: #000;
     }
-
+    /* Estilo para las flecehes del boton */
     .scroll-to-top svg {
       fill: white;
     }
-   
+   /* Estilo para e texto de la barra de busqueda */
     .form-control::placeholder {
       color: #ffffff; 
       opacity: 1; 

@@ -1,6 +1,8 @@
+<!-- PHP -->
 <?php
+//SCRIP PARA INCLUIR LA CONEXION A LA BASE DE DATOS THE_WALKERS_DB
 include '../conexionBD.php';
-
+//SCRIP PARA REALIXAR LASCONSULTAS PARA EL CATALOGO
 $sql = "SELECT producto.nombre_producto, producto.imagen, producto.descripcion, producto.marca, color.color, talla.talla,
 GROUP_CONCAT(DISTINCT color.color SEPARATOR ',') as colores, 
 GROUP_CONCAT(DISTINCT talla.talla SEPARATOR ',') as tallas 
@@ -12,12 +14,9 @@ where producto.cod_categoriaf = 3
 GROUP BY producto.cod_producto"; 
 $result = $conn->query($sql);
 
-
 ?>
 
-
-
-
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +28,7 @@ $result = $conn->query($sql);
   <!-- Bootstrap Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="../estilos/estilos-more.css">
-  <title>Damas</title>
+  <title>Niños</title>
 </head>
 
 <body>
@@ -42,7 +41,7 @@ $result = $conn->query($sql);
           class="d-inline-block align-text-center" style="background-color: #CC9E61;">
         THE WALKERS
       </a>
-
+      <!-- MENU DEL SITIO -->
       <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../index.html">INICIO</a>
@@ -51,10 +50,10 @@ $result = $conn->query($sql);
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
             style="color: white;">Catálogo</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Dama</a></li>
-            <li><a class="dropdown-item" href="joven.html">Caballero</a></li>
-            <li><a class="dropdown-item" href="niño.html">Niño</a></li>
-            <li><a class="dropdown-item" href="niña.html">Niña</a></li>
+            <li><a class="dropdown-item" href="dama.php">Dama</a></li>
+            <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
+            <li><a class="dropdown-item" href="niño.php">Niño</a></li>
+            <li><a class="dropdown-item" href="niña.php">Niña</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -63,9 +62,13 @@ $result = $conn->query($sql);
         <li class="nav-item">
           <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../login/login.html" style="color: white;">Login</a>
-        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"aria-expanded="false" style="color: white;">Cuenta</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+            <li><a class="dropdown-item" href="login/login.php">Cerrar Sesion</a></li>
+            <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+        </ul>
       </ul>
     </div>
   </nav>
@@ -73,11 +76,11 @@ $result = $conn->query($sql);
   <!-- Contenedor fijo -->
   <div class="fixed-width-container">
     <p class="fs-5 text-center text-content"
-      style="color: white; background-color: #e4061c; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-      Sección de Damas
+      style="color: white; background-color: #6c6c6c ; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+      Sección de Niños
   </p>
     <br>
-        <!-- Barra de búsqueda con botón -->
+        <!-- Barra de búsqueda -->
         <div class="mb-3 text-center">
           <div class="input-group" style="width: 50%; margin: 0 auto;">
             <input type="text" class="form-control" placeholder="Busca aqui ..." aria-label="Buscar"
@@ -89,7 +92,7 @@ $result = $conn->query($sql);
   
     <div class="container mt-4">
       <div class="row">
-        <!-- Producto 1 -->
+        <!-- SECCION DE PRODUCTOS -->
         <div class="container mt-4">
     <div class="row">
         <?php while ($row = $result->fetch_assoc()): ?>
@@ -118,7 +121,6 @@ $result = $conn->query($sql);
                         <?php foreach (explode(',', $row['colores']) as $color): ?>
                             <option value="<?php echo trim($color); ?>"><?php echo trim($color); ?></option>
                         <?php endforeach; ?>
-                        <!-- Agrega opciones de colores si es necesario -->
                     </select>
                 </div>
             </div>
@@ -126,11 +128,8 @@ $result = $conn->query($sql);
         <?php endwhile; ?>
     </div>
 </div>
-
-
-    
-
-  </div>
+</div>
+</div>
   <!-- Footer -->
   <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
     <p>© 2024 The Walkers. Todos los derechos reservados.</p>
@@ -149,7 +148,7 @@ $result = $conn->query($sql);
       </svg>
     </button>
   </div>
-
+  <!--Script para dar comportamieno al boton flotante -->
   <script>
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
