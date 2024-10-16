@@ -1,0 +1,372 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 15-10-2024 a las 04:09:47
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.1.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `the_walkers_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `cod_categoria` int(11) NOT NULL,
+  `nombre_categoria` varchar(50) NOT NULL,
+  `cod_emprsaf` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`cod_categoria`, `nombre_categoria`, `cod_emprsaf`) VALUES
+(1, 'Dama', 1),
+(2, 'Caballero', 1),
+(3, 'Niño', 1),
+(4, 'Niña', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `color`
+--
+
+CREATE TABLE `color` (
+  `cod_color` int(11) NOT NULL,
+  `color` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `color`
+--
+
+INSERT INTO `color` (`cod_color`, `color`) VALUES
+(1, 'negro'),
+(2, 'blanco'),
+(3, 'gris'),
+(4, 'azul'),
+(5, 'amarillo'),
+(6, 'rojo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_venta`
+--
+
+CREATE TABLE `detalle_venta` (
+  `cantidad_producto` int(11) NOT NULL,
+  `cod_ventaf` int(11) NOT NULL,
+  `cod_productof` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empresa`
+--
+
+CREATE TABLE `empresa` (
+  `cod_empresa` int(11) NOT NULL,
+  `Nombre_empresa` varchar(50) NOT NULL,
+  `Direccion` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`cod_empresa`, `Nombre_empresa`, `Direccion`) VALUES
+(1, 'the_walkers', 'San Vicente');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inventario`
+--
+
+CREATE TABLE `inventario` (
+  `cod_inventario` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_unitario` int(11) NOT NULL,
+  `cod_productof` int(11) NOT NULL,
+  `cod_colorf` int(11) NOT NULL,
+  `cod_tallaf` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`cod_inventario`, `cantidad`, `precio_unitario`, `cod_productof`, `cod_colorf`, `cod_tallaf`) VALUES
+(69, 56, 32, 8, 1, 1),
+(70, 15, 23, 13, 5, 4),
+(71, 4, 45, 16, 5, 4),
+(72, 35, 60, 28, 1, 1),
+(73, 12, 34, 8, 2, 4),
+(74, 12, 32, 30, 1, 1),
+(75, 2, 23, 30, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto`
+--
+
+CREATE TABLE `producto` (
+  `cod_producto` int(11) NOT NULL,
+  `nombre_producto` varchar(50) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
+  `imagen` varchar(1000) NOT NULL,
+  `marca` varchar(20) NOT NULL,
+  `cod_categoriaf` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`cod_producto`, `nombre_producto`, `descripcion`, `imagen`, `marca`, `cod_categoriaf`) VALUES
+(8, 'zapatillas', 'comodos', 'https://th.bing.com/th/id/R.ad5d0f01d772e4107f2e0e95c8244add?rik=%2bDsFmQjL0YYzkQ&pid=ImgRaw&r=0', 'nike', 1),
+(13, 'adidas ew', 'comodos', 'https://th.bing.com/th/id/OIP.6jKRdbI1fbZuBMnpW3orLQHaHa?rs=1&pid=ImgDetMain', 'adidas', 2),
+(16, 'adidas rall', 'comodos', 'https://b2cimpulsmx.vtexassets.com/arquivos/ids/208674/Tenis-Caballero-ADIDAS-ALPHAEDGE-Estilo-IF7293.jpg?v=638495148189570000', 'adidas', 2),
+(24, 'Test', 'Test', 'Test', 'Test', 1),
+(28, 'adidas children', 'suaves', 'https://th.bing.com/th/id/R.a4029e504ec8cffaae89a6ca2d571e2a?rik=uV5ccYLGNbS23Q&pid=ImgRaw&r=0', 'adidas', 3),
+(30, 'adidas_ray', 'suaves', 'https://images-na.ssl-images-amazon.com/images/I/812kkY7zgdL._AC_UL1500_.jpg', 'Adidas', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `talla`
+--
+
+CREATE TABLE `talla` (
+  `cod_talla` int(11) NOT NULL,
+  `talla` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `talla`
+--
+
+INSERT INTO `talla` (`cod_talla`, `talla`) VALUES
+(1, 37),
+(2, 36),
+(3, 44),
+(4, 40),
+(5, 35),
+(6, 32);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `cod_usuario` int(11) NOT NULL,
+  `primer_nombre` varchar(50) NOT NULL,
+  `primer_apellido` varchar(50) NOT NULL,
+  `tipo_usuario` varchar(50) NOT NULL,
+  `telefono_usuario` int(8) NOT NULL,
+  `correo_usuario` varchar(100) NOT NULL,
+  `nick_name` varchar(50) NOT NULL,
+  `contraseña` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`cod_usuario`, `primer_nombre`, `primer_apellido`, `tipo_usuario`, `telefono_usuario`, `correo_usuario`, `nick_name`, `contraseña`) VALUES
+(1, 'Edgar', 'Ayala', 'admin', 76191526, 'ayalaalvarezedgarorlando@gmail.com', 'ragde', '1234567');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `venta`
+--
+
+CREATE TABLE `venta` (
+  `cod_venta` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `total_venta` decimal(10,0) NOT NULL,
+  `cod_usuariof` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`cod_categoria`),
+  ADD KEY `cod_emprsaf` (`cod_emprsaf`);
+
+--
+-- Indices de la tabla `color`
+--
+ALTER TABLE `color`
+  ADD PRIMARY KEY (`cod_color`);
+
+--
+-- Indices de la tabla `detalle_venta`
+--
+ALTER TABLE `detalle_venta`
+  ADD KEY `cod_ventaf` (`cod_ventaf`),
+  ADD KEY `cod_productof` (`cod_productof`);
+
+--
+-- Indices de la tabla `empresa`
+--
+ALTER TABLE `empresa`
+  ADD PRIMARY KEY (`cod_empresa`);
+
+--
+-- Indices de la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  ADD PRIMARY KEY (`cod_inventario`),
+  ADD KEY `cod_colorf_cod_productof` (`cod_productof`,`cod_colorf`),
+  ADD KEY `cod_tallaf` (`cod_tallaf`),
+  ADD KEY `cod_colorf` (`cod_colorf`);
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`cod_producto`),
+  ADD KEY `cod_categoriaf` (`cod_categoriaf`);
+
+--
+-- Indices de la tabla `talla`
+--
+ALTER TABLE `talla`
+  ADD PRIMARY KEY (`cod_talla`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`cod_usuario`);
+
+--
+-- Indices de la tabla `venta`
+--
+ALTER TABLE `venta`
+  ADD PRIMARY KEY (`cod_venta`),
+  ADD KEY `cod_usuariof` (`cod_usuariof`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `cod_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `color`
+--
+ALTER TABLE `color`
+  MODIFY `cod_color` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `empresa`
+--
+ALTER TABLE `empresa`
+  MODIFY `cod_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  MODIFY `cod_inventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `cod_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de la tabla `talla`
+--
+ALTER TABLE `talla`
+  MODIFY `cod_talla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `cod_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `venta`
+--
+ALTER TABLE `venta`
+  MODIFY `cod_venta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD CONSTRAINT `categoria_ibfk_1` FOREIGN KEY (`cod_emprsaf`) REFERENCES `empresa` (`cod_empresa`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detalle_venta`
+--
+ALTER TABLE `detalle_venta`
+  ADD CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`cod_productof`) REFERENCES `producto` (`cod_producto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`cod_ventaf`) REFERENCES `venta` (`cod_venta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`cod_productof`) REFERENCES `producto` (`cod_producto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `inventario_ibfk_2` FOREIGN KEY (`cod_colorf`) REFERENCES `color` (`cod_color`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `inventario_ibfk_3` FOREIGN KEY (`cod_tallaf`) REFERENCES `talla` (`cod_talla`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`cod_categoriaf`) REFERENCES `categoria` (`cod_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `venta`
+--
+ALTER TABLE `venta`
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`cod_usuariof`) REFERENCES `usuario` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

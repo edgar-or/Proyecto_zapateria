@@ -29,7 +29,7 @@ $result = $conn->query($sql);
   <!-- Bootstrap Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="../estilos/estilos-more.css">
-  <title>Damas</title>
+  <title>Caballero</title>
 </head>
 
 <body>
@@ -51,10 +51,10 @@ $result = $conn->query($sql);
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
             style="color: white;">Catálogo</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Dama</a></li>
-            <li><a class="dropdown-item" href="joven.html">Caballero</a></li>
-            <li><a class="dropdown-item" href="niño.html">Niño</a></li>
-            <li><a class="dropdown-item" href="niña.html">Niña</a></li>
+            <li><a class="dropdown-item" href="dama.php">Dama</a></li>
+            <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
+            <li><a class="dropdown-item" href="niño.php">Niño</a></li>
+            <li><a class="dropdown-item" href="niña.php">Niña</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -63,9 +63,13 @@ $result = $conn->query($sql);
         <li class="nav-item">
           <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../login/login.html" style="color: white;">Login</a>
-        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"aria-expanded="false" style="color: white;">Cuenta</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+            <li><a class="dropdown-item" href="login/login.php">Cerrar Sesion</a></li>
+            <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+        </ul>
       </ul>
     </div>
   </nav>
@@ -73,8 +77,8 @@ $result = $conn->query($sql);
   <!-- Contenedor fijo -->
   <div class="fixed-width-container">
     <p class="fs-5 text-center text-content"
-      style="color: white; background-color: #e4061c; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-      Sección de Damas
+      style="color: white; background-color: #6c6c6c ; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+      Sección de Caballeros
   </p>
     <br>
         <!-- Barra de búsqueda con botón -->
@@ -126,11 +130,8 @@ $result = $conn->query($sql);
         <?php endwhile; ?>
     </div>
 </div>
-
-
-    
-
-  </div>
+</div>
+</div>
   <!-- Footer -->
   <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
     <p>© 2024 The Walkers. Todos los derechos reservados.</p>
@@ -149,7 +150,7 @@ $result = $conn->query($sql);
       </svg>
     </button>
   </div>
-
+  <!--Script para dar comportamieno al boton flotante -->
   <script>
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
