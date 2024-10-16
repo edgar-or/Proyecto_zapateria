@@ -93,6 +93,9 @@
                     <label class="form-label fw-bold" for="contraseña">Contraseña:</label>
                     <input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
                 </div>
+                <div class="my-3 w-100 text-center">
+                    <span><a target="_blank" href="../recuperar_cuenta/recuperar_contraseña.php">¿Olvidaste tu contraseña?</a></span>
+                </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">
                         Iniciar Sesión
