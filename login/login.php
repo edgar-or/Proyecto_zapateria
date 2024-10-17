@@ -45,6 +45,8 @@
             <h2 class="text-center mb-4" style="font-family: monospace;">Iniciar Sesión</h2>
 
             <?php
+
+            session_start();
             // Database connection
             $conn = new mysqli("localhost", "root", "", "the_walkers_db");
 
@@ -62,6 +64,7 @@
                 $sql = "SELECT tipo_usuario FROM usuario WHERE nick_name = ? AND contraseña = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ss", $nick_name, $contraseña);
+                $_SESSION['usuario'] = $nick_name; // Almacena el nombre de usuario en la sesión
                 $stmt->execute();
                 $result = $stmt->get_result();
 
@@ -110,3 +113,4 @@
 </body>
 
 </html>
+
