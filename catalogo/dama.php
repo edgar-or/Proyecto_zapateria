@@ -1,3 +1,4 @@
+<!-- PHP -->
 <?php
 
 session_start();  
@@ -20,10 +21,7 @@ $result = $conn->query($sql);
 
 
 ?>
-
-
-
-
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +46,7 @@ $result = $conn->query($sql);
           class="d-inline-block align-text-center" style="background-color: #CC9E61;">
         THE WALKERS
       </a>
-
+      <!-- Menu del sitio -->
       <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../index.html">INICIO</a>
@@ -57,10 +55,10 @@ $result = $conn->query($sql);
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
             style="color: white;">Catálogo</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Dama</a></li>
-            <li><a class="dropdown-item" href="joven.html">Caballero</a></li>
-            <li><a class="dropdown-item" href="niño.html">Niño</a></li>
-            <li><a class="dropdown-item" href="niña.html">Niña</a></li>
+            <li><a class="dropdown-item" href="dama.php">Dama</a></li>
+            <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
+            <li><a class="dropdown-item" href="niño.php">Niño</a></li>
+            <li><a class="dropdown-item" href="niña.php">Niña</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -69,21 +67,25 @@ $result = $conn->query($sql);
         <li class="nav-item">
           <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../login/login.html" style="color: white;">Login</a>
-        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"aria-expanded="false" style="color: white;">Cuenta</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+            <li><a class="dropdown-item" href="login/login.php">Cerrar Sesion</a></li>
+            <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+        </ul>
       </ul>
     </div>
   </nav>
 
-  <!-- Contenedor fijo -->
+  <!-- Contenedor fijo del sitio 1500px -->
   <div class="fixed-width-container">
     <p class="fs-5 text-center text-content"
-      style="color: white; background-color: #e4061c; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+      style="color: white; background-color: #6c6c6c ; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
       Sección de Damas
   </p>
     <br>
-        <!-- Barra de búsqueda con botón -->
+        <!-- Barra de búsqueda -->
         <div class="mb-3 text-center">
           <div class="input-group" style="width: 50%; margin: 0 auto;">
             <input type="text" class="form-control" placeholder="Busca aqui ..." aria-label="Buscar"
@@ -162,20 +164,21 @@ $result = $conn->query($sql);
     <a href="carrito.php" class="btn-flotante">
       <i class="bi bi-cart-fill"></i>
     </a>
-    <!-- Botón de Volver Arriba -->
     <button class="scroll-to-top" onclick="scrollToTop()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"
-        viewBox="0 0 16 16">
-        <path d="M8 0l3 3H5l3-3zM8 16l-3-3h6l-3 3z" />
-      </svg>
+        <!-- Imagen svg estraida -->
+        <svg xmlns="" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"
+            viewBox="0 0 16 16">
+            <path d="M8 0l3 3H5l3-3zM8 16l-3-3h6l-3 3z" />
+        </svg>
     </button>
-  </div>
-
-  <script>
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
+</div>
+    <!-- Script de comportamiento del boton -->
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 
   <!-- Script de Bootstrap -->
   <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>

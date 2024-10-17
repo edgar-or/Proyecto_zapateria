@@ -1,11 +1,13 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: white;
 }
+
 .scroll-to-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #020304;
+    background-color: #000;
     color: white;
     border: none;
     border-radius: 50%;
@@ -59,4 +61,4 @@ body {
 .fixed-width-container {
     max-width: 1500px;
     margin: 0 auto;
-  }
+}

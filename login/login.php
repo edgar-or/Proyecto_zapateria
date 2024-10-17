@@ -10,21 +10,30 @@
     <title>Login</title>
     <style>
         body {
-            background-color: #f0f2f5;
+            background: linear-gradient(to right, #525252 , #717171 );
+            height: 100vh;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
 
-        .login-container {
-            max-width: 400px;
-            margin: auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 0.5rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         }
 
-        .login-container img {
-            display: block;
-            margin: 0 auto 1rem;
+        .card-header {
+            background-color: #020304;
+            color: white;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .alert {
+            margin-top: 1rem;
         }
 
         .btn-primary {
@@ -45,66 +54,66 @@
             <h2 class="text-center mb-4" style="font-family: monospace;">Iniciar Sesión</h2>
 
             <?php
-
-            session_start();
             // Database connection
             $conn = new mysqli("localhost", "root", "", "the_walkers_db");
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
 
-            // Handle form submission
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $nick_name = $_POST['nick_name'];
-                $contraseña = $_POST['contraseña'];
+                // Handle form submission
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $nick_name = $_POST['nick_name'];
+                    $contraseña = $_POST['contraseña'];
 
                 // Query to validate user credentials
                 $sql = "SELECT tipo_usuario FROM usuario WHERE nick_name = ? AND contraseña = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ss", $nick_name, $contraseña);
-                $_SESSION['usuario'] = $nick_name; // Almacena el nombre de usuario en la sesión
                 $stmt->execute();
                 $result = $stmt->get_result();
 
-                if ($result->num_rows > 0) {
-                    // User found, fetch the user type
-                    $row = $result->fetch_assoc();
-                    $tipo_usuario = $row['tipo_usuario'];
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $tipo_usuario = $row['tipo_usuario'];
 
-                    // Redirect based on user type
-                    if ($tipo_usuario === 'admin') {
-                        header("Location: ../Administrador/admin/admin.html");
-                    } elseif ($tipo_usuario === 'cliente') {
-                        header("Location: ../index.html");
+                        if ($tipo_usuario === 'admin') {
+                            header("Location: ../Administrador/admin/admin.html");
+                        } elseif ($tipo_usuario === 'cliente') {
+                            header("Location: ../index.html");
+                        }
+                        exit();
+                    } else {
+                        echo '<div class="alert alert-danger" role="alert">Nick o contraseña incorrectos.</div>';
                     }
-                    exit();
-                } else {
-                    echo '<div class="alert alert-danger" role="alert">Nick o contraseña incorrectos.</div>';
                 }
-            }
-            ?>
+                ?>
 
-            <!-- LOGIN FORM -->
-            <form action="" method="POST">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="nick_name">Nick Name:</label>
-                    <input class="form-control" placeholder="Ingrese su nick" type="text" name="nick_name" id="nick_name" required />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="contraseña">Contraseña:</label>
-                    <input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">
-                        Iniciar Sesión
-                    </button>
-                </div>
-                <div class="my-3 w-100 text-center">
-                    <span><a target="_blank" href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
-                </div>
-            </form>
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label" for="nick_name">Nick Name:</label>
+                        <input class="form-control" placeholder="Ingrese su nick" type="text" name="nick_name" id="nick_name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="contraseña">Contraseña:</label>
+                        <input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-danger">
+                            Iniciar Sesión
+                        </button>
+                    </div><br>
+                    <div class="d-grid">
+                        <a href="../index.html" class="btn btn-dark">
+                            Volver al inicio
+                        </a>
+                    </div>
+                    <div class="my-3 text-center">
+                        <span><a href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
