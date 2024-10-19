@@ -1,4 +1,27 @@
 <?php
+session_start();
+
+include '../conexionBD.php';  // Asegúrate de incluir la conexión
+
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['cod_usuario'])) {
+    // Redirigir a la página de login si no está logueado
+    header("Location: ../login/login.php");
+    exit;
+}
+
+// Obtener el código de usuario de la sesión
+$cod_usuario = $_SESSION['cod_usuario'];
+$nick_name = $_SESSION['nick_name'];
+
+print ($cod_usuario. " " . $nick_name);
+
+date_default_timezone_set('America/Guatemala');
+$fecha = date("Y-m-d");
+print ($fecha);
+
+
+
 // Obtener el nombre de la talla usando el código
 function obtenerNombreTalla($codigoTalla, $conn) {
     $sql = "SELECT talla FROM talla WHERE cod_talla = ?";
@@ -23,8 +46,7 @@ function obtenerNombreColor($codigoColor, $conn) {
 
 
 
-session_start();
-include '../conexionBD.php';  // Asegúrate de incluir la conexión
+
 
 if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
     echo "<p>El carrito está vacío.</p>";
@@ -84,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
                     <form method="POST" action="">
                         <input type="hidden" name="indice" value="<?php echo $indice; ?>">
                         <button type="submit" name="eliminar">Eliminar</button>
-                    </form>
+                    
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -94,5 +116,66 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
     <h3>Total: <?php echo number_format($total, 2); ?> USD</h3> <!-- Mostrar el total formateado -->
 
     <a href="dama.php">Volver al Catálogo</a>
+    <button type="submit" name="finalizar_compra">Finalizar Compra</button>
+    </form>
 </body>
 </html>
+
+
+
+<?php
+
+$cantidad= $producto['cantidad'];
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $cod_inventario=  $producto['cod_inventario'];
+    $precio_unitario = $producto['precio'];
+    $codigo_venta = 5; 
+
+
+
+    // Consulta preparada para evitar inyecciones SQL
+    $sql = "INSERT INTO detalle_venta (cantidad_producto, cod_ventaf, cod_inventariof, precio_unitario) VALUES (?, ?, ?, ?)";
+
+    // Preparar la consulta
+    if ($stmt = mysqli_prepare($conn, $sql)) {
+        // Vincular parámetros
+        mysqli_stmt_bind_param($stmt, "iiid", $cantidad, $codigo_venta, $cod_inventario , $precio_unitario);
+
+        // Ejecutar la consulta
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<div class='alert alert-success'></div>";
+        } else {
+            echo "<div class='alert alert-danger'>Error: " . mysqli_error($conn) . "</div>";
+        }
+    }
+}
+
+
+
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_compra'])) {
+    $total = number_format($total, 2); // Obtener el total del formulario
+    $estado_venta = "EN PROCESO";
+    print ($total);
+
+    // Consulta preparada para evitar inyecciones SQL
+    $sql = "INSERT INTO venta (fecha, total_venta, estado_venta, cod_usuariof) VALUES (?, ?, ?, ?)";
+
+    // Preparar la consulta
+    if ($stmt = mysqli_prepare($conn, $sql)) {
+        // Vincular parámetros
+        mysqli_stmt_bind_param($stmt, "ssss", $fecha, $total, $estado_venta, $cod_usuario);
+
+        // Ejecutar la consulta
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<div class='alert alert-success'>Venta creada</div>";
+        } else {
+            echo "<div class='alert alert-danger'>Error: " . mysqli_error($conn) . "</div>";
+        }
+    }
+}
+?>

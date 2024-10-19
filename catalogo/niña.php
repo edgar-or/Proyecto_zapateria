@@ -3,7 +3,9 @@ include '../conexionBD.php';
 
 $sql = "SELECT producto.nombre_producto, producto.imagen, producto.descripcion, producto.marca, color.color, talla.talla,
 GROUP_CONCAT(DISTINCT color.color SEPARATOR ',') as colores, 
-GROUP_CONCAT(DISTINCT talla.talla SEPARATOR ',') as tallas 
+GROUP_CONCAT(DISTINCT color.cod_color SEPARATOR ',') as cod_colores, 
+GROUP_CONCAT(DISTINCT talla.talla SEPARATOR ',') as tallas,
+GROUP_CONCAT(DISTINCT talla.cod_talla SEPARATOR ',') as cod_tallas
 FROM inventario 
 INNER JOIN producto on cod_productof = cod_producto
 INNER JOIN color on cod_colorf = cod_color
@@ -97,6 +99,7 @@ $result = $conn->query($sql);
         <div class="container mt-4">
     <div class="row">
         <?php while ($row = $result->fetch_assoc()): ?>
+          <form method="POST" action="">
         <div class="col-md-4">
             <div class="card mb-4">
                 <img src=" <?php echo $row['imagen']; ?> " class="card-img-top">
@@ -107,26 +110,33 @@ $result = $conn->query($sql);
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="input-group" style="width: 100px;">
                             <span class="input-group-text">Cantidad</span>
-                            <input type="number" class="form-control" value="1" min="1">
+                            <input type="number" class="form-control" value="1" min="1" name="cantidad">
                         </div>
-                        <select class="form-select mx-2" style="width: 100px;">
-                            <option selected>Talla</option>
-                            <?php foreach (explode(',', $row['tallas']) as $talla): ?>
-                            <option value="<?php echo trim($talla); ?>"><?php echo trim($talla); ?></option>
+                        <select class="form-select mx-2" style="width: 100px;" name="talla" id="talla">
+                            <option selected>Selecciona una talla</option>
+                            <?php $tallas = explode(',', $row['cod_tallas']);
+                      $nombres_tallas = explode(',', $row['tallas']);
+                      foreach ($tallas as $index => $cod_talla): ?> 
+                            <option value="<?php echo trim($cod_talla) ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
                         <?php endforeach; ?>
                         </select>
-                        <button class="btn btn-warning" style="color: white;">Agregar al Carrito</button>
+                        
+                        <button name="agregar_carrito" class="btn btn-warning" style="color: white;">Agregar al Carrito</button>
+                        
                     </div>
-                    <select class="form-select" style="width: 110px;">
-                        <option selected>Colores</option>
-                        <?php foreach (explode(',', $row['colores']) as $color): ?>
-                            <option value="<?php echo trim($color); ?>"><?php echo trim($color); ?></option>
-                        <?php endforeach; ?>
-                        <!-- Agrega opciones de colores si es necesario -->
-                    </select>
+                    <select class="form-select" style="width: 110px;" name="color" id="color">
+                      <option selected>Selecciona un color</option>
+                      <?php 
+                      $colores = explode(',', $row['cod_colores']);
+                      $nombres_colores = explode(',', $row['colores']);
+                      foreach ($colores as $index => $cod_color): ?> 
+                          <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
+                      <?php endforeach; ?>
+                  </select>
                 </div>
             </div>
         </div>
+        </form>
         <?php endwhile; ?>
     </div>
 </div>
@@ -165,3 +175,55 @@ $result = $conn->query($sql);
 </body>
 
 </html>
+
+
+<?php
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
+    $cod_producto = $_POST['cod_producto'];
+    $cod_color = $_POST['color'];
+    $cod_talla = $_POST['talla'];
+    $cantidad_solicitada = $_POST['cantidad'];
+
+    // Consulta para obtener la cantidad y precio según la combinación seleccionada
+    $sql = "SELECT cantidad, precio_unitario FROM inventario 
+            WHERE cod_productof = ? AND cod_colorf = ? AND cod_tallaf = ?";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iii", $cod_producto, $cod_color, $cod_talla);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $inventario = $result->fetch_assoc();
+        $cantidad_disponible = $inventario['cantidad'];
+        $precio_unitario = $inventario['precio_unitario'];
+
+        // Verifica si hay suficiente stock
+        if ($cantidad_solicitada <= $cantidad_disponible) {
+            // Agrega el producto al carrito
+            $producto = [
+                'cod_producto' => $cod_producto,
+                'nombre_producto' => $_POST['nombre_producto'],
+                'cantidad' => $cantidad_solicitada,
+                'talla' => $_POST['talla'],
+                'color' => $_POST['color'],
+                'precio' => $precio_unitario // Agregar el precio al producto
+                
+            ];
+            print_r($precio_unitario);
+
+            $_SESSION['carrito'][] = $producto;
+            echo "<script>alert('Producto agregado al carrito!');</script>";
+        } else {
+            echo "<script>alert('No hay suficiente stock disponible.');</script>";
+        }
+    } else {
+        echo "<script>alert('Producto con combinacion de color y talla seleccionado no existe.');</script>";
+    }
+}
+
+
+?>

@@ -54,13 +54,8 @@
             <h2 class="text-center mb-4" style="font-family: monospace;">Iniciar Sesión</h2>
 
             <?php
-            // Database connection
-            $conn = new mysqli("localhost", "root", "", "the_walkers_db");
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+            session_start();
+            include '../conexionBD.php';
 
                 // Handle form submission
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -68,7 +63,8 @@
                     $contraseña = $_POST['contraseña'];
 
                 // Query to validate user credentials
-                $sql = "SELECT tipo_usuario FROM usuario WHERE nick_name = ? AND contraseña = ?";
+                $sql = "SELECT cod_usuario, nick_name, tipo_usuario FROM usuario WHERE nick_name = ? AND contraseña = ?";
+
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ss", $nick_name, $contraseña);
                 $stmt->execute();
@@ -78,9 +74,14 @@
                         $row = $result->fetch_assoc();
                         $tipo_usuario = $row['tipo_usuario'];
 
+                        $_SESSION['cod_usuario'] = $row['cod_usuario'];
+                        $_SESSION['nick_name'] = $row['nick_name'];
+
                         if ($tipo_usuario === 'admin') {
+                          
                             header("Location: ../Administrador/admin/admin.html");
                         } elseif ($tipo_usuario === 'cliente') {
+                           
                             header("Location: ../index.html");
                         }
                         exit();

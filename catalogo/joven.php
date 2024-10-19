@@ -116,7 +116,7 @@ $result = $conn->query($sql);
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="input-group" style="width: 100px;">
                             <span class="input-group-text">Cantidad</span>
-                            <input type="number" class="form-control" value="1" min="1">
+                            <input type="number" class="form-control" value="1" min="1" name="cantidad">
                         </div>
                         <select class="form-select mx-2" style="width: 100px;" name="talla" id="talla">
                             <option selected>Selecciona una talla</option>
