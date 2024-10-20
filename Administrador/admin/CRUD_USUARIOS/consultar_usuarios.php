@@ -36,7 +36,7 @@ if (isset($_GET['cod_usuario'])) {
         }
     </style>
 </head>
-<body>
+<body style="font-family: 'Franklin Gothic Medium', 'cursive';">
     <!-- Banner de la página -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
@@ -69,7 +69,7 @@ if (isset($_GET['cod_usuario'])) {
             </ul>
         </div>
     </nav>
-    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #e1e553; font-family: 'Franklin Gothic Medium', 'cursive';">Consulta de Usuarios</p>
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #6c6c6c; font-family: 'Franklin Gothic Medium', 'cursive';">Consulta de Usuarios</p>
 
     <div class="container mt-5">
         <div class="row">

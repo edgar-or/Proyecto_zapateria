@@ -6,55 +6,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
   <link rel="icon" href="../../imagenes/Index/logo-icono.ico" type="image/x-icon">
+  <link rel="icon" href="../../../imagenes/001-Index/Logos/walker.ico" type="image/x-icon">
   <!-- Bootstrap Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <title>Administración de Productos</title>
 </head>
 
-<body>
+<body style="font-family: 'Franklin Gothic Medium', 'cursive';">
 
-  <!-- Banner de la página -->
-  <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid fixed-width-container"
-      style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
-      <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
-        <img src="../../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
-          class="d-inline-block align-text-center" style="background-color: #CC9E61;">
-        THE WALKERS
-      </a>
-      <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../index.html">INICIO</a>
-        </li>
-        <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false" style="color: white;">Productos</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="registrar_producto.php">Registrar Producto</a></li>
-                      <li><a class="dropdown-item" href="consultar_producto.php">Consultar Producto</a></li>
-                      <li><a class="dropdown-item" href="modificar_producto.php">Modificar Producto</a></li>
-                      <li><a class="dropdown-item" href="#">Eliminar Producto</a></li>
-                      <li><a class="dropdown-item" href="registrar_inventario.php">Registrar Inventario</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false" style="color: white;">Usuarios</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/registrar_usuarios.php">Registrar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar Usuario</a></li>
-                    <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar Usuario</a></li>
-                    
-                </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
-          </li>
-          </ul>
-      </div>
-  </nav>
-  <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #e1e553; font-family: 'Franklin Gothic Medium', 'cursive';">Consulta de Productos</p>
+    <!-- Banner de la pagina -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid fixed-width-container"
+            style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+            <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
+                <img src="../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
+                    class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+                THE WALKERS
+            </a>
+            <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">INICIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Catálogo</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../catalogo/dama.php">Dama</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/joven.php">Caballero</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/niño.php">Niño</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/niña.php">Niña</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../mis_compras.html" style="color: white;">Mis compras</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Cuenta</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../login/login.php">Login</a></li>
+                        <li><a class="dropdown-item" href="../../login/login.php">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_producto.php">Registrar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/consultar_producto.php">Consultar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/modificar_producto.php">Modificar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/eliminar_producto.php">Eliminar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_inventario.php">Registrar
+                                Inventario</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Usuarios</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/registrar_usuarios.php">Registrar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar
+                                Usuario</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #6c6c6c; font-family: 'Franklin Gothic Medium', 'cursive';">Consulta de Productos</p>
   <!-- Formulario de búsqueda -->
   <form action="consultar_producto.php" method="post" class="d-flex justify-content-center align-items-center mt-5">
   <div style="width: 40%;">

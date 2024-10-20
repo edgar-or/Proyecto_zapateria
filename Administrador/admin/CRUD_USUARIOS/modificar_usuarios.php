@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Modificar Credenciales</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: 'Franklin Gothic Medium', 'cursive';">
     <!-- Banner de la pagina -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
 
-    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #55e553; font-family: 'Franklin Gothic Medium', 'cursive';">Modificación de credenciales de usuarios</p>
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #6c6c6c; font-family: 'Franklin Gothic Medium', 'cursive';">Modificación de credenciales de usuarios</p>
 
     <div class="container mt-5">
         <div class="row">
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="password" class="form-control" id="contraseña" name="contraseña" value="<?php echo $usuario['contraseña']; ?>" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" class="btn btn-danger">Actualizar</button>
                 </form>
                 <?php } else { ?>
                 <p class="text-danger">Por favor selecciona un usuario para modificar.</p>
