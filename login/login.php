@@ -22,65 +22,33 @@
                 <?php
                 session_start();
                 include '../conexionBD.php';
-
-                // Handle form submission
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $nick_name = $_POST['nick_name'];
-                    $contraseña = $_POST['contraseña'];
-
-                    // Query to validate user credentials
-                    $sql = "SELECT cod_usuario, nick_name, tipo_usuario FROM usuario WHERE nick_name = ? AND contraseña = ?";
-
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ss", $nick_name, $contraseña);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-
-                    if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
-                        $tipo_usuario = $row['tipo_usuario'];
-
-                        $_SESSION['cod_usuario'] = $row['cod_usuario'];
-                        $_SESSION['nick_name'] = $row['nick_name'];
-
-                        if ($tipo_usuario === 'admin') {
-                            header("Location: ../Administrador/admin/admin.html");
-                        } elseif ($tipo_usuario === 'cliente') {
-                            header("Location: ../index.html");
-                        }
-                        exit();
-                    } else {
-                        echo '<div class="alert alert-danger mt-3" role="alert">Nick o contraseña incorrectos.</div>';
-                    }
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
                 }
                 ?>
-
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label class="form-label" for="nick_name">Nick Name:</label>
-                        <input class="form-control" placeholder="Ingrese su nick" type="text" name="nick_name" id="nick_name" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="contraseña">Contraseña:</label>
-                        <input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-danger">
-                            Iniciar Sesión
-                        </button>
-                    </div>
-                    <br>
-                    <div class="d-grid">
-                        <a href="../index.html" class="btn btn-dark">
-                            Volver al inicio
-                        </a>
-                    </div>
-                    <div class="my-3 text-center">
-                        <span><a href="../registrar_cliente/registrar_cliente.php" class="text-primary">¿No tienes una cuenta?</a></span>
-                    </div>
-                    
-                </form>
-            </div>
+            <!-- LOGIN FORM -->
+            <form action="" method="POST">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="nick_name">Nick Name:</label>
+                    <input class="form-control" placeholder="Ingrese su nick" type="text" name="nick_name" id="nick_name" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="contraseña">Contraseña:</label>
+                    <input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
+                </div>
+                <div class="my-3 w-100 text-center">
+                    <span><a target="_blank" href="../recuperar_cuenta/recuperar_contraseña.php">¿Olvidaste tu contraseña?</a></span>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        Iniciar Sesión
+                    </button>
+                </div>
+                <div class="my-3 w-100 text-center">
+                    <span><a target="_blank" href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
+                </div>
+            </form>
         </div>
     </div>
 
