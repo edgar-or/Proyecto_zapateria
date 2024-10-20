@@ -17,9 +17,6 @@ if (empty($usuario) || empty($contraseña)) {
     exit();
 }
 
-// Crear la conexión con la base de datos
-$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Error al conectar: " . mysqli_connect_error());
-
 // Consulta SQL sin protección contra inyección SQL
 $query = "SELECT * FROM cliente WHERE nick_name_cliente = '$usuario'";
 $result = mysqli_query($conn, $query);

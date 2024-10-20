@@ -129,7 +129,7 @@ if (isset($_GET['cod_usuario'])) {
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" value="<?php echo $usuario['contraseña']; ?>" disabled>
+                        <input type="text" class="form-control" value="<?php echo $usuario['contraseña']; ?>" disabled>
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-dark me-2" onclick="window.location.reload();">Refrescar</button>

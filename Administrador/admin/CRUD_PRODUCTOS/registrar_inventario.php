@@ -140,7 +140,7 @@ if (mysqli_num_rows($resultado_tallas) > 0) {
             </div>
             <div>
                 <label for="cantidad">Digite el precio unitario</label>
-                <input type="number" name="precio" required />
+                <input type="text" name="precio" required />
             </div>
             <label>Cod_producto: </label>
             <input type="text" name="cod_producto" value="<?php echo ($cod_producto)?>" />
@@ -149,7 +149,7 @@ if (mysqli_num_rows($resultado_tallas) > 0) {
             </div>
             </div>
             <?php } else { ?>
-                    <p>Selecciona un usuario para modificar sus credenciales.</p>
+                    <p>Selecciona un Producto para insertar inventario</p>
                 <?php } ?>
         </center>
     </form>

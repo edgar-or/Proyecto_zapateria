@@ -48,18 +48,12 @@
 </head>
 
 <body>
-    <div class="d-flex align-items-center justify-content-center vh-100">
-        <div class="card" style="width: 400px;">
-            <div class="card-header text-center">
-                <h3>Iniciar Sesión</h3>
-            </div>
-            <div class="card-body">
-                <img src="../imagenes/001-Index/Logos/Logo.png" alt="logo" class="img-fluid mb-3" style="width: 150px; display: block; margin: auto;">
-                
-                <?php
-                // Database connection
-                $conn = new mysqli("localhost", "root", "", "the_walkers_db");
+    <div class="container d-flex align-items-center vh-100">
+        <div class="login-container">
+            <img src="../imagenes/001-Index/Logos/Logo.png" alt="logo" class="img-fluid" style="width: 150px;">
+            <h2 class="text-center mb-4" style="font-family: monospace;">Iniciar Sesión</h2>
 
+<<<<<<< HEAD
                 // Check connection
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
@@ -87,6 +81,70 @@
                     <span><a target="_blank" href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
                 </div>
             </form>
+=======
+            <?php
+            session_start();
+            include '../conexionBD.php';
+
+                // Handle form submission
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $nick_name = $_POST['nick_name'];
+                    $contraseña = $_POST['contraseña'];
+
+                // Query to validate user credentials
+                $sql = "SELECT cod_usuario, nick_name, tipo_usuario FROM usuario WHERE nick_name = ? AND contraseña = ?";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ss", $nick_name, $contraseña);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $tipo_usuario = $row['tipo_usuario'];
+
+                        $_SESSION['cod_usuario'] = $row['cod_usuario'];
+                        $_SESSION['nick_name'] = $row['nick_name'];
+
+                        if ($tipo_usuario === 'admin') {
+                          
+                            header("Location: ../Administrador/admin/admin.html");
+                        } elseif ($tipo_usuario === 'cliente') {
+                           
+                            header("Location: ../index.html");
+                        }
+                        exit();
+                    } else {
+                        echo '<div class="alert alert-danger" role="alert">Nick o contraseña incorrectos.</div>';
+                    }
+                }
+                ?>
+
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label" for="nick_name">Nick Name:</label>
+                        <input class="form-control" placeholder="Ingrese su nick" type="text" name="nick_name" id="nick_name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="contraseña">Contraseña:</label>
+                        <input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-danger">
+                            Iniciar Sesión
+                        </button>
+                    </div><br>
+                    <div class="d-grid">
+                        <a href="../index.html" class="btn btn-dark">
+                            Volver al inicio
+                        </a>
+                    </div>
+                    <div class="my-3 text-center">
+                        <span><a href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
+                    </div>
+                </form>
+            </div>
+>>>>>>> 1f01e957eaa3f0d2095df844c321167dd05fa58b
         </div>
     </div>
 
@@ -95,3 +153,4 @@
 </body>
 
 </html>
+
