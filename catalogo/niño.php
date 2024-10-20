@@ -187,48 +187,47 @@ $result = $conn->query($sql);
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
-    $cod_producto = $_POST['cod_producto'];
-    print($cod_producto. " codigo de pro");
-    $cod_color = $_POST['color'];
-    $cod_talla = $_POST['talla'];
-    $cantidad_solicitada = $_POST['cantidad'];
+  $cod_producto = $_POST['cod_producto'];
+  $cod_color = $_POST['color'];
+  $cod_talla = $_POST['talla'];
+  $cantidad_solicitada = $_POST['cantidad'];
 
-    // Consulta para obtener la cantidad y precio según la combinación seleccionada
-    $sql = "SELECT cantidad, precio_unitario FROM inventario 
-            WHERE cod_productof = ? AND cod_colorf = ? AND cod_tallaf = ?";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $cod_producto, $cod_color, $cod_talla);
-    $stmt->execute();
-    $result = $stmt->get_result();
+  // Consulta para obtener la cantidad y precio según la combinación seleccionada
+  $sql = "SELECT cod_inventario, cantidad, precio_unitario FROM inventario 
+          WHERE cod_productof = ? AND cod_colorf = ? AND cod_tallaf = ?";
+  
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("iii", $cod_producto, $cod_color, $cod_talla);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $inventario = $result->fetch_assoc();
-        $cantidad_disponible = $inventario['cantidad'];
-        $precio_unitario = $inventario['precio_unitario'];
+  if ($result->num_rows > 0) {
+      $inventario = $result->fetch_assoc();
+      $cantidad_disponible = $inventario['cantidad'];
+      $precio_unitario = $inventario['precio_unitario'];
+      $cod_inventario= $inventario['cod_inventario'];
 
-        // Verifica si hay suficiente stock
-        if ($cantidad_solicitada <= $cantidad_disponible) {
-            // Agrega el producto al carrito
-            $producto = [
-                'cod_producto' => $cod_producto,
-                'nombre_producto' => $_POST['nombre_producto'],
-                'cantidad' => $cantidad_solicitada,
-                'talla' => $_POST['talla'],
-                'color' => $_POST['color'],
-                'precio' => $precio_unitario // Agregar el precio al producto
-                
-            ];
-            print_r($precio_unitario);
+      // Verifica si hay suficiente stock
+      if ($cantidad_solicitada <= $cantidad_disponible) {
+          // Agrega el producto al carrito
+          $producto = [
+              'cod_producto' => $cod_producto,
+              'nombre_producto' => $_POST['nombre_producto'],
+              'cantidad' => $cantidad_solicitada,
+              'talla' => $cod_talla,
+              'color' => $_POST['color'],
+              'precio' => $precio_unitario, 
+              'cod_inventario'  => $cod_inventario
+          ];
 
-            $_SESSION['carrito'][] = $producto;
-            echo "<script>alert('Producto agregado al carrito!');</script>";
-        } else {
-            echo "<script>alert('No hay suficiente stock disponible.');</script>";
-        }
-    } else {
-        echo "<script>alert('Producto con combinacion de color y talla seleccionado no existe.');</script>";
-    }
+          $_SESSION['carrito'][] = $producto;
+          echo "<script>alert('Producto agregado al carrito!');</script>";
+      } else {
+          echo "<script>alert('No hay suficiente stock disponible.');</script>";
+      }
+  } else {
+      echo "<script>alert('Producto con combinacion de color y talla seleccionado no existe.');</script>";
+  }
 }
 
 

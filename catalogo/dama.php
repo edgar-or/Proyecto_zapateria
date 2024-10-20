@@ -190,7 +190,6 @@ $result = $conn->query($sql);
 </html>
 
 <?php
-$cod_talla = $_POST['talla'];
 
 
 
@@ -224,13 +223,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
                 'cantidad' => $cantidad_solicitada,
                 'talla' => $cod_talla,
                 'color' => $_POST['color'],
-                'precio' => $precio_unitario, // Agregar el precio al producto
+                'precio' => $precio_unitario, 
                 'cod_inventario'  => $cod_inventario
-
-                
-                
             ];
-            print_r($precio_unitario);
 
             $_SESSION['carrito'][] = $producto;
             echo "<script>alert('Producto agregado al carrito!');</script>";

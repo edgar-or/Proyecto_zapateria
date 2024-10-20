@@ -193,7 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
     $cantidad_solicitada = $_POST['cantidad'];
 
     // Consulta para obtener la cantidad y precio según la combinación seleccionada
-    $sql = "SELECT cantidad, precio_unitario FROM inventario 
+    $sql = "SELECT cod_inventario, cantidad, precio_unitario FROM inventario 
             WHERE cod_productof = ? AND cod_colorf = ? AND cod_tallaf = ?";
     
     $stmt = $conn->prepare($sql);
@@ -205,6 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
         $inventario = $result->fetch_assoc();
         $cantidad_disponible = $inventario['cantidad'];
         $precio_unitario = $inventario['precio_unitario'];
+        $cod_inventario = $inventario['cod_inventario'];
 
         // Verifica si hay suficiente stock
         if ($cantidad_solicitada <= $cantidad_disponible) {
@@ -215,7 +216,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
                 'cantidad' => $cantidad_solicitada,
                 'talla' => $_POST['talla'],
                 'color' => $_POST['color'],
-                'precio' => $precio_unitario // Agregar el precio al producto
+                'precio' => $precio_unitario
+                'cod_inventario'  => $cod_inventario
                 
             ];
             print_r($precio_unitario);
