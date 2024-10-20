@@ -29,54 +29,56 @@ $result = $conn->query($sql);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
-  <link rel="icon" href="../imagenes/Index/logo-icono.ico" type="image/x-icon">
   <!-- Bootstrap Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="../imagenes/001-Index/Logos/walker.ico" type="image/x-icon">
+
   <link rel="stylesheet" href="../estilos/estilos-more.css">
   <title>Damas</title>
 </head>
 
 <body>
-  <!-- Banner de la pagina -->
-  <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid fixed-width-container"
-      style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
-      <a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white; font-size: 50px;">
-        <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
-          class="d-inline-block align-text-center" style="background-color: #CC9E61;">
-        THE WALKERS
-      </a>
-      <!-- Menu del sitio -->
-      <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../index.html">INICIO</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
-            style="color: white;">Catálogo</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="dama.php">Dama</a></li>
-            <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
-            <li><a class="dropdown-item" href="niño.php">Niño</a></li>
-            <li><a class="dropdown-item" href="niña.php">Niña</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="carrito.php" style="color: white;">Mis compras</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
-        </li>
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"aria-expanded="false" style="color: white;">Cuenta</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
-            <li><a class="dropdown-item" href="../login/cerrar_sesion.php">Cerrar Sesion</a></li>
-            <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
-        </ul>
-      </ul>
-    </div>
-  </nav>
+    <!-- Banner de la pagina -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid fixed-width-container"
+            style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+            <a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white; font-size: 50px;">
+                <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
+                    class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+                THE WALKERS
+            </a>
+            <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../index.html">INICIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Catálogo</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="dama.php">Dama</a></li>
+                        <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
+                        <li><a class="dropdown-item" href="niño.php">Niño</a></li>
+                        <li><a class="dropdown-item" href="niña.php">Niña</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mis_compras.html" style="color: white;">Mis compras</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Cuenta</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../login/login.php">Login</a></li>
+                        <li><a class="dropdown-item" href="../login/login.php">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
   <!-- Contenedor fijo del sitio 1500px -->
   <div class="fixed-width-container">
@@ -148,11 +150,9 @@ $result = $conn->query($sql);
         
 </form>
         <?php endwhile; ?>
-   
-
-
-    
-
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Footer -->
   <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">

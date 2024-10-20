@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_usuario'])) 
     <title>Eliminar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: 'Franklin Gothic Medium', 'cursive';">
     <!-- Banner de la página -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_usuario'])) 
             </ul>
         </div>
     </nav>
-    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #f50000; font-family: 'Franklin Gothic Medium', 'cursive';">Eliminación de Usuarios</p>
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color:  #6c6c6c; font-family: 'Franklin Gothic Medium', 'cursive';">Eliminación de Usuarios</p>
 
     <div class="container mt-5">
         <div class="row">

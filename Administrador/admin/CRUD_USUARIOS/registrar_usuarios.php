@@ -62,7 +62,7 @@ $result_usuarios = $conexion->query($query_usuarios);
     <title>Registrar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: 'Franklin Gothic Medium', 'cursive';">
     <!-- Banner de la página -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
@@ -95,7 +95,7 @@ $result_usuarios = $conexion->query($query_usuarios);
             </ul>
         </div>
     </nav>
-    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #16aef0; font-family: 'Franklin Gothic Medium', 'cursive';">
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #6c6c6c; font-family: 'Franklin Gothic Medium', 'cursive';">
         Registro de Nuevos Usuarios
     </p>
 
@@ -139,8 +139,8 @@ $result_usuarios = $conexion->query($query_usuarios);
                         <input type="password" class="form-control" id="contraseña" name="contraseña" required>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary me-2">Registrar Usuario</button>
-                        <button type="reset" class="btn btn-primary me-2">Limpiar</button>
+                        <button type="submit" class="btn btn-dark me-2">Registrar Usuario</button>
+                        <button type="reset" class="btn btn-dark me-2">Limpiar</button>
                         <a href="../../admin/admin.html" class="btn btn-danger">Salir</a>
                     </div>
                 </form>
