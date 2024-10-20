@@ -64,8 +64,7 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-
-<<<<<<< HEAD
+                ?>
             <!-- LOGIN FORM -->
             <form action="" method="POST">
                 <div class="mb-3">
@@ -88,60 +87,6 @@
                     <span><a target="_blank" href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
                 </div>
             </form>
-=======
-                // Handle form submission
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $nick_name = $_POST['nick_name'];
-                    $contraseña = $_POST['contraseña'];
-
-                    // Query to validate user credentials
-                    $sql = "SELECT tipo_usuario FROM usuario WHERE nick_name = ? AND contraseña = ?";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ss", $nick_name, $contraseña);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-
-                    if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
-                        $tipo_usuario = $row['tipo_usuario'];
-
-                        if ($tipo_usuario === 'admin') {
-                            header("Location: ../Administrador/admin/admin.html");
-                        } elseif ($tipo_usuario === 'cliente') {
-                            header("Location: ../index.html");
-                        }
-                        exit();
-                    } else {
-                        echo '<div class="alert alert-danger" role="alert">Nick o contraseña incorrectos.</div>';
-                    }
-                }
-                ?>
-
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label class="form-label" for="nick_name">Nick Name:</label>
-                        <input class="form-control" placeholder="Ingrese su nick" type="text" name="nick_name" id="nick_name" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="contraseña">Contraseña:</label>
-                        <input class="form-control" placeholder="Ingrese su contraseña" type="password" maxlength="10" name="contraseña" id="contraseña" required />
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-danger">
-                            Iniciar Sesión
-                        </button>
-                    </div><br>
-                    <div class="d-grid">
-                        <a href="../index.html" class="btn btn-dark">
-                            Volver al inicio
-                        </a>
-                    </div>
-                    <div class="my-3 text-center">
-                        <span><a href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
-                    </div>
-                </form>
-            </div>
->>>>>>> 9f4debc9b096de18513dafc9ad1fc3ae5b67363d
         </div>
     </div>
 
