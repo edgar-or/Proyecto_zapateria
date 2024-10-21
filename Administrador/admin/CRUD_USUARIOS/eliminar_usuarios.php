@@ -44,6 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_usuario'])) 
     <title>Eliminar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<?php
+session_start(); // Inicia la sesión
+// Verifica si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
+    // Si no ha iniciado sesión o no es admin, redirigir al index.php
+    header("Location: ../../../login/login.php");
+    exit();
+}
+?>
 <body style="font-family: 'Franklin Gothic Medium', 'cursive';">
     <!-- Banner de la página -->
     <nav class="navbar bg-body-tertiary">

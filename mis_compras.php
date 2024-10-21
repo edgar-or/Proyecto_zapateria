@@ -1,0 +1,63 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['cod_usuario'])) {
+    // Si no ha iniciado sesión, redirige al login
+    header("Location: login/login.php");
+    exit();
+}
+
+?>
+
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+     <link rel="icon" href="imagenes/001-Index/Logos/walker.ico" type="image/x-icon"> 
+
+ </head>
+ <body>
+     <nav class="navbar bg-body-tertiary">
+         <div class="container-fluid" style="background-color: #020304; font-family: 'Franklin Gothic Medium'; ">
+           <a class="navbar-brand" href="#" style="background-color: #020304;  color: white;">
+             <img src="imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90" class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+               <!-- Nombre en el baner -->
+             THE WALKERS
+           </a>
+           <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">INICIO</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Catalogo</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="catalogo/dama.html">Dama</a></li>
+                <li><a class="dropdown-item" href="catalogo/joven.html">Caballero</a></li>
+                <li><a class="dropdown-item" href="catalogo/niño.html">Niño</a></li>
+                <li><a class="dropdown-item" href="catalogo/niña.html">Niña</a></li>
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: white;">Mis compras</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="creditos/creditos.html" style="color: white;">Creditos</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login/login.html" style="color: white;">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+     
+    
+  
+      
+      <!-- Scrip de animacion de las opccines en el menu -->
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

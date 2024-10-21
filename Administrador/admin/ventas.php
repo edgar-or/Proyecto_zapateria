@@ -113,6 +113,15 @@ if (isset($_POST['generar_reporte'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <title>Consulta de Ventas</title>
 </head>
+<?php
+session_start(); // Inicia la sesión
+// Verifica si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
+    // Si no ha iniciado sesión o no es admin, redirigir al index.php
+    header("Location: ../../login/login.php");
+    exit();
+}
+?>
 <body style="font-family: 'Franklin Gothic Medium', 'cursive';">
 
    <!-- Banner de la pagina -->

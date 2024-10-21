@@ -9,6 +9,15 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <title>Administración</title>
 </head>
+<?php
+session_start(); // Inicia la sesión
+// Verifica si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
+    // Si no ha iniciado sesión o no es admin, redirigir al index.php
+    header("Location: ../../../login/login.php");
+    exit();
+}
+?>
 
 <body style="font-family: 'Franklin Gothic Medium', 'cursive';" >
     <!-- Banner de la pagina -->
@@ -22,7 +31,7 @@
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">INICIO</a>
+                    <a class="nav-link active" aria-current="page" href="../../admin/admin.php">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"

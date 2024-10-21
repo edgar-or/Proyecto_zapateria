@@ -45,7 +45,7 @@ $result = $conn->query($sql);
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin/admin.html">INICIO</a>
+                    <a class="nav-link active" aria-current="page" href="../index.php">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -155,7 +155,7 @@ $result = $conn->query($sql);
   <!-- Contenedor de botones flotantes -->
   <div class="btn-flotante-container">
     <!-- Botón flotante con icono de carrito -->
-    <a href="../mis_compras.html" class="btn-flotante">
+    <a href="../mis_compras.php" class="btn-flotante">
       <i class="bi bi-cart-fill"></i>
     </a>
     <!-- Botón de Volver Arriba -->

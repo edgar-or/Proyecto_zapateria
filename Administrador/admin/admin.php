@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +56,15 @@
 </head>
 
 <body>
+<?php
+session_start(); // Inicia la sesión
+// Verifica si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
+    // Si no ha iniciado sesión o no es admin, redirigir al index.php
+    header("Location: ../../login/login.php");
+    exit();
+}
+?>
     <!-- Banner de la pagina -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container"

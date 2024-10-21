@@ -43,6 +43,15 @@ $result_usuarios = $stmt_usuarios->get_result();
     <title>Todos los Usuarios Registrados</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<?php
+session_start(); // Inicia la sesión
+// Verifica si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
+    // Si no ha iniciado sesión o no es admin, redirigir al index.php
+    header("Location: ../../../login/login.php");
+    exit();
+}
+?>
 <body>
     <!-- Banner de la página -->
     <nav class="navbar bg-body-tertiary">
@@ -52,7 +61,7 @@ $result_usuarios = $stmt_usuarios->get_result();
                 THE WALKERS
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../index.html">INICIO</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../admin/admin.php">INICIO</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Productos</a>
                     <ul class="dropdown-menu">

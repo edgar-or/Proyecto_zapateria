@@ -4,7 +4,7 @@ session_start();
 
 include '../conexionBD.php';
 
-$usuario = $_POST['usuario'];
+$usuario = $_POST['nick_name'];
 $contraseña = $_POST['contraseña'];
 
 // Definir las credenciales de administrador
@@ -13,12 +13,12 @@ $admin_contraseña = 'admin_password'; // Reemplazar 'admin_password' por la con
 
 // Verificar si los campos están vacíos
 if (empty($usuario) || empty($contraseña)) {
-    echo "<script>alert('Usuario o contraseña no pueden estar vacíos'); window.location.href = 'login.html';</script>";
+    echo "<script>alert('Usuario o contraseña no pueden estar vacíos'); window.location.href = 'login.php';</script>";
     exit();
 }
 
 // Consulta SQL sin protección contra inyección SQL
-$query = "SELECT * FROM cliente WHERE nick_name_cliente = '$usuario'";
+$query = "SELECT * FROM usuario WHERE nick_name = '$usuario'";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
@@ -28,23 +28,23 @@ if (mysqli_num_rows($result) > 0) {
     // Verificar si el usuario es 'Admin' y la contraseña coincide
     if ($usuario == 'Admin' && $contraseña == 'Admin123') {
         // Si las credenciales son de administrador, redirigir a la página de admin
-        echo "<script>alert('Bienvenido admin, ".$usuario."'); window.location.href = '../Administrador/index.html';</script>";
+        echo "<script>alert('Bienvenido admin, ".$usuario."'); window.location.href = '../Administrador/admin/admin.php';</script>";
         exit();
     }
     
     // Si no es el usuario admin, verificar la contraseña normal
-    if ($contraseña == $row['contraseña_cliente']) {
+    if ($contraseña == $row['contraseña']) {
         // Contraseña correcta, redirigir al usuario normal
-        echo "<script>alert('Bienvenido cliente, ".$usuario."'); window.location.href = '../index.html';</script>";
+        echo "<script>alert('Bienvenido cliente, ".$usuario."'); window.location.href = '../index.php';</script>";
         exit();
     } else {
         // Contraseña incorrecta
-        echo "<script>alert('Datos ingresados incorrectos'); window.location.href = 'login.html';</script>";
+        echo "<script>alert('Datos ingresados incorrectos'); window.location.href = 'login.php';</script>";
         exit();
     }
 } else {
     // El usuario no existe
-    echo "<script>alert('Usuario no existe'); window.location.href = 'login.html';</script>";
+    echo "<script>alert('Usuario no existe'); window.location.href = 'login.php';</script>";
     exit();
 }
 

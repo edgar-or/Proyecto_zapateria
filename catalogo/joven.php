@@ -45,7 +45,7 @@ $result = $conn->query($sql);
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../index.html">INICIO</a>
+                    <a class="nav-link active" aria-current="page" href="../index.php">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
