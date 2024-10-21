@@ -44,11 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
             // Contraseña incorrecta
-            echo "Contraseña incorrecta.";
+            echo "<center><h4>===Contraseña Incorrecta===</h4></center>";
         }        
     } else {
         // Usuario no encontrado
-        echo "El usuario no existe.";
+        echo "<center><h4>===Usuario no Encontrado===</h4></center>";
     }
     $stmt->close();
 }
