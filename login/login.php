@@ -69,7 +69,7 @@ $conn->close();
 <body>
     <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="card" style="width: 400px;">
-            <div class="card-header text-center">
+            <div class="card-header text-center bg-dark text-white">
                 <h3>Iniciar Sesión</h3>
             </div>
             <div class="card-body">
@@ -100,6 +100,11 @@ $conn->close();
                             Iniciar Sesión
                         </button>
                     </div>
+                    <div class="mt-3 d-grid">
+                <a href="../index.php" class="btn btn-dark">
+                    Volver al inicio
+                </a>
+            </div>
                     <div class="my-3 w-100 text-center">
                         <span><a target="_blank" href="../registrar_cliente/registrar_cliente.php">¿No tienes una cuenta?</a></span>
                     </div>

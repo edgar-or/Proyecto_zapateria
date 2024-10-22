@@ -98,10 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
     }
 
     $cod_inventario=  $_POST['cod_inventarioEliminar'];
-    print ("eserere ". $cod_inventarioEliminar);
    
     $cod_usuario = $_SESSION['cod_usuario'];
     $codigo_venta = codVentaMax($conn, $cod_usuario);
+
+    $cod_detalle_venta= $producto['cod_detalle_venta'];
     
 
     // Consulta para eliminar el detalle de venta correspondiente
@@ -163,7 +164,7 @@ function obtenerProductosPedidos($conn, $cod_usuarios) {
     $codigo_venta = codVentaMax($conn, $cod_usuario);
   
     
-    $sql = "SELECT prod.nombre_producto, det.cantidad_producto, talla.talla, color.color, inv.cod_inventario,
+    $sql = "SELECT det.cod_detalle_venta, prod.nombre_producto, det.cantidad_producto, talla.talla, color.color, inv.cod_inventario,
                    inv.precio_unitario, inv.cod_tallaf, inv.cod_colorf, (inv.precio_unitario * det.cantidad_producto) AS total
             FROM detalle_venta AS det
             INNER JOIN inventario AS inv ON det.cod_inventariof = inv.cod_inventario
@@ -398,6 +399,7 @@ function mostrarTabla($productos){
                         <td>
                           
                                 <input type="hidden" name="cod_inventarioEliminar" value="<?php echo $producto['cod_inventario']; ?>">
+                                <input type="text" name="cod_detalle_venta" value="<?php echo $producto['cod_detalle_venta']; ?>">
                                 <input type="hidden" name="cod_talla" value="<?php echo $producto['cod_tallaf']; ?>">
                                 <input type="hidden" name="cod_color" value="<?php echo $producto['cod_colorf']; ?>">
                                 <input type="submit" class="btn btn-danger" name="eliminar" value="Eliminar">

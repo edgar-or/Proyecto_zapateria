@@ -10,7 +10,7 @@
     <title>Regístrate</title>
 </head>
 
-<body class="bg-secondary vh-100 d-flex align-items-center justify-content-center">
+<body class="vh-100 d-flex align-items-center justify-content-center">
     <div class="card" style="width: 400px;">
         <div class="card-header text-center bg-dark text-white">
             <h2>Regístrate</h2>
@@ -48,14 +48,14 @@
                 </div>
 
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-primary">
                         Registrar
                     </button>
                 </div>
             </form>
 
             <div class="mt-3 d-grid">
-                <a href="../login/login.php" class="btn btn-dark">
+                <a href="../index.php" class="btn btn-dark">
                     Volver al inicio
                 </a>
             </div>

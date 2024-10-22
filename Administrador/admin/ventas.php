@@ -276,17 +276,15 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                 <div class="col-md-4">
                     <label for="estado_venta" class="form-label">Estado:</label>
                     <select class="form-select" name="estado_venta" id="estado_venta">
-                        <option value="">Seleccione estado</option>
-                        <option value="FINALIZADA" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'FINALIZADA') echo 'selected'; ?>>FINALIZADA</option>
-                        <option value="PENDIENTE" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'PENDIENTE') echo 'selected'; ?>>PENDIENTE</option>
-                        <option value="EN PROCESO" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'EN PROCESO') echo 'selected'; ?>>EN PROCESO</option>
-                        <option value="CANCELADA" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'CANCELADA') echo 'selected'; ?>>CANCELADA</option>
+                        <option value="">Todos</option>
+                        <option value="Finalizado" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'Finalizado') echo 'selected'; ?>>Finalizado</option>
+                        <option value="EN PROCESO" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'EN PROCESO') echo 'selected'; ?>>En Proceso</option>
                     </select>
                 </div>
                 <div class="col-md-4">
                     <label for="usuario" class="form-label">Usuario:</label>
                     <select class="form-select" name="usuario" id="usuario">
-                        <option value="">Seleccione usuario</option>
+                        <option value="">Todos</option>
                         <?php foreach ($usuarios as $usuario) : ?>
                             <option value="<?php echo $usuario['cod_usuario']; ?>" <?php if (isset($_POST['usuario']) && $_POST['usuario'] == $usuario['cod_usuario']) echo 'selected'; ?>>
                                 <?php echo htmlspecialchars($usuario['primer_nombre'] . ' ' . $usuario['primer_apellido']); ?>
