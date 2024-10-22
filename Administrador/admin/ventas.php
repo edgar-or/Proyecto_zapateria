@@ -20,7 +20,7 @@ try {
                u.primer_nombre, u.primer_apellido, 
                dv.cantidad_producto, dv.cod_productof, 
                p.nombre_producto, p.precio, p.descripcion 
-        FROM venta v
+        FROM venta venta
         JOIN usuario u ON v.cod_usuariof = u.cod_usuario
         JOIN detalle_venta dv ON v.cod_venta = dv.cod_ventaf
         INNER JOIN producto p ON dv.cod_productof = p.cod_producto

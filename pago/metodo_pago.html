@@ -17,27 +17,24 @@
             <div class="card-body">
                 <h2 class="text-center mb-4">Formulario de Pago</h2>
                 <form action="procesar_pago.php" method="POST">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo electrónico</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Ingrese su correo" required>
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre del titular</label>
                         <input type="text" id="name" name="name" class="form-control" placeholder="Ingrese el nombre del titular" required>
                     </div>
                     <div class="mb-3">
                         <label for="card-number" class="form-label">Número de tarjeta</label>
-                        <input type="text" id="card-number" name="card-number" class="form-control" maxlength="16" placeholder="Ingrese el número de tarjeta" required>
+                        <input type="text" id="card-number" name="numero_tarjeta" class="form-control" maxlength="16" placeholder="Ingrese el número de tarjeta" required>
                     </div>
                     <div class="mb-3">
-                        <label for="expiry-date" class="form-label">Fecha de vencimiento (MM/AA)</label>
-                        <input type="text" id="expiry-date" name="expiry-date" class="form-control" placeholder="MM/AA" required>
+                        <label for="expiry-date" class="form-label">Fecha de vencimiento</label>
+                        <input type="date" id="expiry-date" name="fecha_vencimiento" class="form-control" placeholder="MM/AA" required>
                     </div>
                     <div class="mb-3">
                         <label for="cvv" class="form-label">CVV</label>
                         <input type="text" id="cvv" name="cvv" class="form-control" maxlength="3" placeholder="Ingrese el CVV" required>
                     </div>
-                    <button type="submit" class="btn btn-danger w-100">Pagar</button>
+                    <button type="submit" class="btn btn-danger w-100">Registrar</button>
                     <!-- Botón para volver al menú -->
                     <a href="../index.html" class="btn btn-dark w-100 mt-2">Volver al Menú</a>
                 </form>

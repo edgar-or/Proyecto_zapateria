@@ -89,7 +89,7 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../ventas.php" style="color: white;">Ventas</a>
+                    <a class="nav-link" href="../admin/ventas.php" style="color: white;">Ventas</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"

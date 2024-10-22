@@ -4,7 +4,7 @@
 session_start();  
 include '../conexionBD.php';
 
-$sql = "SELECT inventario.cod_inventario, producto.cod_producto, producto.nombre_producto, producto.imagen, producto.descripcion, producto.marca, color.color, talla.talla,
+$sql = "SELECT inventario.cod_inventario, inventario.precio_unitario, producto.cod_producto, producto.nombre_producto, producto.imagen, producto.descripcion, producto.marca, color.color, talla.talla,
 GROUP_CONCAT(DISTINCT color.color SEPARATOR ',') as colores, 
 GROUP_CONCAT(DISTINCT color.cod_color SEPARATOR ',') as cod_colores, 
 GROUP_CONCAT(DISTINCT talla.talla SEPARATOR ',') as tallas,
@@ -59,6 +59,7 @@ $result = $conn->query($sql);
                         <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
                         <li><a class="dropdown-item" href="niño.php">Niño</a></li>
                         <li><a class="dropdown-item" href="niña.php">Niña</a></li>
+                        <li><a class="dropdown-item" href="../pago/metodo_pago.php">Registrar metodo de pago</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -104,7 +105,7 @@ $result = $conn->query($sql);
         <div class="container mt-4">
     <div class="row">
         <?php while ($row = $result->fetch_assoc()): print ($row['cod_producto'])?>
-        <form method="POST" action="">
+        <form action="carrito.php" method="POST" >
           
           <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
           <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
@@ -129,7 +130,8 @@ $result = $conn->query($sql);
                         <?php endforeach; ?>
                         </select>
                         
-                        <button name="agregar_carrito" class="btn btn-warning" style="color: white;">Agregar al Carrito</button>
+                        <button name="agregar_carrito" class="btn btn-warning" style="color: white;" value="1">Agregar al Carrito</button>
+
                         
                     </div>
                     <select class="form-select" style="width: 110px;" name="color" id="color">
@@ -141,14 +143,18 @@ $result = $conn->query($sql);
                           <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
                       <?php endforeach; ?>
                   </select>
+                  <input type="text" class="form-control" value="<?php echo $row['cod_inventario'] ?>"  name="cod_inventario">
+                   <input type="text" class="form-control" value="<?php  echo $row['precio_unitario']; ?>"  name="precio_unitario">
+                      </form>
                 </div>
             </div>
         </div>
         </div>
 </div>
 
+
         
-</form>
+
         <?php endwhile; ?>
         </div>
       </div>
@@ -161,9 +167,10 @@ $result = $conn->query($sql);
   <!-- Contenedor de botones flotantes -->
   <div class="btn-flotante-container">
     <!-- Botón flotante con icono de carrito -->
-    <a href="carrito.php" class="btn-flotante">
+    <a href="mis_compras.php" name="icon_carrito" class="btn-flotante">
       <i class="bi bi-cart-fill"></i>
     </a>
+    
     <button class="scroll-to-top" onclick="scrollToTop()">
         <!-- Imagen svg estraida -->
         <svg xmlns="" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"
@@ -189,53 +196,4 @@ $result = $conn->query($sql);
 
 </html>
 
-<?php
 
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
-    $cod_producto = $_POST['cod_producto'];
-    $cod_color = $_POST['color'];
-    $cod_talla = $_POST['talla'];
-    $cantidad_solicitada = $_POST['cantidad'];
-
-    // Consulta para obtener la cantidad y precio según la combinación seleccionada
-    $sql = "SELECT cod_inventario, cantidad, precio_unitario FROM inventario 
-            WHERE cod_productof = ? AND cod_colorf = ? AND cod_tallaf = ?";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $cod_producto, $cod_color, $cod_talla);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $inventario = $result->fetch_assoc();
-        $cantidad_disponible = $inventario['cantidad'];
-        $precio_unitario = $inventario['precio_unitario'];
-        $cod_inventario= $inventario['cod_inventario'];
-
-        // Verifica si hay suficiente stock
-        if ($cantidad_solicitada <= $cantidad_disponible) {
-            // Agrega el producto al carrito
-            $producto = [
-                'cod_producto' => $cod_producto,
-                'nombre_producto' => $_POST['nombre_producto'],
-                'cantidad' => $cantidad_solicitada,
-                'talla' => $cod_talla,
-                'color' => $_POST['color'],
-                'precio' => $precio_unitario, 
-                'cod_inventario'  => $cod_inventario
-            ];
-
-            $_SESSION['carrito'][] = $producto;
-            echo "<script>alert('Producto agregado al carrito!');</script>";
-        } else {
-            echo "<script>alert('No hay suficiente stock disponible.');</script>";
-        }
-    } else {
-        echo "<script>alert('Producto con combinacion de color y talla seleccionado no existe.');</script>";
-    }
-}
-
-
-?>

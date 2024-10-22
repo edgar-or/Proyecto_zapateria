@@ -3,7 +3,7 @@
 //SCRIP PARA INCLUIR LA CONEXION A LA BASE DE DATOS THE_WALKERS_DB
 include '../conexionBD.php';
 //SCRIP PARA REALIXAR LASCONSULTAS PARA EL CATALOGO
-$sql = "SELECT producto.nombre_producto, producto.cod_producto, producto.imagen, producto.descripcion, producto.marca, color.color, talla.talla,
+$sql = "SELECT inventario.cod_inventario, inventario.precio_unitario, producto.nombre_producto, producto.cod_producto, producto.imagen, producto.descripcion, producto.marca, color.color, talla.talla,
 GROUP_CONCAT(DISTINCT color.color SEPARATOR ',') as colores, 
 GROUP_CONCAT(DISTINCT color.cod_color SEPARATOR ',') as cod_colores, 
 GROUP_CONCAT(DISTINCT talla.talla SEPARATOR ',') as tallas,
@@ -101,7 +101,7 @@ $result = $conn->query($sql);
         <?php while ($row = $result->fetch_assoc()):  print ($row['cod_producto'])?>
         
 
-          <form method="post" action="">
+          <form method="post" action="carrito.php">
           <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
           <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
               
@@ -139,6 +139,8 @@ $result = $conn->query($sql);
                           <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
                       <?php endforeach; ?>
                   </select>
+                  <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario'] ?>"  min="1" name="cod_inventario">
+                  <input type="hidden" class="form-control" value="<?php  echo $row['precio_unitario']; ?>"  min="1" name="precio_unitario">
                 </div>
             </div>
         </div>
@@ -155,7 +157,7 @@ $result = $conn->query($sql);
   <!-- Contenedor de botones flotantes -->
   <div class="btn-flotante-container">
     <!-- Botón flotante con icono de carrito -->
-    <a href="../mis_compras.php" class="btn-flotante">
+    <a href="mis_compras.php" class="btn-flotante">
       <i class="bi bi-cart-fill"></i>
     </a>
     <!-- Botón de Volver Arriba -->
@@ -187,49 +189,3 @@ $result = $conn->query($sql);
 
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
-  $cod_producto = $_POST['cod_producto'];
-  $cod_color = $_POST['color'];
-  $cod_talla = $_POST['talla'];
-  $cantidad_solicitada = $_POST['cantidad'];
-
-  // Consulta para obtener la cantidad y precio según la combinación seleccionada
-  $sql = "SELECT cod_inventario, cantidad, precio_unitario FROM inventario 
-          WHERE cod_productof = ? AND cod_colorf = ? AND cod_tallaf = ?";
-  
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("iii", $cod_producto, $cod_color, $cod_talla);
-  $stmt->execute();
-  $result = $stmt->get_result();
-
-  if ($result->num_rows > 0) {
-      $inventario = $result->fetch_assoc();
-      $cantidad_disponible = $inventario['cantidad'];
-      $precio_unitario = $inventario['precio_unitario'];
-      $cod_inventario= $inventario['cod_inventario'];
-
-      // Verifica si hay suficiente stock
-      if ($cantidad_solicitada <= $cantidad_disponible) {
-          // Agrega el producto al carrito
-          $producto = [
-              'cod_producto' => $cod_producto,
-              'nombre_producto' => $_POST['nombre_producto'],
-              'cantidad' => $cantidad_solicitada,
-              'talla' => $cod_talla,
-              'color' => $_POST['color'],
-              'precio' => $precio_unitario, 
-              'cod_inventario'  => $cod_inventario
-          ];
-
-          $_SESSION['carrito'][] = $producto;
-          echo "<script>alert('Producto agregado al carrito!');</script>";
-      } else {
-          echo "<script>alert('No hay suficiente stock disponible.');</script>";
-      }
-  } else {
-      echo "<script>alert('Producto con combinacion de color y talla seleccionado no existe.');</script>";
-  }
-}
-
-
-?>
