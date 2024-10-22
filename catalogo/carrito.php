@@ -93,7 +93,12 @@ function obtenerNombreColor($conn, $codigoColor) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
     // Asegúrate de que 'cod_inventario' está definido antes de usarlo
     if (!isset($_POST['cod_inventarioEliminar'])) {
-        echo "<div class='alert alert-danger'>Error: 'cod_inventario' no está definido.</div>";
+        $mensaje = "no esta definido";
+        $paginaDestino = "../index.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+        echo "<script>
+                alert('$mensaje');
+                window.location.href = '$paginaDestino';
+              </script>";
         exit;
     }
 
@@ -110,10 +115,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
     if ($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ii", $cod_inventario, $codigo_venta);
         if (mysqli_stmt_execute($stmt)) {
-            echo "<div class='alert alert-success'>Producto eliminado del carrito.</div>";
-            echo '<a href="Mis_compras.php">Volver</a>';
+            $mensaje = "¡Se elimino correctamente!";
+            $paginaDestino = "../index.php";
+            echo "<script>
+                    alert('$mensaje');
+                    window.location.href = '$paginaDestino';
+                  </script>";
         } else {
-            echo "<div class='alert alert-danger'>Error al eliminar el producto: " . mysqli_error($conn) . "</div>";
+            $mensaje = "error al eliminar el producto";
+            $paginaDestino = "otra_pagina.php"; 
+            echo "<script>
+                    alert('$mensaje');
+                    window.location.href = '$paginaDestino';
+                  </script>";
         }
     }
 }
@@ -140,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
 function crearVenta($conn, $cod_usuario) {
         date_default_timezone_set('America/Guatemala');
         $fecha = date("Y-m-d");    
-        $estado_venta = "EN PROCESO";
+        $estado_venta = "En proceso";
         $total = 0;  // Inicialmente el total será 0
 
         $sql = "INSERT INTO venta (fecha, total_venta, estado_venta, cod_usuariof) VALUES (?, ?, ?, ?)";
@@ -149,7 +163,12 @@ function crearVenta($conn, $cod_usuario) {
             if (mysqli_stmt_execute($stmt)) {
                 return mysqli_insert_id($conn);  // Devuelve el código de la venta recién creada
             } else {
-                echo "<div class='alert alert-danger'>Error al crear la venta: " . mysqli_error($conn) . "</div>";
+                $mensaje = "error al crear la venta";
+                $paginaDestino = "otra_pagina.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+                echo "<script>
+                        alert('$mensaje');
+                        window.location.href = '$paginaDestino';
+                      </script>";
                 return false;
             }
         }
@@ -211,9 +230,17 @@ function insertarDetalleVenta($conn){
         if ($stmt_detalle = mysqli_prepare($conn, $sql_detalle)) {
             mysqli_stmt_bind_param($stmt_detalle, "iiid", $cantidad_solicitada, $codigo_venta, $cod_inventario, $precio_unitario);
             if (mysqli_stmt_execute($stmt_detalle)) {
-                echo "<div class='alert alert-success'>Producto agregado a la venta.</div>";
+                $mensaje = "se agrego el producto";
+                echo "<script>
+                        alert('$mensaje');
+                      </script>";
             } else {
-                echo "<div class='alert alert-danger'>Error al agregar producto: " . mysqli_error($conn) . "</div>";
+                $mensaje = "Error al agregar producto";
+                $paginaDestino = "../index.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+                echo "<script>
+                        alert('$mensaje');
+                        window.location.href = '$paginaDestino';
+                      </script>";
             }
         }
     
@@ -243,10 +270,20 @@ function finalizarCompra($conn, $cod_usuario, $codigo_venta) {
         mysqli_stmt_bind_param($stmt_detalle, "di", $total_venta, $codigo_venta);
         // Ejecutar la consulta
         if (mysqli_stmt_execute($stmt_detalle)) {
-            echo "<div class='alert alert-success'>Venta finalizada con éxito.</div>";
+            $mensaje = "Venta finalizada";
+            $paginaDestino = "../index.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+            echo "<script>
+                    alert('$mensaje');
+                    window.location.href = '$paginaDestino';
+                  </script>";
             $productos = [];
         } else {
-            echo "<div class='alert alert-danger'>Error al finalizar la venta: " . mysqli_error($conn) . "</div>";
+            $mensaje = "Error al finalizar la compra";
+            $paginaDestino = "../index.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+            echo "<script>
+                    alert('$mensaje');
+                    window.location.href = '$paginaDestino';
+                  </script>";
         }
     }
 }
@@ -309,8 +346,12 @@ function traerTotalVenta($conn, $codigo_venta) {
 function mostrarTabla($productos){
     $productos_pedidos = $productos;
     if ($productos_pedidos === false || empty($productos_pedidos)) {
-        echo "<p>No hay productos en el carrito.</p>";
-        echo '<a href="dama.php">Volver</a>';
+        $mensaje = "No existen prodcutos en el carrito";
+        $paginaDestino = "../index.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+        echo "<script>
+                alert('$mensaje');
+                window.location.href = '$paginaDestino';
+              </script>";
     } else {
         ?>
         <!DOCTYPE html>
@@ -399,7 +440,7 @@ function mostrarTabla($productos){
                         <td>
                           
                                 <input type="hidden" name="cod_inventarioEliminar" value="<?php echo $producto['cod_inventario']; ?>">
-                                <input type="text" name="cod_detalle_venta" value="<?php echo $producto['cod_detalle_venta']; ?>">
+                                <input type="hidden" name="cod_detalle_venta" value="<?php echo $producto['cod_detalle_venta']; ?>">
                                 <input type="hidden" name="cod_talla" value="<?php echo $producto['cod_tallaf']; ?>">
                                 <input type="hidden" name="cod_color" value="<?php echo $producto['cod_colorf']; ?>">
                                 <input type="submit" class="btn btn-danger" name="eliminar" value="Eliminar">

@@ -63,8 +63,13 @@ $result = $conn->query($sql);
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mis_compras.html" style="color: white;">Mis compras</a>
+                    <?php if (isset($_SESSION['cod_usuario'])): ?>
+                    <a class="nav-link" href="mis_compras.php" style="color: white;">Mis Compras</a>
+                    <?php else: ?>
+                    <a class="nav-link" href="login/login.php" style="color: white;">Mis Compras</a>
+                    <?php endif; ?>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false" style="color: white;">Cuenta</a>
