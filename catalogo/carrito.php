@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {                                                                                 
     $cod_usuario = $_SESSION['cod_usuario'];
     $validar_venta_proceso = validarVentaProceso($conn,  $cod_usuario);
 
