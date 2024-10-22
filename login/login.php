@@ -44,11 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
             // Contraseña incorrecta
-            echo "<center><h4>===Contraseña Incorrecta===</h4></center>";
+            echo '<div class="alert alert-danger">Contraseña Incorrecta.</div>';
         }        
     } else {
         // Usuario no encontrado
-        echo "<center><h4>===Usuario no Encontrado===</h4></center>";
+        echo '<div class="alert alert-danger">Usuario no Disponible.</div>';
     }
     $stmt->close();
 }
@@ -84,6 +84,7 @@ $conn->close();
                 
                 <!-- FORMULARIO LOGIN -->
                 <form action="login.php" method="POST">
+
                     <div class="mb-3">
                         <label class="form-label fw-bold" for="nick_name">Nick Name:</label>
                         <input class="form-control" placeholder="Ingrese su nick" type="text" name="nick_name" id="nick_name" required />
