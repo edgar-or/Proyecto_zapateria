@@ -399,7 +399,7 @@ function mostrarTabla($productos){
                         <td>
                           
                                 <input type="hidden" name="cod_inventarioEliminar" value="<?php echo $producto['cod_inventario']; ?>">
-                                <input type="text" name="cod_detalle_venta" value="<?php echo $producto['cod_detalle_venta']; ?>">
+                                <input type="hidden" name="cod_detalle_venta" value="<?php echo $producto['cod_detalle_venta']; ?>">
                                 <input type="hidden" name="cod_talla" value="<?php echo $producto['cod_tallaf']; ?>">
                                 <input type="hidden" name="cod_color" value="<?php echo $producto['cod_colorf']; ?>">
                                 <input type="submit" class="btn btn-danger" name="eliminar" value="Eliminar">
