@@ -42,7 +42,7 @@ session_start();
 
                 <li class="nav-item">
                     <?php if (isset($_SESSION['cod_usuario'])): ?>
-                    <a class="nav-link" href="mis_compras.php" style="color: white;">Mis Compras</a>
+                    <a class="nav-link" href="catalogo/mis_compras.php" style="color: white;">Mis Compras</a>
                     <?php else: ?>
                     <a class="nav-link" href="login/login.php" style="color: white;">Mis Compras</a>
                     <?php endif; ?>

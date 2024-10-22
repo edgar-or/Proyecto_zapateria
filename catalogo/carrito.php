@@ -14,13 +14,6 @@ if (!isset($_SESSION['cod_usuario'])) {
 $cod_usuario = $_SESSION['cod_usuario'];
 $nick_name = $_SESSION['nick_name'];
 
-
-
-
-
-
-
-
 function validarVentaProceso($conn, $cod_usuario){
     $sql = "SELECT count(*) FROM venta WHERE cod_usuariof = ? AND estado_venta = 'EN PROCESO'";
     if ($stmt = mysqli_prepare($conn, $sql)) {
@@ -312,10 +305,6 @@ function traerTotalVenta($conn, $codigo_venta) {
     return 0;  // En caso de error, devolver 0
 }
 
-
-
-
-
 function mostrarTabla($productos){
     $productos_pedidos = $productos;
     if ($productos_pedidos === false || empty($productos_pedidos)) {
@@ -326,14 +315,66 @@ function mostrarTabla($productos){
         <!DOCTYPE html>
         <html lang="es">
         <head>
-            <meta charset="UTF-8">
+             <meta charset="UTF-8">
+             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+             <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+            <!-- Bootstrap Icons -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+            <link rel="icon" href="../imagenes/001-Index/Logos/walker.ico" type="image/x-icon">
             <title>Carrito de Compras</title>
         </head>
-        <body>
-            <h1>Carrito de Compras</h1>
+        <body style="font-family: 'Franklin Gothic Medium', 'cursive';">
+    <!-- Banner de la pagina -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid fixed-width-container"
+            style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+            <a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white; font-size: 50px;">
+                <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
+                    class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+                THE WALKERS
+            </a>
+            <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../index.php">INICIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Catálogo</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="dama.php">Dama</a></li>
+                        <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
+                        <li><a class="dropdown-item" href="niño.php">Niño</a></li>
+                        <li><a class="dropdown-item" href="niña.php">Niña</a></li>
+                        <li><a class="dropdown-item" href="../pago/metodo_pago.php">Registrar metodo de pago</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mis_compras.html" style="color: white;">Mis compras</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Cuenta</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../login/login.php">Login</a></li>
+                        <li><a class="dropdown-item" href="../login/login.php">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <p class="fs-5 text-center text-content"
+      style="color: white; background-color: #6c6c6c ; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+      Mis compras 
+  </p>
+  <div class="container mt-5">
+            <h4>Carrito de Compras</h4>
             <form method="POST"> 
-            <table border="1">
-                <thead>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
                     <tr>
                         <th>Nombre Producto</th>
                         <th>Cantidad</th>
@@ -359,7 +400,7 @@ function mostrarTabla($productos){
                                 <input type="hidden" name="cod_inventarioEliminar" value="<?php echo $producto['cod_inventario']; ?>">
                                 <input type="hidden" name="cod_talla" value="<?php echo $producto['cod_tallaf']; ?>">
                                 <input type="hidden" name="cod_color" value="<?php echo $producto['cod_colorf']; ?>">
-                                <input type="submit" name="eliminar" value="Eliminar">
+                                <input type="submit" class="btn btn-danger" name="eliminar" value="Eliminar">
                             
                         </td>
                     </tr>
@@ -370,10 +411,14 @@ function mostrarTabla($productos){
                     </tr>
                 </tbody>
             </table>
-            <input type="submit" name="comprar" value="Comprar">
+            <div class="d-flex justify-content-between">
+                <input class="btn btn-warning me-2" type="submit" name="comprar" value="Comprar">
+             <a href="dama.php" class="btn btn-dark">Volver a catálogo</a>
+            </div>
             </form>
-            <a href="dama.php">Volver a catálogo</a>
-    
+            
+        </div>
+            <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
         </body>
         </html>
         <?php

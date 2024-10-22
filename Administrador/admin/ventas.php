@@ -28,29 +28,45 @@ try {
     JOIN detalle_venta dv ON v.cod_venta = dv.cod_ventaf
     INNER JOIN inventario i ON dv.cod_inventariof = i.cod_inventario
     INNER JOIN  producto p ON i.cod_productof = p.cod_producto
-
 ";
-    
+
     $conditions = [];
-    
+
     // Filtrar por fecha, estado y usuario si se envió el formulario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($_POST['fecha'])) {
-            $query .= " WHERE v.fecha = :fecha";
-            $conditions[':fecha'] = $_POST['fecha'];
+            $conditions[] = "v.fecha = :fecha";
         }
         if (!empty($_POST['estado_venta'])) {
-            $query .= (count($conditions) > 0 ? " AND" : " WHERE") . " v.estado_venta = :estado_venta";
-            $conditions[':estado_venta'] = $_POST['estado_venta'];
+            $conditions[] = "v.estado_venta = :estado_venta";
         }
         if (!empty($_POST['usuario'])) {
-            $query .= (count($conditions) > 0 ? " AND" : " WHERE") . " u.cod_usuario = :usuario";
-            $conditions[':usuario'] = $_POST['usuario'];
+            $conditions[] = "u.cod_usuario = :usuario";
+        }
+
+        // Agregar condiciones a la consulta si existen
+        if (count($conditions) > 0) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
         }
     }
 
+    // Preparar y ejecutar la consulta
     $stmt = $pdo->prepare($query);
-    $stmt->execute($conditions);
+    
+    // Vincular parámetros si se envió el formulario
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (!empty($_POST['fecha'])) {
+            $stmt->bindParam(':fecha', $_POST['fecha']);
+        }
+        if (!empty($_POST['estado_venta'])) {
+            $stmt->bindParam(':estado_venta', $_POST['estado_venta']);
+        }
+        if (!empty($_POST['usuario'])) {
+            $stmt->bindParam(':usuario', $_POST['usuario']);
+        }
+    }
+
+    $stmt->execute();
     $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Obtener usuarios para el filtro
@@ -69,6 +85,54 @@ if (isset($_POST['generar_reporte'])) {
     $options->set('defaultFont', 'Arial');
     $dompdf = new Dompdf($options);
 
+    // Repetir la consulta para el PDF con los mismos filtros
+    $pdfQuery = "
+    SELECT v.cod_venta, v.fecha, v.total_venta, v.estado_venta, 
+           u.primer_nombre, u.primer_apellido, 
+           dv.cantidad_producto, dv.cod_inventariof, 
+           p.nombre_producto, dv.precio_unitario, p.descripcion 
+    FROM venta v 
+    JOIN usuario u ON v.cod_usuariof = u.cod_usuario
+    JOIN detalle_venta dv ON v.cod_venta = dv.cod_ventaf
+    INNER JOIN inventario i ON dv.cod_inventariof = i.cod_inventario
+    INNER JOIN  producto p ON i.cod_productof = p.cod_producto
+    ";
+
+    $pdfConditions = [];
+
+    // Añadir las mismas condiciones que antes
+    if (!empty($_POST['fecha'])) {
+        $pdfConditions[] = "v.fecha = :fecha";
+    }
+    if (!empty($_POST['estado_venta'])) {
+        $pdfConditions[] = "v.estado_venta = :estado_venta";
+    }
+    if (!empty($_POST['usuario'])) {
+        $pdfConditions[] = "u.cod_usuario = :usuario";
+    }
+
+    // Agregar condiciones a la consulta PDF
+    if (count($pdfConditions) > 0) {
+        $pdfQuery .= " WHERE " . implode(" AND ", $pdfConditions);
+    }
+
+    // Preparar y ejecutar la consulta PDF
+    $pdfStmt = $pdo->prepare($pdfQuery);
+    
+    // Vincular parámetros para PDF
+    if (!empty($_POST['fecha'])) {
+        $pdfStmt->bindParam(':fecha', $_POST['fecha']);
+    }
+    if (!empty($_POST['estado_venta'])) {
+        $pdfStmt->bindParam(':estado_venta', $_POST['estado_venta']);
+    }
+    if (!empty($_POST['usuario'])) {
+        $pdfStmt->bindParam(':usuario', $_POST['usuario']);
+    }
+
+    $pdfStmt->execute();
+    $pdfVentas = $pdfStmt->fetchAll(PDO::FETCH_ASSOC);
+
     // Crear el HTML para el reporte
     $html = '<h2>Reporte de Ventas</h2>';
     $html .= '<table border="1" cellspacing="0" cellpadding="5">
@@ -86,7 +150,7 @@ if (isset($_POST['generar_reporte'])) {
                 </thead>
                 <tbody>';
 
-    foreach ($ventas as $venta) {
+    foreach ($pdfVentas as $venta) {
         $html .= '<tr>
                     <td>' . htmlspecialchars($venta['cod_venta']) . '</td>
                     <td>' . htmlspecialchars($venta['fecha']) . '</td>
@@ -129,18 +193,18 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
 ?>
 <body style="font-family: 'Franklin Gothic Medium', 'cursive';">
 
-   <!-- Banner de la pagina -->
-   <nav class="navbar bg-body-tertiary">
+        <!-- Banner de la pagina -->
+        <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container"
             style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
             <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
-                <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
+                <img src="../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
                     class="d-inline-block align-text-center" style="background-color: #CC9E61;">
                 THE WALKERS
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">INICIO</a>
+                    <a class="nav-link active" aria-current="page" href="../../admin/admin.php">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -153,7 +217,7 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../ventas.php" style="color: white;">Ventas</a>
+                    <a class="nav-link" href="../mis_compras.html" style="color: white;">Mis compras</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -200,80 +264,78 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
             </ul>
         </div>
     </nav>
-    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #6c6c6c; font-family: 'Franklin Gothic Medium', 'cursive';">Ventas</p>
+    <p class="fs-5 text-center" style="margin-top: 0px; color: white; background-color: #6c6c6c; font-family: 'Franklin Gothic Medium', 'cursive';">Registros de ventas</p>
+    <div class="container mt-5">
+ 
+        <form method="POST" class="mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="fecha" class="form-label">Fecha:</label>
+                    <input type="date" class="form-control" name="fecha" id="fecha" value="<?php echo isset($_POST['fecha']) ? htmlspecialchars($_POST['fecha']) : ''; ?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="estado_venta" class="form-label">Estado:</label>
+                    <select class="form-select" name="estado_venta" id="estado_venta">
+                        <option value="">Seleccione estado</option>
+                        <option value="FINALIZADA" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'FINALIZADA') echo 'selected'; ?>>FINALIZADA</option>
+                        <option value="PENDIENTE" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'PENDIENTE') echo 'selected'; ?>>PENDIENTE</option>
+                        <option value="EN PROCESO" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'EN PROCESO') echo 'selected'; ?>>EN PROCESO</option>
+                        <option value="CANCELADA" <?php if (isset($_POST['estado_venta']) && $_POST['estado_venta'] == 'CANCELADA') echo 'selected'; ?>>CANCELADA</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="usuario" class="form-label">Usuario:</label>
+                    <select class="form-select" name="usuario" id="usuario">
+                        <option value="">Seleccione usuario</option>
+                        <?php foreach ($usuarios as $usuario) : ?>
+                            <option value="<?php echo $usuario['cod_usuario']; ?>" <?php if (isset($_POST['usuario']) && $_POST['usuario'] == $usuario['cod_usuario']) echo 'selected'; ?>>
+                                <?php echo htmlspecialchars($usuario['primer_nombre'] . ' ' . $usuario['primer_apellido']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-dark">Filtrar</button>
+            <button type="submit" name="generar_reporte" class="btn btn-success">Generar PDF</button>
+        </form>
 
-<div class="container mt-5">
-    <h2 class="text-center">Ventas Registradas</h2>
-    
-<form action="" method="POST" class="mb-4">
-    <div class="form-row">
-        <div class="col">
-            <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" id="fecha" name="fecha">
-        </div>
-        <div class="col">
-            <label for="estado_venta">Estado Venta</label>
-            <select class="form-control" id="estado_venta" name="estado_venta">
-                <option value="">Todos</option>
-                <option value="EN PROCESO">En Proceso</option>
-                <option value="Finalizado">Finalizada</option>
-            </select>
-        </div>
-        <div class="col">
-            <label for="usuario">Usuario</label>
-            <select class="form-control" id="usuario" name="usuario">
-                <option value="">Todos</option>
-                <?php foreach ($usuarios as $usuario): ?>
-                    <option value="<?php echo htmlspecialchars($usuario['cod_usuario']); ?>">
-                        <?php echo htmlspecialchars($usuario['primer_nombre'] . ' ' . $usuario['primer_apellido']); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-    </div>
-    <div class="i-flex justify-content-between mt-3">
-        <button type="submit" class="btn btn-dark me-2">Filtrar</button> <!-- Agregado margen derecho -->
-        <button type="submit" class="btn btn-success" name="generar_reporte">Generar Reporte PDF</button>
-    </div>
-</form>
-
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>Código Venta</th>
-                <th>Fecha</th>
-                <th>Total Venta</th>
-                <th>Estado Venta</th>
-                <th>Nombre Comprador</th>
-                <th>Cantidad Producto</th>
-                <th>Nombre Producto</th>
-                <th>Precio Producto</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (count($ventas) > 0): ?>
-                <?php foreach ($ventas as $venta): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($venta['cod_venta']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['fecha']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['total_venta']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['estado_venta']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['primer_nombre'] . ' ' . $venta['primer_apellido']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['cantidad_producto']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['nombre_producto']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['precio_unitario']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
                 <tr>
-                    <td colspan="8" class="text-center">No se encontraron ventas.</td>
+                    <th>Código Venta</th>
+                    <th>Fecha</th>
+                    <th>Total Venta</th>
+                    <th>Estado Venta</th>
+                    <th>Nombre Comprador</th>
+                    <th>Cantidad Producto</th>
+                    <th>Nombre Producto</th>
+                    <th>Precio Producto</th>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <?php if (count($ventas) > 0): ?>
+                    <?php foreach ($ventas as $venta): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($venta['cod_venta']); ?></td>
+                            <td><?php echo htmlspecialchars($venta['fecha']); ?></td>
+                            <td><?php echo htmlspecialchars($venta['total_venta']); ?></td>
+                            <td><?php echo htmlspecialchars($venta['estado_venta']); ?></td>
+                            <td><?php echo htmlspecialchars($venta['primer_nombre'] . ' ' . $venta['primer_apellido']); ?></td>
+                            <td><?php echo htmlspecialchars($venta['cantidad_producto']); ?></td>
+                            <td><?php echo htmlspecialchars($venta['nombre_producto']); ?></td>
+                            <td><?php echo htmlspecialchars($venta['precio_unitario']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="8" class="text-center">No hay ventas que mostrar.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 
-<!-- Scripts de Bootstrap -->
-<script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
