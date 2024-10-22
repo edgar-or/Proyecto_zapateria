@@ -99,12 +99,12 @@ function obtenerNombreColor($conn, $codigoColor) {
 // Verificar si se ha enviado el formulario para eliminar un producto del carrito
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
     // Asegúrate de que 'cod_inventario' está definido antes de usarlo
-    if (!isset($_POST['cod_inventario'])) {
+    if (!isset($_POST['cod_inventarioEliminar'])) {
         echo "<div class='alert alert-danger'>Error: 'cod_inventario' no está definido.</div>";
         exit;
     }
 
-    $cod_inventario=  $_POST['cod_inventario'];
+    $cod_inventario=  $_POST['cod_inventarioEliminar'];
     print ("eserere ". $cod_inventarioEliminar);
    
     $cod_usuario = $_SESSION['cod_usuario'];
