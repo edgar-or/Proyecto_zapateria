@@ -1,4 +1,6 @@
 <?php
+ini_set('memory_limit', '1024M'); // Ajusta el valor de la memoria para almacenar el pdf
+
 // Conectar a la base de datos
 $host = "localhost";
 $dbname = "the_walkers_db";
@@ -11,20 +13,23 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 try {
+    $ventas = [];
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Consultar las ventas con unión de las tablas
     $query = "
-        SELECT v.cod_venta, v.fecha, v.total_venta, v.estado_venta, 
-               u.primer_nombre, u.primer_apellido, 
-               dv.cantidad_producto, dv.cod_productof, 
-               p.nombre_producto, p.precio, p.descripcion 
-        FROM venta venta
-        JOIN usuario u ON v.cod_usuariof = u.cod_usuario
-        JOIN detalle_venta dv ON v.cod_venta = dv.cod_ventaf
-        INNER JOIN producto p ON dv.cod_productof = p.cod_producto
-    ";
+    SELECT v.cod_venta, v.fecha, v.total_venta, v.estado_venta, 
+           u.primer_nombre, u.primer_apellido, 
+           dv.cantidad_producto, dv.cod_inventariof, 
+           p.nombre_producto, dv.precio_unitario, p.descripcion 
+    FROM venta v 
+    JOIN usuario u ON v.cod_usuariof = u.cod_usuario
+    JOIN detalle_venta dv ON v.cod_venta = dv.cod_ventaf
+    INNER JOIN inventario i ON dv.cod_inventariof = i.cod_inventario
+    INNER JOIN  producto p ON i.cod_productof = p.cod_producto
+
+";
     
     $conditions = [];
     
@@ -90,7 +95,7 @@ if (isset($_POST['generar_reporte'])) {
                     <td>' . htmlspecialchars($venta['primer_nombre'] . ' ' . $venta['primer_apellido']) . '</td>
                     <td>' . htmlspecialchars($venta['cantidad_producto']) . '</td>
                     <td>' . htmlspecialchars($venta['nombre_producto']) . '</td>
-                    <td>' . htmlspecialchars($venta['precio']) . '</td>
+                    <td>' . htmlspecialchars($venta['precio_unitario']) . '</td>
                 </tr>';
     }
 
@@ -211,8 +216,7 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
             <select class="form-control" id="estado_venta" name="estado_venta">
                 <option value="">Todos</option>
                 <option value="EN PROCESO">En Proceso</option>
-                <option value="COMPLETADA">Completada</option>
-                <option value="CANCELADA">Cancelada</option>
+                <option value="Finalizado">Finalizada</option>
             </select>
         </div>
         <div class="col">
@@ -257,7 +261,7 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                         <td><?php echo htmlspecialchars($venta['primer_nombre'] . ' ' . $venta['primer_apellido']); ?></td>
                         <td><?php echo htmlspecialchars($venta['cantidad_producto']); ?></td>
                         <td><?php echo htmlspecialchars($venta['nombre_producto']); ?></td>
-                        <td><?php echo htmlspecialchars($venta['precio']); ?></td>
+                        <td><?php echo htmlspecialchars($venta['precio_unitario']); ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
