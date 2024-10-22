@@ -32,7 +32,7 @@ mysqli_close($conn);
 session_start(); // Inicia la sesión
 // Verifica si el usuario ha iniciado sesión y es administrador
 if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
-    // Si no ha iniciado sesión o no es admin, redirigir al index.php
+    
     header("Location: ../../../login/login.php");
     exit();
 }

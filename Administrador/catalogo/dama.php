@@ -47,30 +47,70 @@ $result = $conn->query($sql);
                     class="d-inline-block align-text-center" style="background-color: #CC9E61;">
                 THE WALKERS
             </a>
-            <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
-                <li class="nav-item">
+            <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="../admin.php">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false" style="color: white;">Catálogo</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="dama.php">Dama</a></li>
-                        <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
-                        <li><a class="dropdown-item" href="niño.php">Niño</a></li>
-                        <li><a class="dropdown-item" href="niña.php">Niña</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/dama.php">Dama</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/joven.php">Caballero</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/niño.php">Niño</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/niña.php">Niña</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mis_compras.html" style="color: white;">Mis compras</a>
+                    <a class="nav-link" href="../admin/ventas.php" style="color: white;">Ventas</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">
+                    Cuenta: 
+                    <?php if (isset($_SESSION['nick_name'])): ?>
+                    <?php echo $_SESSION['nick_name']; ?> <!-- Muestra el nick_name del usuario -->
+                    <?php else: ?>
+                    Invitado <!-- Texto a mostrar si no ha iniciado sesión -->
+                    <?php endif; ?>
+                </a>
+            <ul class="dropdown-menu">
+        <?php if (isset($_SESSION['cod_usuario'])): ?>
+            <!-- Si ha iniciado sesión -->
+            <li><a class="dropdown-item" href="../../login/cerrar_sesion.php">Cerrar Sesión</a></li>
+        <?php else: ?>
+            <!-- Si no ha iniciado sesión -->
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_producto.php">Registrar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/consultar_producto.php">Consultar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/modificar_producto.php">Modificar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/eliminar_producto.php">Eliminar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_inventario.php">Registrar
+                                Inventario</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false" style="color: white;">Cuenta</a>
+                        aria-expanded="false" style="color: white;">Usuarios</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../login/login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="../login/login.php">Cerrar Sesion</a></li>
-                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/registrar_usuarios.php">Registrar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar
+                                Usuario</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
