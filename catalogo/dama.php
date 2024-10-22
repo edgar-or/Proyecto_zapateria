@@ -98,68 +98,67 @@ $result = $conn->query($sql);
           </div>
         </div>
   
-    <div class="container mt-4">
-      <div class="row">
-     
-        <!-- Producto 1 -->
+
+        <!--productos-->
         <div class="container mt-4">
-    <div class="row">
-        <?php while ($row = $result->fetch_assoc()): print ($row['cod_producto'])?>
-        <form action="carrito.php" method="POST" >
-          
-          <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
-          <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src=" <?php echo $row['imagen']; ?> " class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted text-right"><?php echo $row['marca']; ?></h6>
-                    <p class="card-text"><?php echo $row['descripcion']; ?></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="input-group" style="width: 100px;">
-                            <span class="input-group-text">Cantidad</span>
-                            <input type="number" class="form-control" value="1"  min="1" name="cantidad" id="cantidad">
-                        </div>
-                        <select class="form-select mx-2" style="width: 100px;" name="talla" id="talla">
-                            <option selected>Selecciona una talla</option>
-                            <?php $tallas = explode(',', $row['cod_tallas']);
-                      $nombres_tallas = explode(',', $row['tallas']);
-                      foreach ($tallas as $index => $cod_talla): ?> 
-                            <option value="<?php echo trim($cod_talla) ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
-                        <?php endforeach; ?>
-                        </select>
-                        
-                        <button name="agregar_carrito" class="btn btn-warning" style="color: white;" value="1">Agregar al Carrito</button>
+  <div class="row">
+    <!-- Inicio del loop PHP -->
+    <?php while ($row = $result->fetch_assoc()): ?>
+    <form action="carrito.php" method="POST">
+      <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
+      <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
+      
+      <!-- Cada tarjeta ocupa 4 columnas, 3 tarjetas por fila -->
+      <div class="col-md-4 mb-4"> 
+        <div class="card h-100">
+          <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="Imagen de producto">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><?php echo $row['marca']; ?></h6>
+            <p class="card-text"><?php echo $row['descripcion']; ?></p>
 
-                        
-                    </div>
-                    <select class="form-select" style="width: 110px;" name="color" id="color">
-                      <option selected>Selecciona un color</option>
-                      <?php 
-                      $colores = explode(',', $row['cod_colores']);
-                      $nombres_colores = explode(',', $row['colores']);
-                      foreach ($colores as $index => $cod_color): ?> 
-                          <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
-                      <?php endforeach; ?>
-                  </select>
-                  <input type="text" class="form-control" value="<?php echo $row['cod_inventario'] ?>"  name="cod_inventario">
-                   <input type="text" class="form-control" value="<?php  echo $row['precio_unitario']; ?>"  name="precio_unitario">
-                      </form>
-                </div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="input-group" style="width: 100px;">
+                <span class="input-group-text">Cantidad</span>
+                <input type="number" class="form-control" value="1" min="1" name="cantidad" id="cantidad">
+              </div>
+              
+              <select class="form-select mx-2" style="width: 100px;" name="talla" id="talla">
+                <option selected>Selecciona una talla</option>
+                <?php
+                $tallas = explode(',', $row['cod_tallas']);
+                $nombres_tallas = explode(',', $row['tallas']);
+                foreach ($tallas as $index => $cod_talla):
+                ?>
+                  <option value="<?php echo trim($cod_talla); ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
+                <?php endforeach; ?>
+              </select>
+              <button name="agregar_carrito" class="btn btn-warning" style="color: white;" value="1">Agregar</button>
             </div>
-        </div>
-        </div>
-</div>
 
+            <select class="form-select" style="width: 110px;" name="color" id="color">
+              <option selected>Selecciona un color</option>
+              <?php
+              $colores = explode(',', $row['cod_colores']);
+              $nombres_colores = explode(',', $row['colores']);
+              foreach ($colores as $index => $cod_color):
+              ?>
+                <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
+              <?php endforeach; ?>
+            </select>
 
-        
-
-        <?php endwhile; ?>
+            <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario']; ?>" name="cod_inventario">
+            <input type="hidden" class="form-control" value="<?php echo $row['precio_unitario']; ?>" name="precio_unitario">
+          </div>
         </div>
       </div>
-    </div>
+    </form>
+    <?php endwhile; ?>
+    <!-- Fin del loop PHP -->
   </div>
+</div>
+
+   
   <!-- Footer -->
   <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
     <p>© 2024 The Walkers. Todos los derechos reservados.</p>
