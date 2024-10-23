@@ -37,6 +37,7 @@ session_start();
                         <li><a class="dropdown-item" href="catalogo/joven.php">Caballero</a></li>
                         <li><a class="dropdown-item" href="catalogo/niño.php">Niño</a></li>
                         <li><a class="dropdown-item" href="catalogo/niña.php">Niña</a></li>
+                        <li><a class="dropdown-item" href="../pago/metodo_pago.php">Registrar metodo de pago</a></li>
                     </ul>
                 </li>
 

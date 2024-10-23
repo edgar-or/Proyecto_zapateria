@@ -56,6 +56,7 @@ $result = $conn->query($sql);
                         <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
                         <li><a class="dropdown-item" href="niño.php">Niño</a></li>
                         <li><a class="dropdown-item" href="niña.php">Niña</a></li>
+                        <li><a class="dropdown-item" href="../pago/metodo_pago.php">Registrar metodo de pago</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
