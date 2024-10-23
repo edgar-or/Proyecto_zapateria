@@ -217,17 +217,27 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../mis_compras.html" style="color: white;">Mis compras</a>
+                    <a class="nav-link" href="#" style="color: white;">Ventas</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false" style="color: white;">Cuenta</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../login/login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="../../login/login.php">Cerrar Sesion</a></li>
-                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
-                    </ul>
-                </li>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">
+                    Cuenta: 
+                    <?php if (isset($_SESSION['nick_name'])): ?>
+                    <?php echo $_SESSION['nick_name']; ?> <!-- Muestra el nick_name del usuario -->
+                    <?php else: ?>
+                    Invitado <!-- Texto a mostrar si no ha iniciado sesión -->
+                    <?php endif; ?>
+                </a>
+            <ul class="dropdown-menu">
+        <?php if (isset($_SESSION['cod_usuario'])): ?>
+            <!-- Si ha iniciado sesión -->
+            <li><a class="dropdown-item" href="../../login/cerrar_sesion.php">Cerrar Sesión</a></li>
+        <?php else: ?>
+            <!-- Si no ha iniciado sesión -->
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false" style="color: white;">Productos</a>

@@ -21,6 +21,17 @@ $result = $conn->query($sql);
 
 
 ?>
+<?php
+// Verifica si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
+    // Guardar mensaje de error en la sesión (opcional)
+    $_SESSION['mensaje_error'] = 'Debes iniciar sesión como administrador para acceder a esta página.';
+    
+    // Si no ha iniciado sesión o no es admin, redirigir al login.php
+    header("Location: ../../login/login.php");
+    exit();
+}
+?>
 <!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
@@ -38,23 +49,24 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <!-- Banner de la pagina -->
-    <nav class="navbar bg-body-tertiary">
+     <!-- Banner de la pagina -->
+     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container"
             style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
-            <a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white; font-size: 50px;">
+            <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
                 <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
                     class="d-inline-block align-text-center" style="background-color: #CC9E61;">
                 THE WALKERS
             </a>
-            <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../admin.php">INICIO</a>
+            <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../admin/admin.php">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false" style="color: white;">Catálogo</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../catalogo/dama.php">Dama</a></li>
+                        <li><a class="dropdown-item" href="#">Dama</a></li>
                         <li><a class="dropdown-item" href="../catalogo/joven.php">Caballero</a></li>
                         <li><a class="dropdown-item" href="../catalogo/niño.php">Niño</a></li>
                         <li><a class="dropdown-item" href="../catalogo/niña.php">Niña</a></li>
@@ -200,10 +212,7 @@ $result = $conn->query($sql);
   </footer>
   <!-- Contenedor de botones flotantes -->
   <div class="btn-flotante-container">
-    <!-- Botón flotante con icono de carrito -->
-    <a href="carrito.php" class="btn-flotante">
-      <i class="bi bi-cart-fill"></i>
-    </a>
+
     <button class="scroll-to-top" onclick="scrollToTop()">
         <!-- Imagen svg estraida -->
         <svg xmlns="" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"

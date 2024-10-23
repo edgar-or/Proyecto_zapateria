@@ -85,30 +85,40 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../mis_compras.html" style="color: white;">Mis compras</a>
+                    <a class="nav-link" href="../ventas.php" style="color: white;">Ventas</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false" style="color: white;">Cuenta</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../../login/login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="../../login/login.php">Cerrar Sesion</a></li>
-                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
-                    </ul>
-                </li>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">
+                    Cuenta: 
+                    <?php if (isset($_SESSION['nick_name'])): ?>
+                    <?php echo $_SESSION['nick_name']; ?> <!-- Muestra el nick_name del usuario -->
+                    <?php else: ?>
+                    Invitado <!-- Texto a mostrar si no ha iniciado sesión -->
+                    <?php endif; ?>
+                </a>
+            <ul class="dropdown-menu">
+        <?php if (isset($_SESSION['cod_usuario'])): ?>
+            <!-- Si ha iniciado sesión -->
+            <li><a class="dropdown-item" href="../../../login/cerrar_sesion.php">Cerrar Sesión</a></li>
+        <?php else: ?>
+            <!-- Si no ha iniciado sesión -->
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false" style="color: white;">Productos</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_producto.php">Registrar
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_producto.php">Registrar
                                 Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/consultar_producto.php">Consultar
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/consultar_producto.php">Consultar
                                 Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/modificar_producto.php">Modificar
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/modificar_producto.php">Modificar
                                 Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/eliminar_producto.php">Eliminar
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/eliminar_producto.php">Eliminar
                                 Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_inventario.php">Registrar
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_inventario.php">Registrar
                                 Inventario</a></li>
                     </ul>
                 </li>
@@ -116,13 +126,13 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false" style="color: white;">Usuarios</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/registrar_usuarios.php">Registrar
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/registrar_usuarios.php">Registrar
                                 Usuario</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/consultar_usuarios.php">Consultar
                                 Usuario</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/modificar_usuarios.php">Modificar
                                 Usuario</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar
+                        <li><a class="dropdown-item" href="../CRUD_USUARIOS/eliminar_usuarios.php">Eliminar
                                 Usuario</a></li>
                     </ul>
                 </li>
