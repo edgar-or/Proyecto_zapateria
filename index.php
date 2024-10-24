@@ -224,7 +224,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Tenis</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/joven.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>
@@ -236,7 +236,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Tacones</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/dama.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>
@@ -248,7 +248,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Converse</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/joven.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>
@@ -260,7 +260,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Tacones de Colores</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/dama.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>
@@ -273,7 +273,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Botas</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/dama.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>
@@ -285,7 +285,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Tenis Deportivos</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/joven.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>
@@ -297,7 +297,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Converse a Colores</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/joven.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>
@@ -309,7 +309,7 @@ session_start();
                                 alt="Imagen 1">
                             <div class="card-body">
                                 <h5 class="card-title">Tenis a Colores</h5>
-                                <a href="#" class="btn btn-light btn-sm text-white"
+                                <a href="catalogo/joven.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
                         </div>

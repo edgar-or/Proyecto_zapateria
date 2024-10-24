@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
     // Asegúrate de que 'cod_inventario' está definido antes de usarlo
     if (!isset($_POST['cod_inventarioEliminar'])) {
         $mensaje = "no esta definido";
-        $paginaDestino = "../index.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+        $paginaDestino = "../index.php"; 
         echo "<script>
                 alert('$mensaje');
                 window.location.href = '$paginaDestino';
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['eliminar'])) {
         mysqli_stmt_bind_param($stmt, "ii", $cod_inventario, $codigo_venta);
         if (mysqli_stmt_execute($stmt)) {
             $mensaje = "¡Se elimino correctamente!";
-            $paginaDestino = "../index.php";
+            $paginaDestino = "dama.php";
             echo "<script>
                     alert('$mensaje');
                     window.location.href = '$paginaDestino';
