@@ -163,6 +163,13 @@ $result = $conn->query($sql);
                   <?php endforeach; ?>
                 </select>
               </div>
+<<<<<<< HEAD
+=======
+          
+              
+              
+              
+>>>>>>> d2eec15f8dad5e08b8c3c1b6f8dc09e3f526462d
             </div>
 
             <button name="agregar_carrito" class="btn btn-warning w-100" style="color: white;" value="1">Agregar a carrito</button>
