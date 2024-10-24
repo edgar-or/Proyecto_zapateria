@@ -53,35 +53,85 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
 }
 ?>
 <body>
-    <!-- Banner de la página -->
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid fixed-width-container" style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
+   <!-- Banner de la pagina -->
+   <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid fixed-width-container"
+            style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
             <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
-                <img src="../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90" class="d-inline-block align-text-center" style="background-color: #CC9E61;">
+            <img src="../../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
+            class="d-inline-block align-text-center" style="background-color: #CC9E61;">
                 THE WALKERS
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../admin/admin.php">INICIO</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../../admin/admin.php">INICIO</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Productos</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Catálogo</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_producto.php">Registrar Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/consultar_producto.php">Consultar Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/modificar_producto.php">Modificar Producto</a></li>
-                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/eliminar_producto.php">Eliminar Producto</a></li>
-                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_inventario.php">Registrar Inventario</a></li>
+                        <li><a class="dropdown-item" href="../../catalogo/dama.php">Dama</a></li>
+                        <li><a class="dropdown-item" href="../../catalogo/joven.php">Caballero</a></li>
+                        <li><a class="dropdown-item" href="../../catalogo/niño.php">Niño</a></li>
+                        <li><a class="dropdown-item" href="../../catalogo/niña.php">Niña</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../ventas.php" style="color: white;">Ventas</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">
+                    Cuenta: 
+                    <?php if (isset($_SESSION['nick_name'])): ?>
+                    <?php echo $_SESSION['nick_name']; ?> <!-- Muestra el nick_name del usuario -->
+                    <?php else: ?>
+                    Invitado <!-- Texto a mostrar si no ha iniciado sesión -->
+                    <?php endif; ?>
+                </a>
+            <ul class="dropdown-menu">
+        <?php if (isset($_SESSION['cod_usuario'])): ?>
+            <!-- Si ha iniciado sesión -->
+            <li><a class="dropdown-item" href="../../../login/cerrar_sesion.php">Cerrar Sesión</a></li>
+        <?php else: ?>
+            <!-- Si no ha iniciado sesión -->
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_producto.php">Registrar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/consultar_producto.php">Consultar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/modificar_producto.php">Modificar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/eliminar_producto.php">Eliminar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../CRUD_PRODUCTOS/registrar_inventario.php">Registrar
+                                Inventario</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">Usuarios</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Usuarios</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="registrar_usuarios.php">Registrar Usuario</a></li>
-                        <li><a class="dropdown-item" href="consultar_usuarios.php">Consultar Usuario</a></li>
-                        <li><a class="dropdown-item" href="modificar_usuarios.php">Modificar Usuario</a></li>
-                        <li><a class="dropdown-item" href="eliminar_usuarios.php">Eliminar Usuario</a></li>
+                        <li><a class="dropdown-item" href="CRUD_USUARIOS/registrar_usuarios.php">Registrar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="CRUD_USUARIOS/consultar_usuarios.php">Consultar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="CRUD_USUARIOS/modificar_usuarios.php">Modificar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="CRUD_USUARIOS/eliminar_usuarios.php">Eliminar
+                                Usuario</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="../../../Administrador/creditos/creditos.html" style="color: white;">Créditos</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../creditos/creditos.html" style="color: white;">Creditos</a>
+                </li>
             </ul>
         </div>
     </nav>

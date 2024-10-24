@@ -131,7 +131,7 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
+                    <a class="nav-link" href="../../creditos/creditos.html" style="color: white;">Creditos</a>
                 </li>
             </ul>
         </div>
