@@ -25,6 +25,12 @@
                 // Incluir la conexión a la base de datos
                 include '../conexionBD.php';
 
+                // Verificar si el usuario está logueado
+                if (!isset($_SESSION['cod_usuario'])) {
+                    header("Location: ../login/login.php");
+                    exit;
+                }
+
                 // Verificar si el formulario fue enviado
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Obtener los datos del formulario
