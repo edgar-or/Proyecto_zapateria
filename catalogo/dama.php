@@ -139,7 +139,7 @@ $result = $conn->query($sql);
           
               
               <select class="form-select mx-2" style="width: 75px;" name="talla" id="talla">
-                <option selected>Talla</option>
+                
                 <?php
                 $tallas = explode(',', $row['cod_tallas']);
                 $nombres_tallas = explode(',', $row['tallas']);
@@ -150,7 +150,7 @@ $result = $conn->query($sql);
               </select>
               
               <select class="form-select" style="width: 75px;" name="color" id="color">
-              <option selected>Color</option>
+              
               <?php
               $colores = explode(',', $row['cod_colores']);
               $nombres_colores = explode(',', $row['colores']);

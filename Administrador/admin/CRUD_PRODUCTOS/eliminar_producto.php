@@ -155,7 +155,7 @@ if ($id_producto) {
     }
 
     $stmt->close();
-    $stmt_delete->close();
+    //$stmt_delete->close();
 } else {
 
 }
