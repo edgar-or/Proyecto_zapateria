@@ -112,55 +112,68 @@ session_start();
           </div>
         </div>
   
-    <div class="container mt-4">
-      <div class="row">
-        <!-- Producto 1 -->
         <div class="container mt-4">
-    <div class="row">
-        <?php while ($row = $result->fetch_assoc()): ?>
-          <form method="POST" action="carrito.php">
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src=" <?php echo $row['imagen']; ?> " class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted text-right"><?php echo $row['marca']; ?></h6>
-                    <p class="card-text"><?php echo $row['descripcion']; ?></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="input-group" style="width: 100px;">
-                            <span class="input-group-text">Cantidad</span>
-                            <input type="number" class="form-control" value="1" min="1" name="cantidad">
-                        </div>
-                        <select class="form-select mx-2" style="width: 100px;" name="talla" id="talla">
-                            <option selected>Selecciona una talla</option>
-                            <?php $tallas = explode(',', $row['cod_tallas']);
-                      $nombres_tallas = explode(',', $row['tallas']);
-                      foreach ($tallas as $index => $cod_talla): ?> 
-                            <option value="<?php echo trim($cod_talla) ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
-                        <?php endforeach; ?>
-                        </select>
-                        
-                        <button name="agregar_carrito" class="btn btn-warning" style="color: white;">Agregar al Carrito</button>
-                        
-                    </div>
-                    <select class="form-select" style="width: 110px;" name="color" id="color">
-                      <option selected>Selecciona un color</option>
-                      <?php 
-                      $colores = explode(',', $row['cod_colores']);
-                      $nombres_colores = explode(',', $row['colores']);
-                      foreach ($colores as $index => $cod_color): ?> 
-                          <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
-                      <?php endforeach; ?>
-                  </select>
-                  <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario'] ?>"  min="1" name="cod_inventario">
-                  <input type="hidden" class="form-control" value="<?php  echo $row['precio_unitario']; ?>"  min="1" name="precio_unitario">
-                </div>
+  <div class="row">
+    <?php while ($row = $result->fetch_assoc()): ?>
+      <div class="col-12 col-sm-6 col-md-4 mb-4"> <!-- Responsivo: 1 tarjeta por fila en pantallas pequeñas, 2 en medianas, 3 en grandes -->
+        <form method="POST" action="carrito.php">
+        
+          <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
+
+          <div class="card h-100">
+            <!-- Contenedor de imagen con tamaño fijo -->
+            <div style="width: 100%; height: 250px; overflow: hidden;">
+              <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="Imagen de producto" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-        </div>
+
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
+              <h6 class="card-subtitle mb-2 text-muted text-right"><?php echo $row['marca']; ?></h6>
+              <p class="card-text"><?php echo $row['descripcion']; ?></p>
+
+              <div class="row mb-2">
+                <div class="col-4">
+                  <label class="form-label">Cantidad</label>
+                  <input type="number" class="form-control" value="1" min="1" name="cantidad" id="cantidad">
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Talla</label>
+                  <select class="form-select" name="talla" id="talla">
+                
+                    <?php
+                    $tallas = explode(',', $row['cod_tallas']);
+                    $nombres_tallas = explode(',', $row['tallas']);
+                    foreach ($tallas as $index => $cod_talla): ?>
+                      <option value="<?php echo trim($cod_talla); ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Color</label>
+                  <select class="form-select" name="color" id="color">
+             
+                    <?php
+                    $colores = explode(',', $row['cod_colores']);
+                    $nombres_colores = explode(',', $row['colores']);
+                    foreach ($colores as $index => $cod_color): ?>
+                      <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+
+              <button name="agregar_carrito" class="btn btn-warning w-100" style="color: white;">Agregar al Carrito</button>
+
+              <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario']; ?>" name="cod_inventario">
+              <input type="hidden" class="form-control" value="<?php echo $row['precio_unitario']; ?>" name="precio_unitario">
+            </div>
+          </div>
         </form>
-        <?php endwhile; ?>
-    </div>
+      </div>
+    <?php endwhile; ?>
+  </div>
 </div>
+
 </div>
 </div>
   <!-- Footer -->
