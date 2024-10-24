@@ -163,33 +163,6 @@ $result = $conn->query($sql);
                   <?php endforeach; ?>
                 </select>
               </div>
-<<<<<<< HEAD
-          
-              
-              <select class="form-select mx-2" style="width: 75px;" name="talla" id="talla">
-                
-                <?php
-                $tallas = explode(',', $row['cod_tallas']);
-                $nombres_tallas = explode(',', $row['tallas']);
-                foreach ($tallas as $index => $cod_talla):
-                ?>
-                  <option value="<?php echo trim($cod_talla); ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
-                <?php endforeach; ?>
-              </select>
-              
-              <select class="form-select" style="width: 75px;" name="color" id="color">
-              
-              <?php
-              $colores = explode(',', $row['cod_colores']);
-              $nombres_colores = explode(',', $row['colores']);
-              foreach ($colores as $index => $cod_color):
-              ?>
-                <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
-              <?php endforeach; ?>
-            </select>
-              
-=======
->>>>>>> bcf67f265462835245a8659a9ffaad757c5997f2
             </div>
 
             <button name="agregar_carrito" class="btn btn-warning w-100" style="color: white;" value="1">Agregar a carrito</button>
