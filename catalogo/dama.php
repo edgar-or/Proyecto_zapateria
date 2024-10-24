@@ -106,15 +106,14 @@ $result = $conn->query($sql);
 
         <!--productos-->
         <div class="container mt-4">
-  <div class="row">
+  <div class="row"> <!-- Inicio de la fila -->
     <!-- Inicio del loop PHP -->
     <?php while ($row = $result->fetch_assoc()): ?>
-    <form action="carrito.php" method="POST">
-      <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
-      <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
-      
-      <!-- Cada tarjeta ocupa 4 columnas, 3 tarjetas por fila -->
-      <div class="col-md-4 mb-4"> 
+    <div class="col-md-4 mb-4"> <!-- Cada tarjeta ocupa 4 columnas, 3 tarjetas por fila -->
+      <form action="carrito.php" method="POST">
+        <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
+        <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
+        
         <div class="card h-100">
           <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="Imagen de producto">
           <div class="card-body">
@@ -123,13 +122,15 @@ $result = $conn->query($sql);
             <p class="card-text"><?php echo $row['descripcion']; ?></p>
 
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <div class="input-group" style="width: 100px;">
-                <span class="input-group-text">Cantidad</span>
-                <input type="number" class="form-control" value="1" min="1" name="cantidad" id="cantidad">
-              </div>
               
-              <select class="form-select mx-2" style="width: 100px;" name="talla" id="talla">
-                <option selected>Selecciona una talla</option>
+              <div class="input-group" style="width: 150px;">
+                <label class="input-group-text">Cantidad</label>
+                <input type="number" class=" form-control" value="1" min="1" name="cantidad" id="cantidad">
+              </div>
+          
+              
+              <select class="form-select mx-2" style="width: 75px;" name="talla" id="talla">
+                <option selected>Talla</option>
                 <?php
                 $tallas = explode(',', $row['cod_tallas']);
                 $nombres_tallas = explode(',', $row['tallas']);
@@ -138,11 +139,9 @@ $result = $conn->query($sql);
                   <option value="<?php echo trim($cod_talla); ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
                 <?php endforeach; ?>
               </select>
-              <button name="agregar_carrito" class="btn btn-warning" style="color: white;" value="1">Agregar</button>
-            </div>
-
-            <select class="form-select" style="width: 110px;" name="color" id="color">
-              <option selected>Selecciona un color</option>
+              
+              <select class="form-select" style="width: 75px;" name="color" id="color">
+              <option selected>Color</option>
               <?php
               $colores = explode(',', $row['cod_colores']);
               $nombres_colores = explode(',', $row['colores']);
@@ -151,17 +150,24 @@ $result = $conn->query($sql);
                 <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
               <?php endforeach; ?>
             </select>
+              
+            </div>
+
+            
+
+            <button name="agregar_carrito" class="btn btn-warning" style="color: white;" value="1">Agregar a carrito</button>
 
             <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario']; ?>" name="cod_inventario">
             <input type="hidden" class="form-control" value="<?php echo $row['precio_unitario']; ?>" name="precio_unitario">
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div> <!-- Fin de la columna de la tarjeta -->
     <?php endwhile; ?>
     <!-- Fin del loop PHP -->
-  </div>
+  </div> <!-- Fin de la fila -->
 </div>
+
 
    
   <!-- Footer -->
