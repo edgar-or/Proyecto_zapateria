@@ -21,6 +21,17 @@ $result = $conn->query($sql);
 
 
 ?>
+<?php
+// Verifica si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
+    // Guardar mensaje de error en la sesión (opcional)
+    $_SESSION['mensaje_error'] = 'Debes iniciar sesión como administrador para acceder a esta página.';
+    
+    // Si no ha iniciado sesión o no es admin, redirigir al login.php
+    header("Location: ../../login/login.php");
+    exit();
+}
+?>
 <!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
@@ -38,39 +49,80 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <!-- Banner de la pagina -->
-    <nav class="navbar bg-body-tertiary">
+     <!-- Banner de la pagina -->
+     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid fixed-width-container"
             style="background-color: #020304; font-family: 'Franklin Gothic Medium';">
-            <a class="navbar-brand" href="../index.html" style="background-color: #020304; color: white; font-size: 50px;">
+            <a class="navbar-brand" href="#" style="background-color: #020304; color: white; font-size: 50px;">
                 <img src="../imagenes/001-Index/Logos/Logo.png" alt="Logo" width="90" height="90"
                     class="d-inline-block align-text-center" style="background-color: #CC9E61;">
                 THE WALKERS
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../admin.php">INICIO</a>
+                    <a class="nav-link active" aria-current="page" href="../admin/admin.php">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false" style="color: white;">Catálogo</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="dama.php">Dama</a></li>
-                        <li><a class="dropdown-item" href="joven.php">Caballero</a></li>
-                        <li><a class="dropdown-item" href="niño.php">Niño</a></li>
-                        <li><a class="dropdown-item" href="niña.php">Niña</a></li>
+                        <li><a class="dropdown-item" href="#">Dama</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/joven.php">Caballero</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/niño.php">Niño</a></li>
+                        <li><a class="dropdown-item" href="../catalogo/niña.php">Niña</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mis_compras.html" style="color: white;">Mis compras</a>
+                    <a class="nav-link" href="../admin/ventas.php" style="color: white;">Ventas</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">
+                    Cuenta: 
+                    <?php if (isset($_SESSION['nick_name'])): ?>
+                    <?php echo $_SESSION['nick_name']; ?> <!-- Muestra el nick_name del usuario -->
+                    <?php else: ?>
+                    Invitado <!-- Texto a mostrar si no ha iniciado sesión -->
+                    <?php endif; ?>
+                </a>
+            <ul class="dropdown-menu">
+        <?php if (isset($_SESSION['cod_usuario'])): ?>
+            <!-- Si ha iniciado sesión -->
+            <li><a class="dropdown-item" href="../../login/cerrar_sesion.php">Cerrar Sesión</a></li>
+        <?php else: ?>
+            <!-- Si no ha iniciado sesión -->
+            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_producto.php">Registrar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/consultar_producto.php">Consultar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/modificar_producto.php">Modificar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/eliminar_producto.php">Eliminar
+                                Producto</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_PRODUCTOS/registrar_inventario.php">Registrar
+                                Inventario</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false" style="color: white;">Cuenta</a>
+                        aria-expanded="false" style="color: white;">Usuarios</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../login/login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="../login/login.php">Cerrar Sesion</a></li>
-                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/registrar_usuarios.php">Registrar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/consultar_usuarios.php">Consultar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/modificar_usuarios.php">Modificar
+                                Usuario</a></li>
+                        <li><a class="dropdown-item" href="../admin/CRUD_USUARIOS/eliminar_usuarios.php">Eliminar
+                                Usuario</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -160,10 +212,7 @@ $result = $conn->query($sql);
   </footer>
   <!-- Contenedor de botones flotantes -->
   <div class="btn-flotante-container">
-    <!-- Botón flotante con icono de carrito -->
-    <a href="carrito.php" class="btn-flotante">
-      <i class="bi bi-cart-fill"></i>
-    </a>
+
     <button class="scroll-to-top" onclick="scrollToTop()">
         <!-- Imagen svg estraida -->
         <svg xmlns="" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"

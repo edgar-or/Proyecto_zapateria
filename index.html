@@ -1,8 +1,3 @@
-<?php
-// Iniciar sesión
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +22,7 @@ session_start();
             </a>
             <ul class="nav nav-tabs" style="margin-top: 4rem; font-size: 20px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">INICIO</a>
+                    <a class="nav-link active" aria-current="page" href="index.html">INICIO</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -37,48 +32,26 @@ session_start();
                         <li><a class="dropdown-item" href="catalogo/joven.php">Caballero</a></li>
                         <li><a class="dropdown-item" href="catalogo/niño.php">Niño</a></li>
                         <li><a class="dropdown-item" href="catalogo/niña.php">Niña</a></li>
-                        <li><a class="dropdown-item" href="../pago/metodo_pago.php">Registrar metodo de pago</a></li>
                     </ul>
                 </li>
-
                 <li class="nav-item">
-                    <?php if (isset($_SESSION['cod_usuario'])): ?>
-                    <a class="nav-link" href="catalogo/mis_compras.php" style="color: white;">Mis Compras</a>
-                    <?php else: ?>
-                    <a class="nav-link" href="login/login.php" style="color: white;">Mis Compras</a>
-                    <?php endif; ?>
+                    <a class="nav-link" href="mis_compras.html" style="color: white;">Mis compras</a>
                 </li>
-
-               <!-- Modificación para "Mi cuenta" -->
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">
-                    Cuenta: 
-                    <?php if (isset($_SESSION['nick_name'])): ?>
-                    <?php echo $_SESSION['nick_name']; ?> <!-- Muestra el nick_name del usuario -->
-                    <?php else: ?>
-                    Invitado <!-- Texto a mostrar si no ha iniciado sesión -->
-                    <?php endif; ?>
-                </a>
-            <ul class="dropdown-menu">
-        <?php if (isset($_SESSION['cod_usuario'])): ?>
-            <!-- Si ha iniciado sesión -->
-            <li><a class="dropdown-item" href="login/cerrar_sesion.php">Cerrar Sesión</a></li>
-        <?php else: ?>
-            <!-- Si no ha iniciado sesión -->
-            <li><a class="dropdown-item" href="login/login.php">Login</a></li>
-        <?php endif; ?>
-    </ul>
-</li>
-
-
-
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false" style="color: white;">Cuenta</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="login/login.php">Login</a></li>
+                        <li><a class="dropdown-item" href="login/login.php">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="creditos/creditos.html" style="color: white;">Creditos</a>
                 </li>
             </ul>
         </div>
     </nav>
-
     <!-- Contenedor fijo -->
     <div class="fixed-width-container">
         <p class="fs-5 text-center"

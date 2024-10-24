@@ -17,10 +17,8 @@ where producto.cod_categoriaf = 1
 GROUP BY producto.cod_producto"; 
 $result = $conn->query($sql);
 
-
-
-
 ?>
+
 <!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
@@ -66,19 +64,30 @@ $result = $conn->query($sql);
                     <?php if (isset($_SESSION['cod_usuario'])): ?>
                     <a class="nav-link" href="mis_compras.php" style="color: white;">Mis Compras</a>
                     <?php else: ?>
-                    <a class="nav-link" href="login/login.php" style="color: white;">Mis Compras</a>
+                    <a class="nav-link" href="../login/login.php" style="color: white;">Mis Compras</a>
                     <?php endif; ?>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false" style="color: white;">Cuenta</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../login/login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="../login/login.php">Cerrar Sesion</a></li>
-                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
-                    </ul>
-                </li>
+              <!-- Modificación para "Mi cuenta" -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: white;">
+                    Cuenta: 
+                    <?php if (isset($_SESSION['nick_name'])): ?>
+                    <?php echo $_SESSION['nick_name']; ?> <!-- Muestra el nick_name del usuario -->
+                    <?php else: ?>
+                    Invitado <!-- Texto a mostrar si no ha iniciado sesión -->
+                    <?php endif; ?>
+                </a>
+            <ul class="dropdown-menu">
+        <?php if (isset($_SESSION['cod_usuario'])): ?>
+            <!-- Si ha iniciado sesión -->
+            <li><a class="dropdown-item" href="../login/cerrar_sesion.php">Cerrar Sesión</a></li>
+        <?php else: ?>
+            <!-- Si no ha iniciado sesión -->
+            <li><a class="dropdown-item" href="../login/login.php">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
                 <li class="nav-item">
                     <a class="nav-link" href="../creditos/creditos.html" style="color: white;">Creditos</a>
                 </li>
