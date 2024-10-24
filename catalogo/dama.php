@@ -112,30 +112,58 @@ $result = $conn->query($sql);
           </div>
         </div>
   
-
-        <!--productos-->
-        <div class="container mt-4">
-  <div class="row"> <!-- Inicio de la fila -->
+<!--productos-->
+<div class="container mt-4">
+  <div class="row">
     <!-- Inicio del loop PHP -->
     <?php while ($row = $result->fetch_assoc()): ?>
-    <div class="col-md-4 mb-4"> <!-- Cada tarjeta ocupa 4 columnas, 3 tarjetas por fila -->
+    <div class="col-12 col-sm-6 col-md-4 mb-4"> <!-- 1 tarjeta por fila en pantallas pequeñas, 2 en medianas, 3 en grandes -->
       <form action="carrito.php" method="POST">
         <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
         <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
-        
+
         <div class="card h-100">
-          <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="Imagen de producto">
+          <div style="width: 100%; height: 250px; overflow: hidden;">
+            <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="Imagen de producto" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          
           <div class="card-body">
             <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
             <h6 class="card-subtitle mb-2 text-muted"><?php echo $row['marca']; ?></h6>
             <p class="card-text"><?php echo $row['descripcion']; ?></p>
 
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              
-              <div class="input-group" style="width: 150px;">
-                <label class="input-group-text">Cantidad</label>
-                <input type="number" class=" form-control" value="1" min="1" name="cantidad" id="cantidad">
+            <div class="row mb-2">
+              <div class="col-4">
+                <label class="form-label">Cantidad</label>
+                <input type="number" class="form-control" value="1" min="1" name="cantidad" id="cantidad">
               </div>
+              <div class="col-4">
+                <label class="form-label">Talla</label>
+                <select class="form-select" name="talla" id="talla">
+  
+                  <?php
+                  $tallas = explode(',', $row['cod_tallas']);
+                  $nombres_tallas = explode(',', $row['tallas']);
+                  foreach ($tallas as $index => $cod_talla):
+                  ?>
+                    <option value="<?php echo trim($cod_talla); ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="col-4">
+                <label class="form-label">Color</label>
+                <select class="form-select" name="color" id="color">
+   
+                  <?php
+                  $colores = explode(',', $row['cod_colores']);
+                  $nombres_colores = explode(',', $row['colores']);
+                  foreach ($colores as $index => $cod_color):
+                  ?>
+                    <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+<<<<<<< HEAD
           
               
               <select class="form-select mx-2" style="width: 75px;" name="talla" id="talla">
@@ -160,11 +188,11 @@ $result = $conn->query($sql);
               <?php endforeach; ?>
             </select>
               
+=======
+>>>>>>> bcf67f265462835245a8659a9ffaad757c5997f2
             </div>
 
-            
-
-            <button name="agregar_carrito" class="btn btn-warning" style="color: white;" value="1">Agregar a carrito</button>
+            <button name="agregar_carrito" class="btn btn-warning w-100" style="color: white;" value="1">Agregar a carrito</button>
 
             <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario']; ?>" name="cod_inventario">
             <input type="hidden" class="form-control" value="<?php echo $row['precio_unitario']; ?>" name="precio_unitario">
@@ -176,6 +204,7 @@ $result = $conn->query($sql);
     <!-- Fin del loop PHP -->
   </div> <!-- Fin de la fila -->
 </div>
+
 
 
    
