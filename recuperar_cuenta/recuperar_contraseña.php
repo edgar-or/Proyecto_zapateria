@@ -30,56 +30,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="icon" href="../imagenes/Index/logo-icono.ico" type="image/x-icon">
     <title>Recuperar Contraseña</title>
-    <style>
-        body {
-            background-color: #f0f2f5;
-        }
-
-        .recuperar-container {
-            max-width: 400px;
-            margin: auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 0.5rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin-top: 100px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="container d-flex align-items-center vh-100">
-        <div class="recuperar-container">
-            <h2 class="text-center mb-4" style="font-family: monospace;">Recuperar Contraseña</h2>
-
-            <!-- FORMULARIO DE RECUPERACIÓN -->
-            <form method="POST" action="recuperar_contraseña.php">
-                <div class="mb-3">
-                    <label for="correo_usuario" class="form-label">Introduce tu correo electrónico:</label>
-                    <input type="email" name="correo_usuario" id="correo_usuario" class="form-control" placeholder="Ingresa tu correo" required>
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
-            </form>
-
-            <?php if (isset($contraseña_actual)): ?>
-                <div class="alert alert-info mt-3">
-                    Tu contraseña actual es: <strong><?php echo $contraseña_actual; ?></strong>
-                </div>
+    <div class="d-flex align-items-center justify-content-center vh-100">
+        <div class="card" style="width: 400px;">
+            <div class="card-header text-center bg-dark text-white">
+                <h3>Recuperar Contraseña</h3>
+            </div>
+            <div class="card-body">
+                <!-- FORMULARIO DE RECUPERACIÓN -->
+                <form method="POST" action="recuperar_contraseña.php">
+                    <div class="mb-3">
+                        <label for="correo_usuario" class="form-label fw-bold">Introduce tu correo electrónico:</label>
+                        <input type="email" name="correo_usuario" id="correo_usuario" class="form-control" placeholder="Ingresa tu correo" required>
+                    </div>
+                    <?php if (isset($contraseña_actual)): ?>
+                    <div class="alert alert-info mt-3">
+                        Tu contraseña actual es: <strong><?php echo $contraseña_actual; ?></strong>
+                    </div>
+                <?php elseif (isset($error)): ?>
+                    <div class="alert alert-danger mt-3"><?php echo $error; ?></div>
+                <?php endif; ?>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
                 </form>
-            <?php elseif (isset($error)): ?>
-                <div class="alert alert-danger mt-3"><?php echo $error; ?></div>
-            <?php endif; ?>
+                <div class="mt-3 d-grid">
+                    <a href="../index.php" class="btn btn-dark">Volver al inicio</a>
+                </div>
+            </div>
         </div>
     </div>
 

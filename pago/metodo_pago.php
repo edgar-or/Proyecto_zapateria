@@ -9,14 +9,14 @@
     <title>Formulario de Pago</title>
 </head>
 
-<body class="bg-secondary" style="height: 100vh;">
-
-    <div class="container d-flex justify-content-center align-items-center h-100">
+<body>
+    <div class="d-flex align-items-center justify-content-center vh-100 bg-light">
         <!-- Formulario de pago -->
         <div class="card payment-form" style="width: 450px;">
+            <div class="card-header text-center bg-dark text-white">
+                <h2 class="mb-0">Formulario de Pago</h2>
+            </div>
             <div class="card-body">
-                <h2 class="text-center mb-4">Formulario de Pago</h2>
-
                 <!-- Aquí es donde las alertas aparecerán -->
                 <?php
                 // Iniciar sesión si es necesario
@@ -77,15 +77,19 @@
                     </div>
                     <div class="mb-3">
                         <label for="expiry-date" class="form-label">Fecha de vencimiento</label>
-                        <input type="date" id="expiry-date" name="fecha_vencimiento" class="form-control" placeholder="MM/AA" required>
+                        <input type="date" id="expiry-date" name="fecha_vencimiento" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="cvv" class="form-label">CVV</label>
                         <input type="text" id="cvv" name="cvv" class="form-control" maxlength="3" placeholder="Ingrese el CVV" required>
                     </div>
-                    <button type="submit" class="btn btn-danger w-100">Registrar</button>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
                     <!-- Botón para volver al menú -->
-                    <a href="../catalogo/dama.php" class="btn btn-dark w-100 mt-2">Volver al Catálogo</a>
+                    <div class="mt-3 d-grid">
+                        <a href="../catalogo/dama.php" class="btn btn-dark">Volver al Catálogo</a>
+                    </div>
                 </form>
             </div>
         </div>
