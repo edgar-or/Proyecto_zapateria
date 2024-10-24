@@ -154,7 +154,7 @@ $result = $conn->query($sql);
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
               <h6 class="card-subtitle mb-2 text-muted text-right"><?php echo $row['marca']; ?></h6>
-              <p class="card-text"><?php echo $row['descripcion']; ?></p>
+              <p class="card-text"><?php echo ("$". $row['descripcion']); ?></p>
 
               <div class="row mb-2">
                 <div class="col-4">
