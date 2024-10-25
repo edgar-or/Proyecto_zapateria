@@ -1,10 +1,17 @@
-<!-- PHP -->
 <?php
 
 session_start();  
 include '../conexionBD.php';
 
-$sql = "SELECT inventario.cod_inventario, inventario.precio_unitario, producto.cod_producto, producto.nombre_producto, producto.imagen, producto.descripcion, producto.marca, color.color, talla.talla,
+// Capturar el término de búsqueda si existe
+$busqueda = "";
+if (isset($_GET['busqueda'])) {
+    $busqueda = $_GET['busqueda'];
+}
+
+// Modificar la consulta SQL para filtrar por nombre de producto
+$sql = "SELECT inventario.cod_inventario, inventario.precio_unitario, producto.cod_producto, producto.nombre_producto, producto.imagen, producto.descripcion, producto.marca, 
+color.color, talla.talla,
 GROUP_CONCAT(DISTINCT color.color SEPARATOR ',') as colores, 
 GROUP_CONCAT(DISTINCT color.cod_color SEPARATOR ',') as cod_colores, 
 GROUP_CONCAT(DISTINCT talla.talla SEPARATOR ',') as tallas,
@@ -13,13 +20,19 @@ FROM inventario
 INNER JOIN producto on cod_productof = cod_producto
 INNER JOIN color on cod_colorf = cod_color
 INNER JOIN talla on cod_tallaf = cod_talla
-where producto.cod_categoriaf = 1
-GROUP BY producto.cod_producto"; 
+WHERE producto.cod_categoriaf = 1";
+
+// Si hay una búsqueda, agregamos una condición SQL adicional
+if (!empty($busqueda)) {
+    $sql .= " AND producto.nombre_producto LIKE '%" . $conn->real_escape_string($busqueda) . "%'";
+}
+
+$sql .= " GROUP BY producto.cod_producto"; 
+
 $result = $conn->query($sql);
 
 ?>
 
-<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,114 +118,112 @@ $result = $conn->query($sql);
         <!-- Barra de búsqueda -->
         <div class="mb-3 text-center">
           <div class="input-group" style="width: 50%; margin: 0 auto;">
-            <input type="text" class="form-control" placeholder="Busca aqui ..." aria-label="Buscar"
-              style="border-radius: 20px 0 0 20px; background-color: #020304; color: white; border: none;">
-            <button class="btn btn-dark" type="button"
-              style="border-radius: 0 20px 20px 0; color: white;">Buscar</button>
+            <form action="dama.php" method="GET" style="display: flex; width: 100%;">
+                <input type="text" class="form-control" placeholder="Busca aqui ..." aria-label="Buscar"
+                  name="busqueda" value="<?php echo htmlspecialchars($busqueda); ?>" 
+                  style="border-radius: 20px 0 0 20px; background-color: #020304; color: white; border: none;">
+                <button class="btn btn-dark" type="submit"
+                  style="border-radius: 0 20px 20px 0; color: white;">Buscar</button>
+            </form>
           </div>
         </div>
   
 <!--productos-->
 <div class="container mt-4">
   <div class="row">
-    <!-- Inicio del loop PHP -->
-    <?php while ($row = $result->fetch_assoc()): ?>
-    <div class="col-12 col-sm-6 col-md-4 mb-4"> <!-- 1 tarjeta por fila en pantallas pequeñas, 2 en medianas, 3 en grandes -->
-      <form action="carrito.php" method="POST">
-        <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
-        <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
+    <!-- Si no hay resultados, mostrar un mensaje de error -->
+    <?php if ($result->num_rows == 0): ?>
+      <div class="col-12 text-center">
+        <p class="text-danger">Producto no encontrado.</p>
+      </div>
+    <?php else: ?>
+      <!-- Inicio del loop PHP -->
+      <?php while ($row = $result->fetch_assoc()): ?>
+      <div class="col-12 col-sm-6 col-md-4 mb-4"> <!-- 1 tarjeta por fila en pantallas pequeñas, 2 en medianas, 3 en grandes -->
+        <form action="carrito.php" method="POST">
+          <input type="hidden" id="cod_producto" name="cod_producto" value="<?php echo $row['cod_producto']; ?>">
+          <input type="hidden" name="nombre_producto" value="<?php echo $row['nombre_producto']; ?>">
 
-        <div class="card h-100">
-          <div style="width: 100%; height: 250px; overflow: hidden;">
-            <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="Imagen de producto" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
-            <h6 class="card-subtitle mb-2 text-muted"><?php echo $row['marca']; ?></h6>
-            <p class="card-text"><?php echo ("$" .$row['precio_unitario']); ?></p>
-
-            <div class="row mb-2">
-              <div class="col-4">
-                <label class="form-label">Cantidad</label>
-                <input type="number" class="form-control" value="1" min="1" name="cantidad" id="cantidad">
-              </div>
-              <div class="col-4">
-                <label class="form-label">Talla</label>
-                <select class="form-select" name="talla" id="talla">
-  
-                  <?php
-                  $tallas = explode(',', $row['cod_tallas']);
-                  $nombres_tallas = explode(',', $row['tallas']);
-                  foreach ($tallas as $index => $cod_talla):
-                  ?>
-                    <option value="<?php echo trim($cod_talla); ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-              <div class="col-4">
-                <label class="form-label">Color</label>
-                <select class="form-select" name="color" id="color">
-   
-                  <?php
-                  $colores = explode(',', $row['cod_colores']);
-                  $nombres_colores = explode(',', $row['colores']);
-                  foreach ($colores as $index => $cod_color):
-                  ?>
-                    <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-
-              
-          
-              
-              
-              
+          <div class="card h-100">
+            <div style="width: 100%; height: 250px; overflow: hidden;">
+              <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="Imagen de producto" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
+            
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $row['nombre_producto']; ?></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><?php echo $row['marca']; ?></h6>
+              <p class="card-text"><?php echo ("$" .$row['precio_unitario']); ?></p>
 
-            <button name="agregar_carrito" class="btn btn-warning w-100" style="color: white;" value="1">Agregar a carrito</button>
+              <div class="row mb-2">
+                <div class="col-4">
+                  <label class="form-label">Cantidad</label>
+                  <input type="number" class="form-control" value="1" min="1" name="cantidad" id="cantidad">
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Talla</label>
+                  <select class="form-select" name="talla" id="talla">
 
-            <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario']; ?>" name="cod_inventario">
-            <input type="hidden" class="form-control" value="<?php echo $row['precio_unitario']; ?>" name="precio_unitario">
+                    <?php
+                    $tallas = explode(',', $row['cod_tallas']);
+                    $nombres_tallas = explode(',', $row['tallas']);
+                    foreach ($tallas as $index => $cod_talla):
+                    ?>
+                      <option value="<?php echo trim($cod_talla); ?>"><?php echo trim($nombres_tallas[$index]); ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Color</label>
+                  <select class="form-select" name="color" id="color">
+                    <?php
+                    $colores = explode(',', $row['cod_colores']);
+                    $nombres_colores = explode(',', $row['colores']);
+                    foreach ($colores as $index => $cod_color):
+                    ?>
+                      <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+
+              <button name="agregar_carrito" class="btn btn-warning w-100" style="color: white;" value="1">Agregar a carrito</button>
+
+              <input type="hidden" class="form-control" value="<?php echo $row['cod_inventario']; ?>" name="cod_inventario">
+              <input type="hidden" class="form-control" value="<?php echo $row['precio_unitario']; ?>" name="precio_unitario">
+            </div>
           </div>
-        </div>
-      </form>
-    </div> <!-- Fin de la columna de la tarjeta -->
-    <?php endwhile; ?>
-    <!-- Fin del loop PHP -->
+        </form>
+      </div> <!-- Fin de la columna de la tarjeta -->
+      <?php endwhile; ?>
+      <!-- Fin del loop PHP -->
+    <?php endif; ?>
   </div> <!-- Fin de la fila -->
 </div>
 
-
-
-   
-  <!-- Footer -->
-  <footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
+<!-- Footer -->
+<footer class="text-white mt-5 p-4 text-center fixed-width-container" style="background-color: #020304;">
     <p>© 2024 The Walkers. Todos los derechos reservados.</p>
   </footer>
   <!-- Contenedor de botones flotantes -->
   <div class="btn-flotante-container">
     <!-- Botón flotante con icono de carrito -->
-    <a href="mis_compras.php" name="icon_carrito" class="btn-flotante">
+    <a href="mis_compras.php" class="btn-flotante">
       <i class="bi bi-cart-fill"></i>
     </a>
-    
+    <!-- Botón de Volver Arriba -->
     <button class="scroll-to-top" onclick="scrollToTop()">
-        <!-- Imagen svg estraida -->
-        <svg xmlns="" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"
-            viewBox="0 0 16 16">
-            <path d="M8 0l3 3H5l3-3zM8 16l-3-3h6l-3 3z" />
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-up"
+        viewBox="0 0 16 16">
+        <path d="M8 0l3 3H5l3-3zM8 16l-3-3h6l-3 3z" />
+      </svg>
     </button>
-</div>
-    <!-- Script de comportamiento del boton -->
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+  </div>
+  <!--Script para dar comportamieno al boton flotante -->
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
   <!-- Script de Bootstrap -->
   <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
@@ -222,5 +233,3 @@ $result = $conn->query($sql);
 </body>
 
 </html>
-
-
