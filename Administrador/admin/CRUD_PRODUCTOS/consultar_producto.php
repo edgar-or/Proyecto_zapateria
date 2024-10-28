@@ -130,7 +130,8 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
       $id_producto = $_POST['busqueda_producto'];
 
       // Consulta SQL
-      $consulta = "SELECT * FROM producto WHERE cod_producto = '$id_producto'";
+      $consulta = "SELECT * FROM producto inner join inventario on producto.cod_producto = inventario.cod_productof WHERE producto.cod_producto = '$id_producto'";
+
       $result = $conn->query($consulta);
 
       // Verificar si hay resultados
@@ -154,7 +155,7 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
           echo '<td>' . $row['nombre_producto'] . '</td>';
           echo '<td>' . $row['descripcion'] . '</td>';
           echo '<td><img src="' . $row['imagen'] . '" width="100" height="100" alt="Imagen"></td>';
-          echo '<td>' . $row['precio'] . '</td>';
+          echo '<td>$' . $row['precio_unitario'] . '</td>';
           echo '<td>' . $row['marca'] . '</td>';
           echo '<td>' . $row['cod_categoriaf'] . '</td>';
           echo '</tr>';

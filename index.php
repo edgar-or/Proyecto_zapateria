@@ -222,7 +222,7 @@ session_start();
                         <div class="card">
                             <img src="imagenes/001-Index/Galeria/galeria-01.jpg" class="card-img-top gallery-img"
                                 alt="Imagen 1">
-                            <div class="card-body">
+                            <div class="card-body ">
                                 <h5 class="card-title">Tenis</h5>
                                 <a href="catalogo/joven.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
@@ -235,7 +235,7 @@ session_start();
                             <img src="imagenes/001-Index/Galeria/galeria-02.jpg" class="card-img-top gallery-img"
                                 alt="Imagen 1">
                             <div class="card-body">
-                                <h5 class="card-title">Tacones</h5>
+                                <h5 class="card-title">Tacones </h5>
                                 <a href="catalogo/dama.php" class="btn btn-light btn-sm text-white"
                                     style="background-color: #020304;">Ver más</a>
                             </div>
