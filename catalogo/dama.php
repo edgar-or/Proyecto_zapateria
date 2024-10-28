@@ -180,7 +180,7 @@ $result = $conn->query($sql);
                     $nombres_colores = explode(',', $row['colores']);
                     foreach ($colores as $index => $cod_color):
                     ?>
-                      <option value="<?php echo trim($cod_color); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
+                      <option value="<?php echo trim($nombres_colores[$index]); ?>"><?php echo trim($nombres_colores[$index]); ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>

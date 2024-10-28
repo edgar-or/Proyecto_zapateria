@@ -138,10 +138,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
     $validar_venta_proceso = validarVentaProceso($conn,  $cod_usuario);
 
     if($validar_venta_proceso){
+        consultCod_color($conn, $cod_usuario);
+        validarInventario($conn, $cod_usuario);
         insertarDetalleVenta($conn);
     }else{
         crearVenta($conn,  $cod_usuario);
-        insertarDetalleVenta($conn);
+        consultCod_color($conn, $cod_usuario);
+        validarInventario($conn, $cod_usuario);
+        insertarDetalleVenta($conn); //modificar aqui 
     }
 
     mostrarTabla(obtenerProductosPedidos( $conn, $cod_usuario));
@@ -206,8 +210,88 @@ function obtenerProductosPedidos($conn, $cod_usuarios) {
     return $productos;
 }
 
+
+
+// Función para traer el cod_color 
+function consultCod_color($conn, $cod_usuario) {
+    $cod_producto = $_POST['cod_producto'];
+    $color = $_POST['color'];
+
+    
+    $sql_detalle = "SELECT cod_color FROM color WHERE color = ?;";
+    if ($stmt_detalle = mysqli_prepare($conn, $sql_detalle)) {
+        // Asociar los parámetros
+        mysqli_stmt_bind_param($stmt_detalle, "s", $color);
+        
+        // Ejecutar la consulta
+        if (mysqli_stmt_execute($stmt_detalle)) {
+            mysqli_stmt_bind_result($stmt_detalle, $cod_color); // Asociar variables de resultado
+            if (mysqli_stmt_fetch($stmt_detalle)) { // Obtener los valores
+                return $cod_color; // Retornar ambos valores en un arreglo asociativo
+            } else {
+                $mensaje = "no se encontro el cod_color";
+                $paginaDestino = "dama.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+                echo "<script>
+                        alert('$mensaje');
+                        window.location.href = '$paginaDestino';
+                      </script>";
+            }
+        } else {
+            return null; // Error en la ejecución de la consulta
+        }
+    }
+    return null; // Error en la preparación de la consulta
+}
+
+
+
+// Función para validar inventario 
+function validarInventario($conn, $cod_usuario) {
+    $cod_producto = $_POST['cod_producto'];
+    $cod_color = consultCod_color($conn, $cod_usuario);     
+    $cod_talla = $_POST['talla'];
+    print ("talla: ".$cod_talla);
+    print ("color: ".  $cod_color);
+
+    
+    $sql_detalle = "SELECT cod_inventario, precio_unitario FROM inventario WHERE cod_colorf = ? AND cod_tallaf = ? AND cod_productof = ?;";
+    if ($stmt_detalle = mysqli_prepare($conn, $sql_detalle)) {
+        // Asociar los parámetros
+        mysqli_stmt_bind_param($stmt_detalle, "iii", $cod_color, $cod_talla, $cod_producto);
+        
+        // Ejecutar la consulta
+        if (mysqli_stmt_execute($stmt_detalle)) {
+            mysqli_stmt_bind_result($stmt_detalle, $cod_inventario, $precio_unitario); // Asociar variables de resultado
+            if (mysqli_stmt_fetch($stmt_detalle)) { // Obtener los valores
+                return [
+                    'cod_inventario' => $cod_inventario,
+                    'precio_unitario' => $precio_unitario
+                ]; // Retornar ambos valores en un arreglo asociativo
+            } else {
+                $mensaje = "Combinación de color y talla no disponible en inventario";
+                $paginaDestino = "dama.php"; // Cambia esta ruta al archivo que corresponda en tu proyecto
+                echo "<script>
+                        alert('$mensaje');
+                        window.location.href = '$paginaDestino';
+                      </script>";
+            }
+        } else {
+            return null; // Error en la ejecución de la consulta
+        }
+    }
+    return null; // Error en la preparación de la consulta
+}
+
+
+
+
+
+
+
+
 // Insertar los productos en la tabla detalle_venta con el código de venta asociado
 function insertarDetalleVenta($conn){
+
 
     $cod_producto = $_POST['cod_producto'];
     
@@ -217,9 +301,10 @@ function insertarDetalleVenta($conn){
     if ($cantidad_solicitada == NULL){
         $cantidad_solicitada = 1;
     }
-    $cod_inventario = $_POST['cod_inventario'];
+    $inventario = validarInventario($conn, $cod_usuario); 
+    $cod_inventario = $inventario['cod_inventario'];
+    $precio_unitario = $inventario['precio_unitario'];
     $cod_usuario = $_SESSION['cod_usuario'];
-    $precio_unitario = $_POST['precio_unitario'];
     $codigo_venta = codVentaMax($conn, $cod_usuario); // Usar el código de la venta almacenada en sesión
    
         if ($codigo_venta == NULL){
@@ -228,7 +313,7 @@ function insertarDetalleVenta($conn){
         }            
         $sql_detalle = "INSERT INTO detalle_venta (cantidad_producto, cod_ventaf, cod_inventariof, precio_unitario) VALUES (?, ?, ?, ?)";
         if ($stmt_detalle = mysqli_prepare($conn, $sql_detalle)) {
-            mysqli_stmt_bind_param($stmt_detalle, "iiid", $cantidad_solicitada, $codigo_venta, $cod_inventario, $precio_unitario);
+            mysqli_stmt_bind_param($stmt_detalle, "iiid", $cantidad_solicitada, $codigo_venta, $cod_inventario , $precio_unitario);
             if (mysqli_stmt_execute($stmt_detalle)) {
                 $mensaje = "se agrego el producto";
                 echo "<script>
