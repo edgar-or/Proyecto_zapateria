@@ -110,7 +110,7 @@ if (!isset($_SESSION['cod_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
                         style="border: 1px solid #ced4da; border-radius: 50px 0 0 50px; padding: 10px 20px; font-size: 18px;">
                     <button class="btn btn-outline-secondary" type="submit" 
                         style="border-radius: 0 50px 50px 0; border: 1px solid #ced4da; padding: 10px 20px; font-size: 18px; background-color: #f8f9fa;">
-                        Buscar
+                        Eliminar
                     </button>
                 </div>
             </div>
